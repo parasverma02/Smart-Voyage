@@ -1,0 +1,9 @@
+Run following commands -
+1. To install Angular (https://angular.io/start) - npm install
+2. To install Angular material(https://material.angular.io/) - ng add @angular/material
+3. To create new angular project(https://medium.com/codetobe/create-an-angular-7-project-using-the-new-cli-prompts-d67bcf5626b5)- ng new
+4. To run angular project- ng serve
+
+Note: Committed front code does not consist of folders like "node_modules" and "e2e" (end-to-end test file). Running 3rd command (ng new) will generate angular project with all the folders. We will be making changes in src folder.
+
+
