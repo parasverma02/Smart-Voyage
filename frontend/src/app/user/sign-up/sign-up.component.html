@@ -1,0 +1,36 @@
+
+<form #f="ngForm" class="example-form" (ngSubmit)="onSignup(f.value)">
+    <!-- <mat-form-field class="example-full-width"> -->
+        <label>First Name</label>
+      <input matInput type="text" placeholder="Eg: Jane" [(ngModel)]="user.firstname" name="firstname" value="">
+    <!-- </mat-form-field> -->
+
+
+    <!-- <mat-form-field class="example-full-width"> -->
+        <Label>Last Name</Label>
+      <input matInput type="text" placeholder="Eg: Doe" [(ngModel)]="user.lastname" name="lastname" ngModel>
+    <!-- </mat-form-field> -->
+
+    <!-- <mat-form-field class="example-full-width"> -->
+        <Label>Username</Label>
+      <input matInput type="text" placeholder="Eg: janedoe" [(ngModel)]="user.username" name="username" ngModel>
+    <!-- </mat-form-field> -->
+    
+    <!-- <mat-form-field class="example-full-width"> -->
+        <Label>Set Password</Label>
+      <input matInput type="password" placeholder="**********" [(ngModel)]="user.password" name="password">
+    <!-- </mat-form-field> -->
+
+    <!-- <mat-form-field class="example-full-width"> -->
+        <Label>Email id</Label>
+      <input matInput type="email" placeholder="Eg: example@email.com" name="email" [(ngModel)]="user.email">
+    <!-- </mat-form-field> -->
+
+    <!-- <mat-form-field class="example-full-width"> -->
+        <Label>Phone Number</Label>
+      <input matInput type="text" placeholder="XXXXXXXXXX" name="phonenumber" [(ngModel)]="user.phonenumber">
+    <!-- </mat-form-field> -->
+
+    <button mat-button >Sign up</button>
+
+  </form>
