@@ -16,7 +16,7 @@ export class SignUpComponent implements OnInit {
 
   onSignup(){
     console.log(this.user);
-    this._userService.sendUser(this.user)
+    this._userService.send_signupRequest(this.user)
     .subscribe(response => console.log('sucess!',response));
   }
 }
