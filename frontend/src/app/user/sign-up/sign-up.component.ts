@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/user.service';
 import { UserAccount } from '../response-objects/user-account';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -9,14 +10,20 @@ import { UserAccount } from '../response-objects/user-account';
 })
 export class SignUpComponent implements OnInit {
   user = new UserAccount();
-  constructor(private _userService: UserService) { }
+  constructor(private _userService: UserService,private router: Router) { }
   
   ngOnInit() {
+    if(this._userService.isLoggedIn){
+      this.router.navigate(['home']);
+    }
   }
 
   onSignup(){
     console.log(this.user);
-    this._userService.sendUser(this.user)
-    .subscribe(response => console.log('sucess!',response));
+    this._userService.send_signupRequest(this.user)
+    .subscribe(response => {
+      this.router.navigate(['home']);
+      this._userService.setLoggedIn(true)
+    });
   }
 }
