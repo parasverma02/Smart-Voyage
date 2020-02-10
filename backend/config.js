@@ -5,5 +5,5 @@ let password = 'smartvoyage';
 // let dbname = 'databasename';
 
 module.exports = {
-    url: `mongodb+srv://${username}:${password}@cluster0-ddgg4.mongodb.net/test?retryWrites=true&w=majority`
+    url: `mongodb://localhost:27017/mydb`
 };
