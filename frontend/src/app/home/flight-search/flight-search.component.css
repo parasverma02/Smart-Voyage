@@ -1,0 +1,113 @@
+.parent-container {
+	background-color: rgb(223, 73, 73);
+	border-radius: 7px;
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+	position: relative;
+    overflow: hidden;
+    top: 50px;
+	width: 70%;
+	/* max-width: 100%; */
+	min-height: 300px;
+}
+
+.travellers-section {
+    background-color: rgb(122, 28, 28);
+    min-height: 300px;
+}
+
+.flight-footer{
+    position: absolute;
+    width: 100%;    
+    height: 50px;
+    left: 0;
+    bottom: 0;
+    background-color: rgb(34, 10, 10);
+}
+
+.btn-search {
+    margin-right: 30px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px; 
+    margin-top: 5px;
+    width: 160px;
+    float: right;
+}
+.btn-search:hover {
+    /* border-style: solid; */
+    background-color:  rgb(199, 196, 196);
+    /* border-width: 2px; */
+}
+.btn-search:active{
+    border-style: groove;
+    border-width: 2px;
+}
+.select2 {
+    margin-top: 20px;
+}
+.date {
+    margin-top: 20px;
+}
+.btn-city{
+    margin-top: 17px;
+    margin-bottom: 60px;
+    background-color: white;
+    color: rgb(223, 73, 73);
+}
+.btn-dropdown {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    width: 150px;
+    background-color: white;
+}
+.btn-city:hover{
+    border-style: solid;
+    border-color:  rgb(248, 157, 157);
+    border-width: 2px;
+}
+.btn-city:active{
+   background-color:  rgb(248, 157, 157);
+}
+span {
+    color: white;
+}
+
+.vertical { 
+    border-left: 2px solid rgb(122, 28, 28); 
+    height: 300px; 
+    position: absolute; 
+    left: 66%; 
+
+} 
+.travellers{
+    margin-left: 50px;
+    font-size: 30px;
+}
+
+.btn-incdec {
+    background-color: white;
+    border-radius: 20px;
+}
+.traveller-count{
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 15px;
+    font-weight: bold;
+}
+.adult-count {
+    margin-top: 20px;
+}
+.children-count {
+    margin-top: 20px;
+}
+.btn-adult{
+    margin-left: 12px;
+}
+.incdec{
+    margin-left: 20px;
+}
+
+.ts {
+    margin-left: 20px;
+}

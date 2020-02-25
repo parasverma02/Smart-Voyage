@@ -10,6 +10,10 @@ import { HomeComponent } from './home/home.component';
 import { appRoutes } from './app.routing';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './auth.guard';
+import { FlightSearchComponent } from './home/flight-search/flight-search.component';
+import { NgxSelectModule } from 'ngx-select-ex';
+import { BsDatepickerModule } from 'ngx-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 @NgModule({
   declarations: [
@@ -17,12 +21,16 @@ import { AuthGuard } from './auth.guard';
     UserComponent,
     SignInComponent,
     SignUpComponent,
-    HomeComponent
+    HomeComponent,
+    FlightSearchComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    NgxSelectModule,
+    BsDatepickerModule.forRoot(),
     RouterModule.forRoot(appRoutes)
   ],
   providers: [AuthGuard],
