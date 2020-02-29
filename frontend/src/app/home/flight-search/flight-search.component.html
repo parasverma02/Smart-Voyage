@@ -1,72 +1,96 @@
 
 <div class="container parent-container">
-    <div class="row">
-        <div class="col-md-8">
-            <div class="row">
-                <div class="col-md-8 select2">
-                    <span>Source</span>
-                    <ngx-select  [items]="items"></ngx-select>
-                </div>
-                <div class="col-xs-12 col-12 col-md-4 form-group select2">
-                    <span>Date</span>
-                    <input type="text" placeholder="Date" class="form-control"#dp="bsDatepicker" bsDatepicker>
-                </div>
-            </div>
-            <div *ngFor="let city of cities">
+    <form #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()" novalidate>
+        <div class="row">
+            <div class="col-md-8">
                 <div class="row">
-                    <div class="col-md-8">
-                        <span>{{city}}</span>
-                        <ngx-select [items]="items" [(ngModel)]="itemId"></ngx-select>
+                    <div class="col-md-8 select2">
+                        <span>Source</span>
+                        <ngx-select  [items]="items" [(ngModel)]="searchDetails.source" required [ngModelOptions]="{standalone: true}" [ngClass]="{ 'is-invalid': f.submitted && source.invalid }" #source="ngModel" ></ngx-select>
+                        <div *ngIf="f.submitted && source.invalid" class="invalid-feedback">
+                            <div *ngIf="source.errors?.required">Source is required </div>
+                        </div>
+                        
                     </div>
-                    <div class="col-md-4">
-                        <span>Days</span>
-                        <input type="number" class="form-control" min="1" placeholder="Number of Days" >
+                    <div class="col-xs-12 col-12 col-md-4 form-group select2">
+                        <span>Date</span>
+                        <input type="text" placeholder="Date" [(ngModel)]="searchDetails.date" name="date" required class="form-control"#dp="bsDatepicker" [ngClass]="{ 'is-invalid': f.submitted && date.invalid }" #date="ngModel" bsDatepicker>
+                        <div *ngIf="f.submitted && date.invalid" class="invalid-feedback">
+                            <div *ngIf="date.errors?.required">Date is required </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-8" >
-                    <button type="button" class="btn  btn-city" (click)="onAdd()">
-                        Add City
-                     </button>
-                </div>   
-            </div>
-        </div>
-        <div class="col-md-4 travellers-section">
-            <span class="travellers">Travellers</span>
-            <div class="dropdown row ts">
-                <span>Class</span>
-                <button type="button" class="btn btn-dropdown dropdown-toggle" data-toggle="dropdown">
-                    Class
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Economy</a>
-                    <a class="dropdown-item" href="#">Premium Economy</a>
-                    <a class="dropdown-item" href="#">Business</a>
-                    <a class="dropdown-item" href="#">First-Class</a>
+                <!-- <ng-container *ngFor="let city of citiesNumber; let i = index">
+                    <label >
+                          {{ gender }}: 
+                          <input type="radio" name="gender" [value]="gender" 
+                            ngModel required #myGender="ngModel" />
+                    </label>
+                        
+                    <div *ngIf="last" [hidden]="!myGender.hasError('required')">
+                       The gender is required
+                     </div>
+                  </ng-container> -->
+                <ng-container *ngFor="let city of citiesNumber; let i = index;">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <span>City {{city}}</span>
+                            <ngx-select [items]="items" [(ngModel)]="searchDetails.cities[i].city" [ngModelOptions]="{standalone: true}"  [name]="city" ></ngx-select>
+                        </div>
+                        <div class="col-md-3">
+                            <span>Days</span>
+                            <input type="number" class="form-control" [(ngModel)]="searchDetails.cities[i].days"  name="{{'days'+i}}" min="1" placeholder="Number of Days" >
+                        </div>
+                        <div class="col-md-1">
+                            <button type="button" class="close text-centre" id="i" (click)="removeCity(i)" *ngIf="citiesNumber.length > 1" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                        </div>
+                    </div>
+                </ng-container>
+                <div class="row">
+                    <div class="col-md-8" >
+                        <button type="button" class="btn  btn-city" (click)="onAdd()">
+                            Add City
+                         </button>
+                    </div>   
                 </div>
             </div>
-            <div class="adult-count row ts">
-                <span>Adults</span >
-                    <div class="incdec"> 
-                        <button  type="button" class="btn btn-incdec btn-adult" (click)="onDecrementAdult()" [disabled]="adult_count == 1">-</button>
-                        <label class="traveller-count">{{adult_count}}</label>
-                        <button type="button" class="btn btn-incdec" (click)="onIncrementAdult()" [disabled]="adult_count==8">+</button>
+            <div class="col-md-4 travellers-section">
+                <span class="travellers">Travellers</span>
+                <div class="dropdown row ts">
+                    <span>Class</span>
+                    <select  class="btn-dropdown form-control" name="singleSelect"  [(ngModel)]="searchDetails.class">
+                        <option value="Economy" selected >Economy</option>
+                        <option value="Premium Economy">Premium Economy</option>
+                        <option value="Business">Business</option>
+                        <option value="First-Class">First-Class</option>
+                    </select>
+                </div>
+                <div class="adult-count row ts">
+                    <span>Adults</span >
+                        <div class="incdec"> 
+                            <button  type="button" class="btn btn-incdec btn-adult" (click)="onDecrementAdult()" [disabled]="adult_count == 1">-</button>
+                            <label class="traveller-count" name="adults">{{adult_count}}</label>
+                            <button type="button" class="btn btn-incdec" (click)="onIncrementAdult()" [disabled]="adult_count==8">+</button>
+                        
+                        </div>
+                    </div>
+                <div class="children-count row ts">
+                    <span>Children</span>
+                    <div class="incdec">
+                        <button  type="button" class="btn btn-incdec" (click)="onDecrementChildren()" [disabled]="children_count == 0">-</button>
+                        <label class="traveller-count"  name="children">{{children_count}}</label>
+                        <button type="button" class="btn btn-incdec" (click)="onIncrementChildren()" [disabled]="children_count==8">+</button>
                     
                     </div>
-                </div>
-            <div class="children-count row ts">
-                <span>Children</span>
-                <div class="incdec">
-                    <button  type="button" class="btn btn-incdec" (click)="onDecrementChildren()" [disabled]="children_count == 0">-</button>
-                    <label class="traveller-count">{{children_count}}</label>
-                    <button type="button" class="btn btn-incdec" (click)="onIncrementChildren()" [disabled]="children_count==8">+</button>
-                
-                </div>
-            </div>         
+                </div>         
+            </div>
+        </div> 
+        <div class="footer flight-footer">
+                <button type="submit" class="btn btn-search" >Search</button>
         </div>
-    </div> 
-    <div class="footer flight-footer">
-            <button type="button" class="btn btn-search" >Search</button>
-    </div>
+
+    </form>
+    
 </div>
