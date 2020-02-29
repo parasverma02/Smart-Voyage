@@ -4,6 +4,12 @@ const app = express();
 const MongoClient = require('mongodb').MongoClient;
 const mongourl = require('./config.js');
 
+var cities;
+var util = require("util");
+var childprocess = require("child_process");
+var spawn = require("child_process").spawn;
+
+
 
 var bodyParser = require('body-parser')
 // parse application/x-www-form-urlencoded
@@ -24,7 +30,7 @@ app.get('/', (req,res) => {
 });
 
 app.post('/api/signup', (req,res) => {
-    MongoClient.connect("mongodb://localhost:27017/mydb", function(err,database){
+    MongoClient.connect("mongodb://localhost:27017/", function(err,database){
         if (err) throw err;
         console.log("Connected to db");
         console.log("body is ", req.body);
@@ -36,7 +42,7 @@ app.post('/api/signup', (req,res) => {
             password: req.body.password,
             phonenumber: req.body.phonenumber
         };
-        const db = database.db('mydb')
+        const db = database.db('customerdb')
 
         const collection = db.collection('userdetails')
 
@@ -64,11 +70,11 @@ app.post('/api/signup', (req,res) => {
 
 app.post('/api/signin', (req,res) => {
 
-    MongoClient.connect("mongodb://localhost:27017/mydb", function(err,database){
+    MongoClient.connect("mongodb://localhost:27017/", function(err,database){
         if (err) throw err;
         console.log("Connected to db");
         console.log("body is ", req.body);
-        const db = database.db('mydb')
+        const db = database.db('customerdb')
         const collection = db.collection('userdetails')
         collection.findOne({username:req.body.username, password:req.body.password}, function(err, result){
             console.log("result is ", result);
@@ -88,6 +94,27 @@ app.post('/api/signin', (req,res) => {
             }
             
         })
+    });
+})
+
+app.post('/api/search', function(req,res){
+    for(i=0; i<req.body.cities.length; i++){
+        //cities[i] = req.body.cities[i];
+        console.log(req.body.cities[i]);
+    }
+    var process = spawn('python', ["search.py"]);
+    util.log('readingin');
+    process.stdin.write(JSON.stringify(req.body));
+    process.stdin.end();
+
+    process.stdout.on('data',function(data){
+        util.log(data.toString());
+    });
+
+    childprocess.exec('python search.py', function (err){
+        if (err) {
+            console.log("child processes failed with error code: " + err.code);
+        }
     });
 })
 
