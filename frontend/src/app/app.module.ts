@@ -14,7 +14,8 @@ import { AuthGuard } from './auth.guard';
 import { FlightSearchComponent } from './home/flight-search/flight-search.component';
 import { NgxSelectModule } from 'ngx-select-ex';
 import { BsDatepickerModule } from 'ngx-bootstrap';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SearchResultComponent } from './search-result/search-result.component'
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     SignInComponent,
     SignUpComponent,
     HomeComponent,
-    FlightSearchComponent
+    FlightSearchComponent,
+    SearchResultComponent
   ],
   imports: [
     BrowserModule,

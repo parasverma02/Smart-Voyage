@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchDetails } from './search-details';
 import { FlightSearchService } from './flight-search.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'flight-search',
@@ -18,7 +19,7 @@ export class FlightSearchComponent implements OnInit {
   private cityNumber = 1;
   private adult_count = 1;
   private children_count = 0;
-  constructor(private _flightService: FlightSearchService) { }
+  constructor(private _flightService: FlightSearchService, private router: Router) { }
   ngOnInit() {
     this.getAirports();
   }
@@ -28,6 +29,7 @@ export class FlightSearchComponent implements OnInit {
    
   onSubmit(){
     console.log(this.searchDetails);
+    this.router.navigate(['searchresult']);
   }
   onAdd(){
     this.cityNumber++;
