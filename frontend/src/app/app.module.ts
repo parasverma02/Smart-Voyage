@@ -16,6 +16,7 @@ import { NgxSelectModule } from 'ngx-select-ex';
 import { BsDatepickerModule } from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchResultComponent } from './search-result/search-result.component'
+import { ProfilepageComponent } from './user/profilepage/profilepage.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SearchResultComponent } from './search-result/search-result.component'
     SignUpComponent,
     HomeComponent,
     FlightSearchComponent,
-    SearchResultComponent
+    SearchResultComponent,
+    ProfilepageComponent
   ],
   imports: [
     BrowserModule,
