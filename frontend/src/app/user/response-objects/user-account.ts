@@ -5,4 +5,8 @@ export class UserAccount {
     emailid: string;
     password: string;
     phonenumber: string;
+    //For signup page
+    dob:string;
+    gender:string;
+    phone:string;
 }
