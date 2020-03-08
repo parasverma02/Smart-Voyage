@@ -1,18 +1,49 @@
 .parent-container {
-	background-color: rgb(223, 73, 73);
+	background-color: rgba(0, 0, 0, 0.77);
 	border-radius: 7px;
   	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
 			0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
     overflow: hidden;
-    top: 50px;
-	width: 70%;
+    top: 150px;
+    width: 70%;
+    display: flex;
+  flex-direction: column;
 	/* max-width: 100%; */
 	min-height: 300px;
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+.divwithscrollbar {
+
+   overflow: auto;
+   max-height: 80%;
+   max-height: 400px;
+   top: 0%;
+   height: 250px;
+
+}
+
 .travellers-section {
-    background-color: rgb(122, 28, 28);
+    background-color: rgba(0, 0, 0, 0.79);
     min-height: 300px;
 }
 
@@ -22,7 +53,7 @@
     height: 50px;
     left: 0;
     bottom: 0;
-    background-color: rgb(34, 10, 10);
+    background-color:rgba(25, 25, 25, 0.88);
 }
 
 .btn-search {
@@ -32,6 +63,8 @@
     margin-top: 5px;
     width: 160px;
     float: right;
+    font-weight: bolder;
+    color: rgb(41, 41, 41);
 }
 .btn-search:hover {
     /* border-style: solid; */
@@ -52,13 +85,13 @@
     margin-top: 17px;
     margin-bottom: 60px;
     background-color: white;
-    color: rgb(223, 73, 73);
+    font-weight: bolder;
+    color: rgb(41, 41, 41);
 }
 .btn-dropdown {
     margin-top: 5px;
     margin-bottom: 10px;
-    margin-left: 10px;
-    width: 150px;
+    max-width: 100%;
     background-color: white;
 }
 .btn-city:hover{
@@ -81,7 +114,7 @@ span {
 
 } 
 .travellers{
-    margin-left: 50px;
+    position: sticky;
     font-size: 30px;
 }
 
@@ -100,6 +133,10 @@ span {
 }
 .children-count {
     margin-top: 20px;
+    margin-bottom: 60px;
+}
+.incdecdiv, .adultchild {
+    max-width: 100%;
 }
 .btn-adult{
     margin-left: 12px;
@@ -110,4 +147,17 @@ span {
 
 .ts {
     margin-left: 20px;
+}
+
+.close{
+    margin-top: 26px;
+    margin-right: 20px;
+}
+
+.invalid {
+    width: 200px;
+    background-color: lavenderblush;
+    color: red;
+    margin-top: 5px;
+    border-radius: 2px;
 }

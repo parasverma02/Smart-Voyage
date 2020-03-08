@@ -8,38 +8,46 @@
 </head>
 <body>
 
-<div class="jumbotron text-center" style="margin-bottom:0">
-  <h1>My First Bootstrap 4 Page</h1>
-  <p>Resize this responsive page to see the effect!</p> 
+<!-- <div class="home-header">
+  <span class="smart-voyage">Smart Voyage</span>
+</div> -->
+<header>
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="/home">Smart Voyage</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="nav navbar-nav ">
+        <a class="nav-item nav-link navbar-home " href="#">Home <span class="sr-only">(current)</span></a>
+         
+      </div>
+      <div class="nav navbar-nav ml-auto">
+        <div class="dropdown">
+          <a class="nav-item nav-link" href="/home">Account 
+            <i class="fa fa-caret-down"></i>
+          </a>
+          <div class="dropdown-content">
+            <a href="/home">Link 1</a>
+            <a href="/home">Link 2</a>
+            <a href="/home">Link 3</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="container">
+  <flight-search></flight-search>
 </div>
 
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>    
-    </ul>
-  </div>  
-</nav>
-<flight-search></flight-search>
 
-<div class="jumbotron text-center" style="margin-bottom:0">
+<!-- <div class="home-footer">
   <p>Footer</p>
-</div>
-
+</div> -->
 </body>
 </html>
 
-<p>home works!</p>
-<button (click) ="onLogout()" >Logout!</button>
+<!-- <p>home works!</p>
+<button (click) ="onLogout()" >Logout!</button> -->
