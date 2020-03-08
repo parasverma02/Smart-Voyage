@@ -29,6 +29,59 @@ app.get('/', (req,res) => {
     res.send("This will be the response");
 });
 
+app.get('/api/setup', function(req,res){
+    MongoClient.connect("mongodb://localhost:27017/", function(err,database){
+        if (err) throw err;
+        console.log("Connected to db");
+        var cities = [
+            {
+                city:"toronto",
+                code: "YYZ"
+            },
+            {
+                city:"calgary",
+                code: "YYC"
+            },
+            {
+                city:"montreal",
+                code: "YUL"
+            },
+            {
+                city:"ottawa",
+                code: "YOW"
+            },
+            {
+                city:"vancouver",
+                code: "YVR"
+            },
+            {
+                city:"winnipeg",
+                code: "YWG"
+            },
+            {
+                city:"quebec",
+                code: "YQB"
+            },
+            {
+                city:"saskathoon",
+                code: "YXE"
+            },
+            {
+                city:"halifax",
+                code: "YHZ"
+            },
+            {
+                city:"edmonton",
+                code: "YEG"
+            }
+        ];
+        const db = database.db('flightInfo')
+
+        const collection = db.collection('airportcodes')
+        collection.insert(cities)
+        res.json({ message: "Success"});
+    })
+})
 app.post('/api/signup', (req,res) => {
     MongoClient.connect("mongodb://localhost:27017/", function(err,database){
         if (err) throw err;
@@ -98,10 +151,6 @@ app.post('/api/signin', (req,res) => {
 })
 
 app.post('/api/search', function(req,res){
-    for(i=0; i<req.body.cities.length; i++){
-        //cities[i] = req.body.cities[i];
-        console.log(req.body.cities[i]);
-    }
     var process = spawn('python', ["search.py"]);
     util.log('readingin');
     process.stdin.write(JSON.stringify(req.body));
@@ -114,6 +163,7 @@ app.post('/api/search', function(req,res){
     childprocess.exec('python search.py', function (err){
         if (err) {
             console.log("child processes failed with error code: " + err.code);
+            console.log(err);
         }
     });
 })
