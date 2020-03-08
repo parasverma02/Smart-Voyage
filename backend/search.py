@@ -13,6 +13,8 @@ def main():
     data = json.loads(sys.stdin.readline())
     print("data:",data["cities"])
     i=0
+    date = data["startdate"]
+    print(date[0]+1)
     for city in data["cities"]:
         print(city["city"])
         airport = db.airportcodes.find_one({'city': city["city"]})
@@ -20,12 +22,12 @@ def main():
         city_dict[i] = [airport["code"], city["days"]]
         i = i+1
     print("dictionary is ", city_dict)
-    test()
+    test(date)
     # search(city_dict)
     # sys.stdout.flush()
 
-def test():
-    x = list(db.documents.find({"departureAirportFsCode": "YYZ"}, {"arrivalAirportFsCode": "YVR"}).sort({flightcost:+1}))
+def test(date):
+    x = list(db.documents.find({"departureAirportFsCode": "YYZ", "arrivalAirportFsCode": "YVR", "departureTime": date[0]}).sort("flightcost",1))
     # x = list(db.documents.find({departureAirportFsCode:"YYZ"}))
     print(x)
 
