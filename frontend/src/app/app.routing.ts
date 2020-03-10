@@ -4,6 +4,7 @@ import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { AuthGuard } from './auth.guard';
 import { SearchResultComponent } from './search-result/search-result.component';
+import { ProfilepageComponent } from './home/profilepage/profilepage.component';
 
 export const appRoutes: Routes = [
     { 
@@ -22,6 +23,10 @@ export const appRoutes: Routes = [
     {
         path: 'login', 
         component: SignInComponent
+    },
+    {
+        path: 'profilepage', 
+        component: ProfilepageComponent
     },
     { path: '', redirectTo: '/login', pathMatch: 'full'}
 ]

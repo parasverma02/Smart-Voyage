@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router'
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
-import { SignUpComponent } from './user/sign-up/sign-up.component';
+ import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { FormsModule } from '@angular/forms'
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
@@ -16,6 +16,7 @@ import { NgxSelectModule } from 'ngx-select-ex';
 import { BsDatepickerModule } from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchResultComponent } from './search-result/search-result.component'
+import { ProfilepageComponent } from './home/profilepage/profilepage.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SearchResultComponent } from './search-result/search-result.component'
     SignUpComponent,
     HomeComponent,
     FlightSearchComponent,
-    SearchResultComponent
+    SearchResultComponent,
+    ProfilepageComponent
   ],
   imports: [
     BrowserModule,
