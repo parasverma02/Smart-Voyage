@@ -4,6 +4,8 @@ from itertools import permutations
 
 
 def main():
+    
+    #replace the static data with mongo db database
     start_date = 20200320  # yyyymmdd
     start_city = "Toronto"
     datalist = [["Vancouver", 5], ["Calgary", 3], ["Edmonton", 2]]
