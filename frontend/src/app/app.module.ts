@@ -30,7 +30,7 @@ import { ProfilepageComponent } from './home/profilepage/profilepage.component';
     HomeComponent,
     FlightSearchComponent,
     SearchResultComponent,
-    HeaderComponent
+    HeaderComponent,
     ProfilepageComponent
   ],
   imports: [
