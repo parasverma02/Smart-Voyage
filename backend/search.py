@@ -12,14 +12,16 @@ db=client.flightInfo
 city_dict = dict()
 route = []
 mincost = 10000000
+totalcost = {}
+data = {}
 
 def main():
+    global data
     # print("Executing python script")
     data = json.loads(sys.stdin.readline())
-    # print("data:",data["cities"])
     i=0
     startdate = ""
-    startdate += data["date"][0]
+    startdate += data["date"]
     source = db.airportcodes.find_one({'city':data["source"]})
     for city in data["cities"]:
         airport = db.airportcodes.find_one({'city': city["city"]})
@@ -28,11 +30,11 @@ def main():
         i = i+1
     i=0
     bruteforce(source["code"], startdate, city_dict)
-    # sys.stdout.flush()
 
 def bruteforce(source, date, cities):
     global mincost
     global route
+    global totalcost
     l = list(permutations(range(0, len(cities))))
     for perm in l:
         val=0
@@ -46,11 +48,10 @@ def bruteforce(source, date, cities):
         sorted_temp_dict = collections.OrderedDict(sorted(temp_dict.items()))
         search(source, date, sorted_temp_dict)
         # print("proceeding...")
-    totalcost = {}
     totalcost['totalcost'] = mincost
-    route.append(totalcost)
-    # print(mincost)
-    print(route)
+    # route.append(totalcost)
+    # print(route)
+    formatjson(route, totalcost)
 
 def search(source, date, cities):
     global route
@@ -61,7 +62,6 @@ def search(source, date, cities):
     flights = []
     for key in cities:
         x = list(db.documents.find({"departureAirportFsCode": start, "arrivalAirportFsCode": cities[key][0], "departureTime" : {"$gte":d1}, "arrivalTime" : {"$lt":d2}}).sort("flightcost",1).limit(1))
-        # print(x)
         if(x==[]):
             # print(start, cities[key][0])
             return
@@ -82,6 +82,42 @@ def search(source, date, cities):
         route = list(flights)
         mincost = tempcost
         # print("mincost updated")
+
+
+def formatjson(finalroute, cost):
+    global data
+    route = []
+    flights = []
+    result = {}
+    flag = True
+    for obj in finalroute:
+        info = {}
+        depcity = db.airportcodes.find_one({'code': obj["departureAirportFsCode"]})
+        if(flag):
+            source = depcity['city']
+            flag = False
+        arrivalcity = db.airportcodes.find_one({'code': obj["arrivalAirportFsCode"]})
+        route.append(depcity['city'])
+        info["source"] = depcity['city']
+        info["destination"] = arrivalcity['city']
+        info["departureAirportFsCode"] = obj["departureAirportFsCode"]
+        info["arrivalAirportFsCode"] = obj["arrivalAirportFsCode"]
+        info["totalFlightTime"] = obj["arrivalTime"] - obj["departureTime"]
+        info["departureTime"] = obj["departureTime"]
+        info["arrivalTime"] = obj["arrivalTime"]
+        info["flightcost"] = obj["flightcost"]
+        info["carrierFsCode"] = obj["carrierFsCode"]
+        info["flightNumber"] = obj["flightNumber"]
+        info["stops"] = obj["stops"]
+        flights.append(info)
+    route.append(source)
+    result["route"] = list(route)
+    result["flights"] = list(flights)
+    result["totalcost"] = cost["totalcost"]
+    result["adults"] = data["adults"]
+    result["children"] = data["children"]
+    print(result)
+
 
 def getDateTimeFromISO8601String(s):
     d = dateutil.parser.parse(s)

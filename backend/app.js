@@ -12,15 +12,14 @@ var spawn = require("child_process").spawn;
 
 
 var bodyParser = require('body-parser')
-// parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
-// parse application/json
 app.use(bodyParser.json());
 
 
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Origin", "*"); 
+    res.header("Access-Control-Allow-Headers", "Origin, X-Custom-Header, X-Requested-With, Content-Type, Accept");
+
     next();
 });
 
@@ -38,18 +37,18 @@ app.get('/api/setup', function(req,res){
                 city:"toronto",
                 code: "YYZ"
             },
-            {
-                city:"calgary",
-                code: "YYC"
-            },
+            // {
+            //     city:"calgary",
+            //     code: "YYC"
+            // },
             {
                 city:"montreal",
                 code: "YUL"
             },
-            {
-                city:"ottawa",
-                code: "YOW"
-            },
+            // {
+            //     city:"ottawa",
+            //     code: "YOW"
+            // },
             {
                 city:"vancouver",
                 code: "YVR"
@@ -58,18 +57,18 @@ app.get('/api/setup', function(req,res){
                 city:"winnipeg",
                 code: "YWG"
             },
-            {
-                city:"quebec",
-                code: "YQB"
-            },
-            {
-                city:"saskathoon",
-                code: "YXE"
-            },
-            {
-                city:"halifax",
-                code: "YHZ"
-            },
+            // {
+            //     city:"quebec",
+            //     code: "YQB"
+            // },
+            // {
+            //     city:"saskathoon",
+            //     code: "YXE"
+            // },
+            // {
+            //     city:"halifax",
+            //     code: "YHZ"
+            // },
             {
                 city:"edmonton",
                 code: "YEG"
@@ -150,7 +149,15 @@ app.post('/api/signin', (req,res) => {
     });
 })
 
+app.get('/api/cityinfo', function(req,res){
+    console.log("sending city info")
+    res.json({
+        city: [ "toronto", "montreal", "vancouver", "edmonton", "winnipeg"]
+    })
+})
+
 app.post('/api/search', function(req,res){
+    console.log(JSON.stringify(req.body))
     var process = spawn('python', ["search.py"]);
     util.log('readingin');
     process.stdin.write(JSON.stringify(req.body));
@@ -158,6 +165,7 @@ app.post('/api/search', function(req,res){
 
     process.stdout.on('data',function(data){
         util.log(data.toString());
+        res.json(data.toString());
     });
 
     childprocess.exec('python search.py', function (err){
