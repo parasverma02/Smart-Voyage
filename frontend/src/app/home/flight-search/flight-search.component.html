@@ -6,7 +6,7 @@
                     <div class="row">
                         <div class="col-md-8 select2">
                             <span>Source</span>
-                            <ngx-select  [items]="items" [(ngModel)]="searchDetails.source" required [ngModelOptions]="{standalone: true}" [ngClass]="{ 'is-invalid': f.submitted && source.invalid }" #source="ngModel" ></ngx-select>
+                            <ngx-select  [items]="airports.city" [(ngModel)]="searchDetails.source" required [ngModelOptions]="{standalone: true}" [ngClass]="{ 'is-invalid': f.submitted && source.invalid }" #source="ngModel" ></ngx-select>
                             <div *ngIf="f.submitted && source.invalid" class="invalid-feedback">
                                 <div *ngIf="source.errors?.required">Source is required </div>
                             </div>
@@ -35,7 +35,7 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <span>City {{city}}</span>
-                                <ngx-select [items]="items" [(ngModel)]="searchDetails.cities[i].city" [ngModelOptions]="{standalone: true}"  [name]="city" ></ngx-select>
+                                <ngx-select [items]="airports.city" [(ngModel)]="searchDetails.cities[i].city" [ngModelOptions]="{standalone: true}"  [name]="city" ></ngx-select>
                             </div>
                             <div class="col-md-3">
                                 <span>Days</span>

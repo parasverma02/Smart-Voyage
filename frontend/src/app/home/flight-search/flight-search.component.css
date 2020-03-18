@@ -106,13 +106,6 @@ span {
     color: white;
 }
 
-.vertical { 
-    border-left: 2px solid rgb(122, 28, 28); 
-    height: 300px; 
-    position: absolute; 
-    left: 66%; 
-
-} 
 .travellers{
     position: sticky;
     font-size: 30px;

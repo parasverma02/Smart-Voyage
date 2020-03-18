@@ -15,7 +15,10 @@ import { FlightSearchComponent } from './home/flight-search/flight-search.compon
 import { NgxSelectModule } from 'ngx-select-ex';
 import { BsDatepickerModule } from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SearchResultComponent } from './search-result/search-result.component'
+import { SearchResultComponent } from './home/search-result/search-result.component';
+import { AccordionModule } from 'ngx-bootstrap/accordion'
+import { Data } from './home/data.service';
+import { HeaderComponent } from './home/header/header.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,8 @@ import { SearchResultComponent } from './search-result/search-result.component'
     SignUpComponent,
     HomeComponent,
     FlightSearchComponent,
-    SearchResultComponent
+    SearchResultComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -35,9 +39,10 @@ import { SearchResultComponent } from './search-result/search-result.component'
     HttpClientModule,
     NgxSelectModule,
     BsDatepickerModule.forRoot(),
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    AccordionModule.forRoot()
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard,Data],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

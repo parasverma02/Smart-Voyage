@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchDetails } from './search-details';
 import { FlightSearchService } from './flight-search.service';
-import { Router } from '@angular/router';
+import { Router} from '@angular/router';
+import { Data } from '../data.service'
+import { Airports } from './airports';
+import { SearchResult } from '../search-result/search-result';
+import { SearchResultService } from '../search-result/search-result.service';
 
 @Component({
   selector: 'flight-search',
@@ -9,27 +13,33 @@ import { Router } from '@angular/router';
   styleUrls: ['./flight-search.component.css']
 })
 export class FlightSearchComponent implements OnInit {
-  private items = [
-    "mumbai",
-    "toronto",
-    "delhi",
-  ]
-  private citiesNumber = [1]
+
+  private airports = new Airports();
+  flights: SearchResult = new SearchResult();
+  private citiesNumber = [1];
   searchDetails = new SearchDetails(null,new Date(),[{city:null,days:null}], 1, 0);
   private cityNumber = 1;
   private adult_count = 1;
   private children_count = 0;
-  constructor(private _flightService: FlightSearchService, private router: Router) { }
+  constructor(private _flightService: FlightSearchService, private router: Router, private data: Data) { }
   ngOnInit() {
     this.getAirports();
   }
 
   getAirports(){
+    this._flightService.getAirports().subscribe((data: Airports)=> {
+      this.airports = data;
+    })
   }
    
   onSubmit(){
-    console.log(this.searchDetails);
+    this._flightService.postFlightSearch(this.searchDetails).subscribe((response: SearchResult) => {
+      this.flights.route = response['route'];
+      console.log(this.flights.route);
+      console.log(response);
+    });
     this.router.navigate(['searchresult']);
+    
   }
   onAdd(){
     this.cityNumber++;

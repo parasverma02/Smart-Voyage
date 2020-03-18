@@ -1,0 +1,122 @@
+<body>
+  <main-header></main-header>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 flightroutediv">
+        <div class="row" style="margin-right: 0;margin-left: 0;">
+          <div class="col-md-2 cheapestroute">
+            <span>Cheapest Route</span>
+          </div>
+          <div class="col-md-8 flightroute">
+            <div class="route-path">
+              <span class="single-city" *ngFor="let city of flights.route;let i=index;">
+                {{city}}
+                <span class="fa fa-arrow-right white arrow" *ngIf="i!=flights.route.length-1"
+                  style="color: aliceblue;"></span>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="row total-cost">
+              <span>Total Cost</span>
+            </div>
+            <div class="row cost">
+              <span>C${{flights.totalcost}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 searchdetailbody">
+            <div class="accordion" *ngFor="let flight of flights.flights;let i=index" id="accordionExample">
+              <div class="card">
+                <div class="card-header" [attr.id]="'headingOne'+i">
+                  <div type="button" data-toggle="collapse" [attr.data-target]="'#collapseOne'+i" aria-expanded="true"
+                    [attr.aria-controls]="'collapseOne'+i">
+                    <div class="row">
+                      <div class="col-md-2 source">
+                        <span>{{flight.source}} ({{flight.arrivalAirportFsCode}})</span>
+                      </div>
+                      <div class="col-md-2 flighttraveltime">
+                        <span>{{flight.totalFlightTime}}</span>
+                      </div>
+                      <div class="col-md-2 destination">
+                        <span>{{flight.destination}} ({{flight.departureAirportFsCode}})</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-2 arrdepptime">
+                        <span>{{flight.departureTime}}</span>
+                      </div>
+                      <div class="col-md-2">
+                        <hr class="line1">
+                      </div>
+                      <div class="col-md-2 arrdepptime">
+                        <span>{{flight.arrivalTime}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div [attr.id]="'collapseOne'+ i" class="collapse" [attr.aria-labelledby]="'headingOne'+i"
+                  data-parent="#accordionExample">
+                  <div class="card-body" style="overflow: hidden;">
+                    <div class="row flight-detail-header">
+                      <div class="col-md-3 flight-number">
+                        <span>Flight Number : {{flight.carrierFsCode}}{{flight.flightNumber}}</span>
+                      </div>
+                      <div class="col-md-6 carrier-name">
+                        <div class="airline-logo"></div>
+                        <span>Air Canada</span>
+                      </div>
+                      <div class="col-md-3 flight-cost">
+                        <span>C${{flight.flightcost}}</span>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-md-6 dep-arr-heading">
+                        <span>DEPARTURE</span>
+                      </div>
+                      <div class="col-md-6  dep-arr-heading">
+                        <span>ARRIVAL</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 dep-arr-div">
+                        <span class="dep-arr">Departs from:</span><span>{{flight.source}}</span>
+                      </div>
+                      <div class="col-md-6 dep-arr-div">
+                        <span class="dep-arr">Arrives at:</span><span>{{flight.destination}}</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 dep-arr-div">
+                        <span class="dep-arr">Date:</span><span>{{flight.departureTime}}</span>
+                      </div>
+                      <div class="col-md-6 dep-arr-div">
+                        <span class="dep-arr">Date:</span><span>{{flight.arrivalTime}}</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 dep-arr-div">
+                        <span class="dep-arr">Time:</span><span>12:15 PM</span>
+                      </div>
+                      <div class="col-md-6 dep-arr-div">
+                        <span class="dep-arr">Time:</span><span>12:15 PM</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-3 travellerdetail">
+      </div>
+    </div>
+
+  </div>
+
+</body>

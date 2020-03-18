@@ -6,15 +6,6 @@ body {
   min-height: 100vh;
 }
 
-.navbar {
-    opacity: 0.9;
-    background-color: #000000;
-}
-
-.navbar-account {
-    float: right;
-    display: inline;
-}
 /* .home-header{
     background-color: black;
     color: blanchedalmond;
@@ -36,29 +27,3 @@ body {
     bottom: 0;
 }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #012929;
-    
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  .dropdown-content a {
-    float: none;
-    color: rgb(211, 211, 211);
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-  
-  .dropdown-content a:hover {
-    background-color: rgb(0, 90, 97);
-  }
-  
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
