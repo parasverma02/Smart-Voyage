@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router'
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
-import { SignUpComponent } from './user/sign-up/sign-up.component';
+ import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { FormsModule } from '@angular/forms'
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
@@ -19,6 +19,7 @@ import { SearchResultComponent } from './home/search-result/search-result.compon
 import { AccordionModule } from 'ngx-bootstrap/accordion'
 import { Data } from './home/data.service';
 import { HeaderComponent } from './home/header/header.component';
+import { ProfilepageComponent } from './home/profilepage/profilepage.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { HeaderComponent } from './home/header/header.component';
     FlightSearchComponent,
     SearchResultComponent,
     HeaderComponent
+    ProfilepageComponent
   ],
   imports: [
     BrowserModule,
