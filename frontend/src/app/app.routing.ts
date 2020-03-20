@@ -3,8 +3,11 @@ import { Routes } from '@angular/router'
 import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
 import { AuthGuard } from './auth.guard';
-import { SearchResultComponent } from './search-result/search-result.component';
-import { ProfilepageComponent } from './user/profilepage/profilepage.component';
+import { SearchResultComponent } from './home/search-result/search-result.component';
+import { ProfilepageComponent } from './home/profilepage/profilepage.component';
+import { AddtravellerdetailsComponent } from './home/profilepage/addtravellerdetails/addtravellerdetails.component';
+import { TravellerdetailsComponent } from './home/profilepage/travellerdetails/travellerdetails.component';
+import { EdittravellerdetailsComponent } from './home/profilepage/travellerdetails/edittravellerdetails/edittravellerdetails.component';
 
 export const appRoutes: Routes = [
     { 
@@ -27,6 +30,18 @@ export const appRoutes: Routes = [
     {
         path: 'profilepage', 
         component: ProfilepageComponent
+    },
+    {
+        path: 'profilepage/addtravellerdetails', 
+        component: AddtravellerdetailsComponent
+    },
+    {
+        path: 'profilepage/travellerdetails', 
+        component: TravellerdetailsComponent
+    },
+    {
+        path: 'profilepage/travellerdetails/edittravellerdetails', 
+        component: EdittravellerdetailsComponent
     },
     { path: '', redirectTo: '/login', pathMatch: 'full'}
 ]

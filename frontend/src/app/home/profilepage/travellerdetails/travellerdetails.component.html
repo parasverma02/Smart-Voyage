@@ -1,0 +1,103 @@
+<br><br><br>
+<div class="row">
+    <div class="col-2">
+
+    </div>
+    <div class="col-8 maindiv">
+        
+<h3 style="text-align: center; font-weight: bold;">List of Traveller
+    
+</h3>
+
+<hr>
+<div  class="container-fluid">
+    <div class="center-div">
+        <!-- Editable table -->
+
+<div id="table" >
+<form #f1="ngForm"  >
+    <!-- (ngSubmit)="submit(f1.value)" -->
+
+<table class="table table-bordered table-responsive-md table-striped text-center">
+<thead>
+  <tr>
+    <th class="text-center">Name</th>
+    <th class="text-center">Date Of Birth</th>
+    <th class="text-center">Gender</th>
+    <th class="text-center">Phone</th>
+    <th class="text-center">Email</th>
+    <th class="text-center">Action</th>
+  </tr>
+</thead>
+  <tbody>
+
+  <tr *ngFor="let item of travellerdetails">
+    <td >
+      {{item.firstname}}&nbsp;{{item.lastname}}                </td>
+    <td> {{item.dob}}</td>
+    <td > {{item.gender}} </td>
+    <td > {{item.phoneno}} </td>
+    <td > {{item.emailid}}  </td>
+    <td> 
+        <button class="btn btn-primary" (click)="onDataChanged(item)" title="Edit details for {{item.firstname}} {{item.lastname}}">
+            Edit
+        </button>&nbsp;
+        <button class="btn btn-danger"  (click)="deleteRow(item.id)" title="Remove {{item.firstname}} {{item.lastname}}">
+            Remove
+        </button>
+
+    </td>
+   
+  </tr>
+  
+  <!-- <tr>
+    <td >
+      <input id=2  required  type="text" placeholder="Eg: Jane" 
+      ngModel name="firstname" value="" >                    </td>
+    <td> <input #dob="ngModel" required  type="date" placeholder="Eg: Jane" 
+      [(ngModel)]="user.dob" name="dob" value="" >     </td>
+    <td > <input class="form-control" #gender="ngModel" required  type="text" placeholder="Eg: Jane" 
+      [(ngModel)]="user.gender" name="gender" value="" >     </td>
+    <td > <input class="form-control" #phone="ngModel" required  type="number" placeholder="Eg: Jane" 
+      [(ngModel)]="user.phone" name="phone" value="" >     </td>
+    <td > <input class="form-control" #emailid="ngModel" required  type="email" placeholder="example@email.com" 
+      [(ngModel)]="user.emailid" name="emailid" value="" >     </td>
+   
+  </tr>
+  <tr>
+    <td >
+      <input  id=3 required  type="text" placeholder="Eg: Jane" 
+      ngModel name="firstname" value="" >                    </td>
+    <td> <input #dob="ngModel" required  type="date" placeholder="Eg: Jane" 
+      [(ngModel)]="user.dob" name="dob" value="" >     </td>
+    <td > <input class="form-control" #gender="ngModel" required  type="text" placeholder="Eg: Jane" 
+      [(ngModel)]="user.gender" name="gender" value="" >     </td>
+    <td > <input class="form-control" #phone="ngModel" required  type="number" placeholder="Eg: Jane" 
+      [(ngModel)]="user.phone" name="phone" value="" >     </td>
+    <td > <input class="form-control" #emailid="ngModel" required  type="email" placeholder="example@email.com" 
+      [(ngModel)]="user.emailid" name="emailid" value="" >     </td>
+   
+  </tr> -->
+
+</tbody>
+
+</table>
+</form>
+
+</div>
+<div style="text-align: right;">
+    <button class="btn btn-success" title="Click here to add more travellers" [routerLink]="['/profilepage/addtravellerdetails']"> 
+        <i class="fa fa-plus"></i> &nbsp;Add Traveller</button>
+    
+</div>
+
+<!-- Editable table -->
+    </div>
+</div>
+    </div>
+    <div class="col-2">
+        
+    </div>
+</div>
+
+

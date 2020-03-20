@@ -17,8 +17,8 @@ export class UserService {
   private loggedInStatus = JSON.parse(localStorage.getItem('loggedIn') || 'false');
   private _account_url: string = "/assets/data/account.json";
   private _travellers_url: string = "/assets/data/travellers.json";
-  private _sendNewUser_Post: string = "http://192.168.0.88:3000/api/signup";
-  private _sendLogin_post: string = "http://192.168.0.88:3000/api/signin";
+  private _sendNewUser_Post: string = "http://192.168.0.42:3000/api/signup";
+  private _sendLogin_post: string = "http://192.168.0.42:3000/api/signin";
   constructor(private http: HttpClient) { }
   
   setLoggedIn(value: boolean){

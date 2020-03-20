@@ -1,0 +1,111 @@
+<br><br><br>
+<div class="row">
+    <div class="col-2">
+
+    </div>
+    <div class="col-8 maindiv">
+        <h3 style="text-align: center; font-weight: bold;">Edit details for {{edittrav.Name}}</h3>
+        <hr>
+        <div class="container-fluid">
+            <div class="center-div">
+                <form #f="ngForm" class="example-form" (ngSubmit)="onSave(f.value)">
+                    <label>First Name <span class="text-danger">*</span>
+                        <small class="text-danger" *ngIf="firstname.errors && firstname.invalid && firstname.touched">
+                            Required Field
+                        </small>
+                    </label>
+                    <input class="form-control" value="edittrav.firstname" #firstname="ngModel" required type="text" placeholder="Eg: Jane"
+                        [(ngModel)]="edittrav.firstname" name="firstname" value="">
+
+                    <!-- <div *ngIf="firstname.errors && firstname.invalid && firstname.touched">
+        <small class="text-danger" *ngIf="firstname.errors">First name is required</small>
+      </div> -->
+
+                    <Label>Last Name <span class="text-danger">*</span>
+                        <!-- <div *ngIf="lastname.errors && (lastname.invalid && lastname.touched)"> -->
+                        <small class="text-danger" *ngIf="lastname.errors && (lastname.invalid && lastname.touched)">
+                            Required Field
+
+                        </small>
+                        <!-- </div> -->
+                    </Label>
+                    <input class="form-control" value="edittrav.lastname" #lastname="ngModel" required type="text" placeholder="Eg: Doe"
+                        [(ngModel)]="edittrav.lastname" name="lastname" ngModel>
+
+
+                    <Label>Gender <span class="text-danger">*</span> </Label>
+                    <!-- <input class="form-control" required #edittravname="ngModel"  type="text" placeholder="Eg: janedoe" [(ngModel)]="edittrav.gender" name="gender" ngModel> -->
+                    <select class="form-control" required #gender="ngModel" [(ngModel)]="edittrav.gender" name="gender"
+                        ngModel>
+                        <option value="" disabled selected>Select one</option>
+
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Prefer to not say">Prefer to not say</option>
+                    </select>
+                    <!--     
+      <div *ngIf="edittravname.errors && (edittravname.invalid && edittravname.touched)">
+        <small class="text-danger" *ngIf="edittravname.errors">edittravname is required</small>
+      </div> -->
+
+                    <Label>Date Of Birth <span class="text-danger">*</span>
+                        <!-- <div *ngIf="dob.errors && (dob.invalid && dob.touched)"> -->
+                        <small class="text-danger" *ngIf="dob.errors && (dob.invalid && dob.touched)">
+                            Required Field
+                        </small>
+
+                        <!-- </div> -->
+                    </Label>
+                    <input class="form-control" required #dob="ngModel" type="date" placeholder="**********"
+                        [(ngModel)]="edittrav.dob" name="dob">
+
+                    <!-- <div *ngIf="dob.errors && (dob.invalid && dob.touched)">
+        <small class="text-danger" *ngIf="dob.errors">dob is required</small>
+    
+      </div> -->
+
+                    <Label>Email id <span class="text-danger">*</span>
+                        <!-- <div *ngIf="email.errors && (email.invalid && email.touched)"> -->
+                        <small class="text-danger"
+                            *ngIf="email.errors && (email.invalid && email.touched) && email.errors.pattern">
+                            Invalid format of email id</small>
+                        <!-- <small class="text-danger" *ngIf="email.errors.pattern">Please provide a valid email address</small> -->
+                        <!-- </div> -->
+                    </Label>
+                    <input class="form-control" required #email="ngModel"
+                        pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" type="email"
+                        placeholder="Eg: example@email.com" name="email" [(ngModel)]="edittrav.emailid">
+
+                    <!-- <div *ngIf="email.errors && (email.invalid && email.touched)">
+        <small class="text-danger" *ngIf="email.errors">Email is required</small>
+      </div> -->
+
+                    <Label>Phone Number <span class="text-danger">*</span>
+
+                        <!-- <div *ngIf="phonenumber.errors && (phonenumber.invalid && phonenumber.touched)"> -->
+                        <small class="text-danger"
+                            *ngIf="phonenumber.errors && (phonenumber.invalid && phonenumber.touched) && phonenumber.errors.pattern">
+                            Should be 10- digit number</small>
+                        <!-- <small class="text-danger" *ngIf="phonenumber.errors.pattern">Please provide a 10- digit number</small> -->
+                        <!-- </div> -->
+                    </Label>
+                    <input class="form-control" required #phonenumber="ngModel" pattern="^[0-9]{10}$" type="number"
+                        placeholder="XXXXXXXXXX" name="phonenumber" [(ngModel)]="edittrav.phoneno">
+                    <!--     
+      <div *ngIf="phonenumber.errors && (phonenumber.invalid && phonenumber.touched)">
+        <small class="text-danger" *ngIf="phonenumber.errors">Phone number is required</small>
+        <small class="text-danger" *ngIf="phonenumber.errors.pattern">Please provide a 10- digit number</small>
+      </div> -->
+                    <br>
+
+                    <button type="submit" class="btn btn-primary center-btn" [disabled]="!f.form.valid">Save
+                        details</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-2">
+
+    </div>
+</div>

@@ -1,0 +1,157 @@
+<br><br><br>
+
+<div class="row">
+  <div class="col-1">
+
+  </div>
+  <div class="col-10">
+
+    <div class="row maindiv" style="min-height:600px;">
+      <div class="col-3" style=" text-align: center">
+        <!-- required for floating -->
+        <!-- Nav tabs -->
+        <i class="fa fa-user" style="font-size:100px; text-align: center"></i><br><br>
+        <h3 style="font-size: 2rem;font-weight: bold;">Jane Doe</h3><br><hr>
+        <p>
+          <span><i class="fa fa-user"></i></span>&nbsp;janedoe123 <br>
+          <span style="font-weight: 600;">@</span>&nbsp;janedoe@email.com <br>
+         <span><i class="fa fa-phone"></i></span>&nbsp;+1 519-775-8969<br>
+
+
+          <span><i class="fa fa-birthday-cake"></i></span>&nbsp;Jan 18, 1991<br>
+        </p> <br><br>
+
+        <button class="btn btn-block"> <i class="fa fa-power-off"></i>&nbsp; Logout</button><br><br>
+        <button class="btn btn-block"> <i class="fa fa-trash"></i>&nbsp;Delete my account</button><br>
+
+
+      </div>
+      <div class="col-9">
+      
+        <!-- <p> -->
+          <div class="card expandable-card " data-toggle="collapse" href="#currentbookings" role="button" aria-expanded="false" aria-controls="currentbookings">
+            <label>Current flight bookings <i style="margin-left: 78%;" class="fa fa-sort-down"></i></label>
+            
+            <div class="collapse" id="currentbookings">
+                <div *ngFor="let det of currentbookings" class="container right">
+                  <div class="content current">
+                    <div class="row">
+                      <div class="col">
+                        {{det.routes[0]}} 
+                        <span class="fa fa-arrow-right white arrow" ></span> {{det.routes[det.routes.length-1]}} 
+                      </div>
+                      <div class="col">
+                        {{det.adults}} Adults | {{det.children}} children
+                      </div>
+                      <div class="col" style="text-align: right;">
+                      <span class="badge badge-pill badge-success">{{det.flightstatus}}</span>
+                      </div>
+                    </div>
+                    <table class="table table-borderless">
+                      <thead>
+                        <tr>
+                          <th scope="col">Flight</th>
+                          <th scope="col">Departure</th>
+                          <th scope="col">Arrival</th>
+                          <th scope="col">Cost (CAD)</th>
+      
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let flightdet of det.path">
+                          <th>{{flightdet.flightname}}<br>
+                            {{flightdet.carrierFsCode}}{{flightdet.flightNumber}}
+                          </th>
+                          <td>
+                            {{flightdet.source}}({{flightdet.departureAirportFsCode}})<BR>
+                              {{flightdet.departureTime}}
+                          </td>
+                          <td>
+                            {{flightdet.destination}}({{flightdet.arrivalAirportFsCode}})<BR>
+                              {{flightdet.arrivalTime}}
+                          </td>
+                          <td>{{flightdet.flightcost}}
+      
+                          </td>
+                        </tr>
+      
+                      </tbody>
+                    </table>
+                     
+      
+                  </div>
+                </div>
+               
+            </div>
+          </div>
+
+
+          <div class="card expandable-card " data-toggle="collapse" href="#previousbookings" role="button" aria-expanded="false" aria-controls="previousbookings">
+            <label> Previous flight bookings <i style="margin-left: 78%;" class="fa fa-sort-down"></i></label>
+
+           
+            <div class="collapse" id="previousbookings">
+              <div *ngFor="let det of pastbookings" class="container right">
+                <div class="content past">
+                  <div class="row">
+                    <div class="col">
+                      {{det.routes[0]}} 
+                      <span class="fa fa-arrow-right white arrow" ></span> {{det.routes[det.routes.length-1]}} 
+                    </div>
+                    <div class="col">
+                      {{det.adults}} Adults | {{det.children}} children
+                    </div>
+                    <div class="col" style="text-align: right;">
+                    <span class="badge badge-pill badge-secondary">{{det.flightstatus}}</span>
+                    </div>
+                  </div>
+                
+                  <table class="table table-borderless">
+                    <thead>
+                      <tr>
+                        <th scope="col">Flight</th>
+                        <th scope="col">Departure</th>
+                        <th scope="col">Arrival</th>
+                        <th scope="col">Cost (CAD)</th>
+    
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let flightdet of det.path">
+                        <th>{{flightdet.flightname}}<br>
+                          {{flightdet.carrierFsCode}}{{flightdet.flightNumber}}
+                        </th>
+                        <td>
+                          {{flightdet.source}}({{flightdet.departureAirportFsCode}})<BR>
+                            {{flightdet.departureTime}}
+                        </td>
+                        <td>
+                          {{flightdet.destination}}({{flightdet.arrivalAirportFsCode}})<BR>
+                            {{flightdet.arrivalTime}}
+                        </td>
+                        <td>{{flightdet.flightcost}}
+    
+                        </td>
+                      </tr>
+    
+                    </tbody>
+                  </table>
+                   
+    
+                </div>
+              </div>
+             
+            </div>
+          </div>
+        <!-- </p> -->
+        
+        
+      </div>
+
+
+    </div>
+  </div>
+  <div class="col-1">
+
+  </div>
+</div>

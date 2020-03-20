@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router'
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
-import { SignUpComponent } from './user/sign-up/sign-up.component';
+ import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { FormsModule } from '@angular/forms'
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
@@ -15,8 +15,14 @@ import { FlightSearchComponent } from './home/flight-search/flight-search.compon
 import { NgxSelectModule } from 'ngx-select-ex';
 import { BsDatepickerModule } from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SearchResultComponent } from './search-result/search-result.component'
-import { ProfilepageComponent } from './user/profilepage/profilepage.component';
+import { SearchResultComponent } from './home/search-result/search-result.component';
+import { AccordionModule } from 'ngx-bootstrap/accordion'
+import { Data } from './home/data.service';
+import { HeaderComponent } from './home/header/header.component';
+import { ProfilepageComponent } from './home/profilepage/profilepage.component';
+import { AddtravellerdetailsComponent } from './home/profilepage/addtravellerdetails/addtravellerdetails.component';
+import { TravellerdetailsComponent } from './home/profilepage/travellerdetails/travellerdetails.component';
+import { EdittravellerdetailsComponent } from './home/profilepage/travellerdetails/edittravellerdetails/edittravellerdetails.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +33,11 @@ import { ProfilepageComponent } from './user/profilepage/profilepage.component';
     HomeComponent,
     FlightSearchComponent,
     SearchResultComponent,
-    ProfilepageComponent
+    HeaderComponent,
+    ProfilepageComponent,
+    AddtravellerdetailsComponent,
+    TravellerdetailsComponent,
+    EdittravellerdetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -37,9 +47,10 @@ import { ProfilepageComponent } from './user/profilepage/profilepage.component';
     HttpClientModule,
     NgxSelectModule,
     BsDatepickerModule.forRoot(),
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    AccordionModule.forRoot()
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard,Data],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
