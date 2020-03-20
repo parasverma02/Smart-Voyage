@@ -1,27 +1,15 @@
-# FlightSearch
+Release Notes (Dated March 20,2020)
+1.  Modified app.component.html. Added nav bar in app.component.html
+2.  Added page to add new traveller, view traveller list, user profile page with current and past flight bookings. All these pages are under profilepage.
+3.  Add new traveller - app/home/profilepage/addtravellerdetails
+4.  View Traveller List- app/home/profilepage/travellerdetails
+5.  Edit traveller details-app/home/profilepage/travellerdetails/edittravellerdetails
+5.  View User profile and current and past bookings- app/home/profilepage
+6.  Added service for profilepage. Service includes API for following activities-
+    1.  Add new Traveller- POST
+    2.  Get Traveller List- GET
+    3.  Edit traveller List- POST
+    4.  Remove travaller- POST
+    5.  View user profile- GET
+    6.  View Current and past flight bookings- GET
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
