@@ -10,7 +10,6 @@ import collections
 client = MongoClient(port=27017)
 db=client.flightInfo
 city_dict = dict()
-route = []
 totalcost = {}
 data = {}
 
@@ -28,26 +27,10 @@ def main():
         city_dict[i] = [airport["code"], city["days"]]
         i = i+1
     i=0
-    final_route , mincost = bruteforce(source["code"], startdate, city_dict)
-    formatjson(final_route, mincost)
-
-
-def bruteforce(source, date, cities):
+    possible_routes = bruteforce(city_dict)
     mincost = 100000000
-    flight_route = []
-    final_route = []
-    l = list(permutations(range(0, len(cities))))
-    for perm in l:
-        val=0
-        temp_dict = {}
-        for key in cities:
-            temp_dict[perm[val]] = cities[key]
-            val+=1
-        val = 0
-        # print(source, date)
-        sorted_temp_dict = collections.OrderedDict(sorted(temp_dict.items()))
-        flight_route = search(source, date, sorted_temp_dict)
-        # print(flight_route)
+    for route in possible_routes:
+        flight_route = search(source["code"], startdate, route)
         if(flight_route==None):
             pass
         else:
@@ -60,7 +43,25 @@ def bruteforce(source, date, cities):
                 final_route = list(flight_route)
                 mincost = tempcost
                 # print("mincost updated:", mincost)
-    return final_route, mincost
+    formatjson(final_route, mincost)
+
+
+def bruteforce(cities):
+    flight_route = []
+    final_route = []
+    possible_routes = []
+    l = list(permutations(range(0, len(cities))))
+    for perm in l:
+        val=0
+        temp_dict = {}
+        for key in cities:
+            temp_dict[perm[val]] = cities[key]
+            val+=1
+        val = 0
+        # print(source, date)
+        sorted_temp_dict = collections.OrderedDict(sorted(temp_dict.items()))
+        possible_routes.append(sorted_temp_dict)
+    return possible_routes
 
 def search(source, date, cities):
     start = source
