@@ -9,12 +9,10 @@ import { ProfilepageComponent } from './home/profilepage/profilepage.component';
 export const appRoutes: Routes = [
     { 
         path: 'home', 
-        component: HomeComponent, 
-        canActivate: [AuthGuard] 
-    },
-    {
-        path: 'searchresult',
-        component: SearchResultComponent
+        children: [
+            { path: 'searchresult',  component: SearchResultComponent },
+            { path: '', component: HomeComponent, canActivate: [AuthGuard] ,pathMatch: 'full'}
+        ] 
     },
     {
         path: 'signup', 

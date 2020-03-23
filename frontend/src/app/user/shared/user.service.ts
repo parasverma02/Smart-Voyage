@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserAccount } from '../response-objects/user-account';
 import { UserLogin } from '../response-objects/user-login';
-
+import { url } from "../../../config";
 interface DataResponse{
   success: boolean,
   message: string
@@ -17,8 +17,8 @@ export class UserService {
   private loggedInStatus = JSON.parse(localStorage.getItem('loggedIn') || 'false');
   private _account_url: string = "/assets/data/account.json";
   private _travellers_url: string = "/assets/data/travellers.json";
-  private _sendNewUser_Post: string = "http://192.168.0.42:3000/api/signup";
-  private _sendLogin_post: string = "http://192.168.0.42:3000/api/signin";
+  private _sendNewUser_Post: string = url + "signup";
+  private _sendLogin_post: string = url + "signin";
   constructor(private http: HttpClient) { }
   
   setLoggedIn(value: boolean){

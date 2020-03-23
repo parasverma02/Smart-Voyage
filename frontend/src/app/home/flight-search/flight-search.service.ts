@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { SearchDetails } from './search-details';
 import { Observable } from 'rxjs';
 import { SearchResult } from '../search-result/search-result';
+import { url } from '../../../config';
 @Injectable({
   providedIn: 'root'
 })
 export class FlightSearchService {
 
-  private _airportsGet_url: string = "http://192.168.0.42:3000/api/cityinfo";
-  private _flightSearchPost_url: string = "http://192.168.0.42:3000/api/search";
+  private _airportsGet_url: string = url + "cityinfo";
+  private _flightSearchPost_url: string = url + "search";
   constructor(private http: HttpClient) { }
 
   getAirports(){
