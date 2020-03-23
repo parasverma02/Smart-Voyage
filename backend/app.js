@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 var util = require("util");
 var childprocess = require("child_process");
+const MongoClient = require('mongodb').MongoClient;
 var authcontroller = require('./controllers/authentication')
 var setupcontroller = require('./controllers/setup')
 var testcontroller = require('./controllers/test')
@@ -25,8 +26,20 @@ testcontroller(app);
 
 app.get('/api/cityinfo', function(req,res){
     console.log("sending city info")
-    res.json({
-        city: [ "toronto", "montreal", "vancouver", "edmonton", "winnipeg"]
+    city = []
+    var cityobj = new Object();
+    MongoClient.connect("mongodb://localhost:27017/", function(err,database){
+        const db = database.db('flightInfo')
+        const collection = db.collection('airportcodes')
+        collection.find({}).toArray(function(err, result) {
+            if(err) throw err;
+            for(i=0; i<result.length; i++){
+                city.push(result[i].city)
+            }
+            cityobj.city = city
+            console.log(cityobj)
+            res.send(cityobj)
+        }) 
     })
 })
 
