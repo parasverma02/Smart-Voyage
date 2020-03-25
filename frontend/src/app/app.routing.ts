@@ -5,14 +5,19 @@ import { SignInComponent } from './user/sign-in/sign-in.component';
 import { AuthGuard } from './auth.guard';
 import { SearchResultComponent } from './home/search-result/search-result.component';
 import { ProfilepageComponent } from './home/profilepage/profilepage.component';
+import { ResultGuard } from './result.guard';
 
 export const appRoutes: Routes = [
     { 
-        path: 'home', 
-        children: [
-            { path: 'searchresult',  component: SearchResultComponent },
-            { path: '', component: HomeComponent, canActivate: [AuthGuard] ,pathMatch: 'full'}
-        ] 
+        path: 'home',
+        component: HomeComponent,
+        canActivate:[AuthGuard]
+    },
+    {   path: 'searchresult', 
+        component: SearchResultComponent,
+        canActivate:[ResultGuard]
+            
+
     },
     {
         path: 'signup', 

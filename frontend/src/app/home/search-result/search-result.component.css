@@ -38,25 +38,20 @@ body {
       box-sizing: border-box;
       position: relative;
       flex-direction: column;
-      background-color: rgb(31, 31, 31);
       border-top-left-radius: 10px;
       align-items: stretch; 
   }
   .cheapestroute{
     color: rgb(255, 255, 255);
-    background-color: rgb(70, 42, 42);
+    background-color:rgb(57, 67, 120);
     height: 100%;
-    /* height: auto; */
-    /* max-height: 100%; */
-    font-size: 100%;
+    font-size: 25px;
     font-weight: bold;
-    /* display: flex;
+    display: flex;
     position: relative;
-    flex-direction: column; */
-    /* height: 100%; */
-    /* display: flex;
-  align-items: center;
-  justify-content: center; */
+     flex-direction: column; 
+    align-items: center;
+    justify-content: center;
 }
   .flightroute{
       color: white;
@@ -72,12 +67,14 @@ body {
   }
   .total-cost{
       color: rgb(175, 175, 175);
+      background-color: rgb(31, 31, 31);
+      
       font-size: 15px;
       margin-left: 0;
       margin-right: 0;
       display: flex;
       position: relative;
-      /* flex-direction: column; */
+       flex-direction: column; 
       align-items: center;
       justify-content: center;
   }
@@ -89,6 +86,10 @@ body {
       display: flex;
       align-items: center;
       justify-content: center;
+  }
+
+  .acc-header {
+    background-color: #eceaea;
   }
   .flight-detail-header {
     margin-top: -15px;
@@ -148,20 +149,39 @@ body {
     width: 100%;
     height: 100%;
   } */
+
+  .travellerdetail-body {
+   margin-top: 1%;
+   border-radius: 5px;
+  }
 .travellerdetail{
-    height: 70px;
-    width: 100%;
     position: relative;
     font-weight: bold;
-    font-size: 35px;
-    /* top: 100px; */
-    /* margin-right:10px; */
+    width: 90%;
+    font-size: 25px;
+    /* margin-top: 10px; */
+    margin-left: 13px;
     border-top-right-radius: 10px;
-    background-color: seashell;
+    border-top-left-radius: 10px;
+    background-color: #f7f7f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
+.travwithscrollbar {
+  width: 85%;
+  overflow: auto;
+  margin-top: 7px;
+  margin-left: 6.5%;
+  /* background-color: #f1f1f1; */
+  height: 350px;
+  border-color: linen;
+  border-radius: 5px;
+  top: 0%;
+ 
+ }
 .accordion {
-    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 
@@ -204,7 +224,7 @@ hr.line1 {
   left: 0;
   bottom: 0;
   font-size: 20px;
-  background-color: rgb(146, 58, 58);
+  background-color: rgb(57, 67, 120);
  
 }
 .adult-child {
@@ -216,11 +236,12 @@ hr.line1 {
   margin-top: 10px;
 }
 .trav-detail-body {
-  background-color: #4f0e0e;
+  background-color: #dfe0e1;
 }
 
 ::-webkit-scrollbar {
   width: 10px;
+  margin-left: 5px;
 }
 
 /* Track */
@@ -237,18 +258,7 @@ hr.line1 {
 ::-webkit-scrollbar-thumb:hover {
   background: #555; 
 }
-.travwithscrollbar {
 
- overflow: auto;
- margin-top: 7px;
- margin-right: 7px;
- /* background-color: #f1f1f1; */
- height: 350px;
- border-color: linen;
- border-radius: 5px;
- top: 0%;
-
-}
 hr.trav-base-line {
   
     border: 1px solid rgb(163, 163, 163);

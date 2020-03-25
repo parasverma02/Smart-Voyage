@@ -17,13 +17,14 @@ export class FlightSearchComponent implements OnInit {
   private airports = new Airports();
   flights: SearchResult = new SearchResult();
   private citiesNumber = [1];
-  searchDetails = new SearchDetails(null,new Date(),[{city:null,days:null}], 1, 0);
+  searchDetails = new SearchDetails(null,'Economy',new Date(),[{city:null,days:null}], 1, 0);
   private cityNumber = 1;
   private adult_count = 1;
   private children_count = 0;
-  constructor(private _flightService: FlightSearchService, private router: Router, private data: Data, private routes: ActivatedRoute) { }
+  constructor(private resultService: SearchResultService, private _flightService: FlightSearchService, private router: Router, private data: Data, private routes: ActivatedRoute) { }
   ngOnInit() {
     this.getAirports();
+    this.resultService.removeAccessToResult();
   }
 
   getAirports(){
@@ -34,11 +35,9 @@ export class FlightSearchComponent implements OnInit {
    
   onSubmit(){
     this._flightService.postFlightSearch(this.searchDetails).subscribe(response => {
-      console.log(response);
       this.data.storage = response;
-      console.log(this.data.storage);
-      console.log("before route");
-      this.router.navigate(['searchresult'],{relativeTo: this.routes});
+      this.resultService.giveAccessToResul();
+      this.router.navigate(['searchresult']);
     });
     
     
@@ -47,13 +46,12 @@ export class FlightSearchComponent implements OnInit {
     this.cityNumber++;
     this.searchDetails.cities.push({city:null,days:null});
     this.citiesNumber.push(this.citiesNumber.length + 1);
-    console.log(this.searchDetails);
   }
   removeCity(id:number){
 
     this.citiesNumber = Array(this.citiesNumber.length-1).fill(0).map((x,i)=>i+1);
     this.searchDetails.cities.splice(id,1);
-    console.log(this.searchDetails);
+    
     
   }
   onIncrementAdult(){
