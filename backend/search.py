@@ -18,6 +18,7 @@ def main():
     # print("Executing python script")
     data = json.loads(sys.stdin.readline())
     i=0
+    final_route = []
     startdate = ""
     startdate += data["date"]
     source = db.airportcodes.find_one({'city':data["source"]})
@@ -91,6 +92,7 @@ def formatjson(final_route, cost):
     flights = []
     result = {}
     flag = True
+    # source = ""
     for obj in final_route:
         info = {}
         depcity = db.airportcodes.find_one({'code': obj["departureAirportFsCode"]})
@@ -116,7 +118,7 @@ def formatjson(final_route, cost):
         info["flightNumber"] = obj["flightNumber"]
         info["stops"] = obj["stops"]
         flights.append(info)
-    route.append(source)
+    # route.append(source)
     result["route"] = list(route)
     result["flights"] = list(flights)
     result["totalcost"] = cost
