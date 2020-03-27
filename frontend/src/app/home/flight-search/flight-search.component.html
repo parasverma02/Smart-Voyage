@@ -14,7 +14,7 @@
                         </div>
                         <div class="col-xs-12 col-12 col-md-4 form-group select2">
                             <span>Date</span>
-                            <input type="text" placeholder="Date" [(ngModel)]="searchDetails.date" name="date" required class="form-control"#dp="bsDatepicker" [ngClass]="{ 'is-invalid': f.submitted && date.invalid }" #date="ngModel" bsDatepicker>
+                            <input type="date" placeholder="Date" [(ngModel)]="searchDetails.date" name="date" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && date.invalid }" #date="ngModel" >
                             <div *ngIf="f.submitted && date.invalid" class="invalid-feedback">
                                 <div *ngIf="date.errors?.required">Date is required </div>
                             </div>
@@ -63,8 +63,8 @@
                     <div class="dropdown row ts">
                         <div class="col-md-3"><span style="max-width: 100%;">Class</span></div>
                         <div class="col-md-8">
-                            <select  class="btn-dropdown form-control" name="singleSelect"  [(ngModel)]="searchDetails.class">
-                            <option value="Economy" ng-selected="true" >Economy</option>
+                            <select  class="btn-dropdown form-control" name="singleSelect" [value]='Economy' [(ngModel)]="searchDetails.class">
+                            <option value="Economy" [selected]='true'>Economy</option>
                             <option value="Premium Economy">Premium Economy</option>
                             <option value="Business">Business</option>
                             <option value="First-Class">First-Class</option>

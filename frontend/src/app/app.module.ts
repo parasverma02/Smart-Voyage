@@ -20,6 +20,7 @@ import { AccordionModule } from 'ngx-bootstrap/accordion'
 import { Data } from './home/data.service';
 import { HeaderComponent } from './home/header/header.component';
 import { ProfilepageComponent } from './home/profilepage/profilepage.component';
+import { ResultGuard } from './result.guard';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { ProfilepageComponent } from './home/profilepage/profilepage.component';
     RouterModule.forRoot(appRoutes),
     AccordionModule.forRoot()
   ],
-  providers: [AuthGuard,Data],
+  providers: [AuthGuard,Data,ResultGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
