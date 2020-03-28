@@ -6,7 +6,6 @@ import { Data } from '../data.service';
 import { Adult } from './adult';
 import { Child } from './child';
 import { FlightDateTime } from './flight-datetime';
-import { execFile } from 'child_process';
 import { SearchResultService } from './search-result.service';
 
 @Component({
