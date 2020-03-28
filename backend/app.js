@@ -67,6 +67,16 @@ app.post('/api/search', function(req,res){
     });
 })
 
+app.post('/api/confirmbooking', function(req, res){
+    MongoClient.connect("mongodb://localhost:27017/", function(err,database){
+        if(err) throw err;
+        const db = database.db('customerdb')
+        const collection = db.collection('bookinginfo')
+        var data = req.body;
+        collection.insertOne(data);
+    })
+    res.json({ message: "Success"});
+})
 var port = 3000;
 app.listen(port, () => 
 console.log("Listening to port", port)
