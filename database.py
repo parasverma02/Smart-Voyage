@@ -92,13 +92,22 @@ u'flightcost': 685, u'flightNumber': 178, u'stops': 0, u'departureTerminal': 1, 
 u'YVR', u'carrierFsCode': u'ACA'}, {u'departureTime': datetime.datetime(2020, 4, 2, 23, 0), u'arrivalTerminal': 2,
 u'flightcost': 672, u'flightNumber': 132, u'stops': 0, u'departureTerminal': 2, u'arrivalTime': datetime.datetime(2020,
 4, 3, 2, 0), u'arrivalAirportFsCode': u'YUL', u'_id': ObjectId('5e75a9e3b6ffc75bf8e7e557'), u'departureAirportFsCode':
-u'YVR', u'carrierFsCode': u'ACA'},{ 'departureTime': datetime.datetime(2020, 4, 11, 23, 0), 'arrivalTerminal': 1, 'flightcost': 281, 'flightNumber':
-124, 'stops': 0, 'departureTerminal': 2, 'arrivalTime': datetime.datetime(2020, 4, 12, 2, 0),
-'arrivalAirportFsCode': 'YVR', '_id': ObjectId('5e75a9e3b6ffc75bf8e7e607'), 'departureAirportFsCode': 'YUL',
-'carrierFsCode': 'ACA'}, {'departureTime': datetime.datetime(2020, 4, 16, 22, 0), 'arrivalTerminal': 2,
-'flightcost': 286, 'flightNumber': 212, 'stops': 0, 'departureTerminal': 2, 'arrivalTime': datetime.datetime(2020,
-4, 17, 1, 0), 'arrivalAirportFsCode': 'YYZ', '_id': ObjectId('5e75a9e3b6ffc75bf8e7e671'), 'departureAirportFsCode':
-'YVR', 'carrierFsCode': 'ACA'}, {'departureTime': datetime.datetime(2020, 4, 20, 15, 0), 'arrivalTerminal': 3,
-'flightcost': 605, 'flightNumber': 179, 'stops': 0, 'departureTerminal': 1, 'arrivalTime': datetime.datetime(2020,
-4, 20, 17, 0), 'arrivalAirportFsCode': 'YUL', '_id': ObjectId('5e75a9e3b6ffc75bf8e7e6c7'), 'departureAirportFsCode':
-'YYZ', 'carrierFsCode': 'ACA'}]
+u'YVR', u'carrierFsCode': u'ACA'},{ u'departureTime': datetime.datetime(2020, 4, 11, 23, 0), u'arrivalTerminal': 1, u'flightcost': 281, 'flightNumber':
+124, u'stops': 0, u'departureTerminal': 2, u'arrivalTime': datetime.datetime(2020, 4, 12, 2, 0),
+u'arrivalAirportFsCode': 'YVR', '_id': ObjectId('5e75a9e3b6ffc75bf8e7e607'), u'departureAirportFsCode': 'YUL',
+u'carrierFsCode': u'ACA'}, {u'departureTime': datetime.datetime(2020, 4, 16, 22, 0), u'arrivalTerminal': 2,
+u'flightcost': 286, u'flightNumber': 212, u'stops': 0, u'departureTerminal': 2, u'arrivalTime': datetime.datetime(2020,
+4, 17, 1, 0), u'arrivalAirportFsCode': 'YYZ', u'_id': ObjectId('5e75a9e3b6ffc75bf8e7e671'), u'departureAirportFsCode':
+'YVR', u'carrierFsCode': u'ACA'}, {u'departureTime': datetime.datetime(2020, 4, 20, 15, 0), u'arrivalTerminal': 3,
+u'flightcost': 605, u'flightNumber': 179, u'stops': 0, u'departureTerminal': 1, u'arrivalTime': datetime.datetime(2020,
+4, 20, 17, 0), 'arrivalAirportFsCode': u'YUL', u'_id': ObjectId('5e75a9e3b6ffc75bf8e7e6c7'), 'departureAirportFsCode':
+u'YYZ', u'carrierFsCode': u'ACA'},{u'departureTime': datetime.datetime(2020, 4, 11, 15, 0), u'arrivalTerminal': 3,
+u'flightcost': 601, u'flightNumber': 333, u'stops': 0, u'departureTerminal': 1, u'arrivalTime': datetime.datetime(2020,
+4, 11, 17, 0), 'arrivalAirportFsCode': u'YYZ', u'_id': ObjectId('5e75a9e3b6ffc75bf8e7e6d7'), 'departureAirportFsCode':
+u'YUL', u'carrierFsCode': u'ACA'},{u'departureTime': datetime.datetime(2020, 4, 15, 14, 0), u'arrivalTerminal': 3,
+u'flightcost': 680, u'flightNumber': 22, u'stops': 0, u'departureTerminal': 1, u'arrivalTime': datetime.datetime(2020,
+4, 15, 19, 0), 'arrivalAirportFsCode': u'YVR', u'_id': ObjectId('5e75a9e3b6ffc75bf8e7e6a7'), 'departureAirportFsCode':
+u'YYZ', u'carrierFsCode': u'ACA'},{u'departureTime': datetime.datetime(2020, 4, 20, 11, 0), u'arrivalTerminal': 3,
+u'flightcost': 690, u'flightNumber': 11, u'stops': 0, u'departureTerminal': 1, u'arrivalTime': datetime.datetime(2020,
+4, 20, 17, 0), 'arrivalAirportFsCode': u'YUL', u'_id': ObjectId('5e75a9e3b6ffc75bf8e7e6b7'), 'departureAirportFsCode':
+u'YVR', u'carrierFsCode': u'ACA'}]
