@@ -16,8 +16,8 @@ import database
 
 
 
-client = MongoClient(port=27017)
-db=client.flightInfo
+#client = MongoClient(port=27017)
+#db=client.flightInfo
 city_dict = dict()
 totalcost = {}
 data = {}
@@ -27,10 +27,36 @@ x_search = database.y_search
 def main():
     global data, final_route
     # print("Executing python script")
-    data = json.loads(sys.stdin.readline())
+    #data = json.loads(sys.stdin.readline())
+    startdate = datetime.datetime(2020, 4, 11, 23, 0)
+    source = u'YUL'
+    possible_routes = bruteforce(({0: ['YYZ', 4], 1: ['YVR', 5]}))
+    print(possible_routes)
+    mincost = 100000000
+    for route in possible_routes:
+        flight_route = []
+        flight_route = deep_search(source, startdate, route)
+        print(flight_route)
+        if (flight_route == None):
+            pass
+        else:
+            tempcost = 0
+            for flight in flight_route:
+                # print("f = ",flight['flightcost'])
+                tempcost += flight['flightcost']
+            # print("tempcost:", tempcost)
+            if (tempcost < mincost):
+                final_route = list(flight_route)
+                mincost = tempcost
+                print("mincost updated:", mincost)
+    print(mincost)
+
+
+    """
     i = 0
     startdate = ""
     startdate += data["date"]
+    startdate = getDateTimeFromISO8601String(startdate)
     source = db.airportcodes.find_one({'city':data["source"]})
     for city in data["cities"]:
         airport = db.airportcodes.find_one({'city': city["city"]})
@@ -55,8 +81,8 @@ def main():
                 final_route = list(flight_route)
                 mincost = tempcost
                 # print("mincost updated:", mincost)
-    mincost = 100000
-    formatjson(final_route, mincost)
+    mincost = 100000"""
+    #formatjson(final_route, mincost)
 
 
 def bruteforce(cities):
@@ -81,12 +107,12 @@ def to_dict(input_ordered_dict):
     return loads(dumps(input_ordered_dict))
 
 
-def deep_search(source, date, cities):
+def deep_search(source, dat, cities):
+    global num_days
     start = source
-    d1 = date
+    d1 = dat.date()
     #d1 = getDateTimeFromISO8601String(date)
     d2 = d1 + timedelta(days=1)
-
     flights = []
     x = []
 
@@ -94,13 +120,13 @@ def deep_search(source, date, cities):
         #x = list(db.documents.find({"departureAirportFsCode": start, "arrivalAirportFsCode": cities[key][0], "departureTime" : {"$gte":d1}, "arrivalTime" : {"$lt":d2}}).sort("flightcost",1).limit(1))
         city_list = []
         for item in x_search:
-            if item[u'departureAirportFsCode'] == start and item[u'arrivalAirportFsCode'] == cities[key][0] and item[u"departureTime"] == d1 and item[u'arrivalTime'] == d2:
+            if item[u'departureAirportFsCode'] == start and item[u'arrivalAirportFsCode'] == cities[key][0] and item[u'departureTime'].date() == d1:
                 city_list.append(item)
         cost = 1000000000
         flight_number = 0
-        if not city_list:
+        #if not city_list:
             # print(start, cities[key][0], d1, d2)
-            return None
+            #return None
         for item in city_list:
             if item[u'flightcost'] < cost:
                 cost = item[u'flightcost']
@@ -109,16 +135,16 @@ def deep_search(source, date, cities):
         for item in x_search:
             if item[u'flightNumber'] == flight_number and item[u'flightcost'] == cost:
                 flights.append(item)
-                flights = sorted(flights)
-                start = cities[key][0]
-                num_days = cities[key][1]
-                d1 = d1 + timedelta(days=num_days)
-                d2 = d2 + timedelta(days=num_days)
-                break
+                #flights = sorted(flights)
+        start = cities[key][0]
+        num_days = cities[key][1]
+        d1 = d1 + timedelta(days=num_days)
+        d2 = d2 + timedelta(days=num_days)
+        city_list = []
 
     destination_list = []
     for item in x_search:
-        if item[u'departureAirportFsCode'] == start and item[u'arrivalAirportFsCode'] == source and item[u'departureTime'] == d1 and item[u'arrivalTime'] == d2:
+        if item[u'departureAirportFsCode'] == start and item[u'arrivalAirportFsCode'] == source and item[u'departureTime'].date() == d1:
             destination_list.append(item)
     cost = 1000000000
     flight_number = 0
@@ -132,7 +158,7 @@ def deep_search(source, date, cities):
             break
     return flights
 
-
+"""
 def formatjson(final_route, cost):
     global data
     route = []
@@ -171,7 +197,7 @@ def formatjson(final_route, cost):
     result["adults"] = data["adults"]
     result["children"] = data["children"]
     print(json.dumps(result))
-
+"""
 
 def getDateTimeFromISO8601String(s):
     d = dateutil.parser.parse(s)
