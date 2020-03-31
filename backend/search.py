@@ -124,6 +124,7 @@ def formatjson(final_route, cost):
     result["totalcost"] = cost
     result["adults"] = data["adults"]
     result["children"] = data["children"]
+    result["class"] = data["class"]
     print(json.dumps(result))
 
 
