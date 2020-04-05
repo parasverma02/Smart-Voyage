@@ -255,5 +255,54 @@ def test_validation():
 
 
 def test_check_city():
-    # minimal test case for statement coverage
-    print()
+    # minimal test case for path coverage
+    # test case 1: valid input
+    assert search.check_city('YYZ') == True
+    # test case 2: city code has to be 3 Digit code
+    assert search.check_city('YY') == False
+    # test case 3: code can not be in lower case
+    assert search.check_city('yyz') == False
+    # test case 4: length more than expected
+    assert search.check_city('YYZU') == False
+    # test suite for coverage ends here
+
+
+def test_check_similar_cities():
+    # minimal test case for path coverage
+    # test case 1: both invalid input
+    dic2 = {}
+    dic = collections.OrderedDict(sorted(dic2.items()))
+    assert search.check_similar_cities('', dic) == False
+
+    # test case 2: empty dictionary input
+    dic2 = {}
+    dic = collections.OrderedDict(sorted(dic2.items()))
+    assert search.check_similar_cities('YUL', dic) == False
+
+    # test case 3: no source input
+    dic2 = {}
+    dic = collections.OrderedDict(sorted(dic2.items()))
+    assert search.check_similar_cities('', dic) == False
+
+    # test case 4: valid input
+    dic2 = {0: ['YYZ', 4], 1: ['YVR', 5]}
+    dic = collections.OrderedDict(sorted(dic2.items()))
+    assert search.check_similar_cities('YUL', dic) == True
+
+    # test case 5: source and other city has similar name which is invalid
+    dic2 = {0: ['YUL', 4], 1: ['YVR', 5]}
+    dic = collections.OrderedDict(sorted(dic2.items()))
+    assert search.check_similar_cities('YUL', dic) == False
+
+    # test case 6: two cities have similar name
+    dic2 = {0: ['YVR', 4], 1: ['YVR', 5]}
+    dic = collections.OrderedDict(sorted(dic2.items()))
+    assert search.check_similar_cities('YUL', dic) == False
+    # mininal test suite ends here for path coverage
+
+
+
+
+
+
+
