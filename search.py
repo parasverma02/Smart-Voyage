@@ -43,9 +43,7 @@ def controller(source, startdate, dic):
     return mincost
 
 
-"""validation to check if same city is entered more than once"""
-
-
+# validation to check if same city is entered more than once
 def check_similar_cities(source, cities):
     count = 0
     for i in cities:
@@ -63,7 +61,7 @@ def check_similar_cities(source, cities):
     return True
 
 
-"""all the inputs are validated before passing to functions"""
+# all the inputs are validated before passing to functions
 def validation(source, startdate, dic):
     total_days = 0
     flag = 0
@@ -99,11 +97,12 @@ def validation(source, startdate, dic):
             print("Total number of days more than 60 or less than 1!")
             return False
     else:
+        print("Error: No input!")
         return False
     return True
 
 
-"""to check that the city code is a 3 digit upper case word"""
+# to check that the city code is a 3 digit upper case word
 def check_city(z):
     count = 0
     if z != "":
@@ -129,8 +128,7 @@ def main():
     result = validation(source, startdate, dic)
 
 
-
-"""all the permutations of path are returned by bruteforce"""
+# all the permutations of path are returned by bruteforce
 def bruteforce(cities):
     flight_route = []
     possible_routes = []
@@ -148,7 +146,7 @@ def bruteforce(cities):
     return possible
 
 
-"""to convert ordered dictionary to non ordered dictionary"""
+# to convert ordered dictionary to non ordered dictionary
 def to_dict(input_ordered_dict):
     return loads(dumps(input_ordered_dict))
 
