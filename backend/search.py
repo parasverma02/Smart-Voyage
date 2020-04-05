@@ -18,6 +18,7 @@ def main():
     # print("Executing python script")
     data = json.loads(sys.stdin.readline())
     i=0
+    final_route = []
     startdate = ""
     startdate += data["date"]
     source = db.airportcodes.find_one({'city':data["source"]})
@@ -78,9 +79,11 @@ def search(source, date, cities):
         num_days = cities[key][1]
         d1 = d1 + timedelta(days=num_days)
         d2 = d2 + timedelta(days=num_days)
-    y = list(db.documents.find({"departureAirportFsCode": start, "arrivalAirportFsCode": source, "departureTime" : {"$gte":d1}}).sort("flightcost",1).limit(1))
-    if(y!=""):
-        flights.append(y[0])
+    y = list(db.documents.find({"departureAirportFsCode": start, "arrivalAirportFsCode": source, "departureTime" : {"$gte":d1}, "arrivalTime" : {"$lt":d2}}).sort("flightcost",1).limit(1))
+    if(y==[]):
+        print(start, source, d1, d2)
+        return None
+    flights.append(y[0])
     # print(flights)
     return flights
 
@@ -91,6 +94,7 @@ def formatjson(final_route, cost):
     flights = []
     result = {}
     flag = True
+    # source = ""
     for obj in final_route:
         info = {}
         depcity = db.airportcodes.find_one({'code': obj["departureAirportFsCode"]})
@@ -111,17 +115,18 @@ def formatjson(final_route, cost):
         info["totalFlightTime"] = travel_duration
         info["departureTime"] = obj["departureTime"].isoformat()
         info["arrivalTime"] = obj["arrivalTime"].isoformat()
-        info["flightcost"] = obj["flightcost"]
+        info["flightcost"] = obj["flightcost"]*(data["adults"]+data["children"])
         info["carrierFsCode"] = obj["carrierFsCode"]
         info["flightNumber"] = obj["flightNumber"]
         info["stops"] = obj["stops"]
         flights.append(info)
-    route.append(source)
+    # route.append(source)
     result["route"] = list(route)
     result["flights"] = list(flights)
-    result["totalcost"] = cost
+    result["totalcost"] = cost*(data["adults"]+data["children"])
     result["adults"] = data["adults"]
     result["children"] = data["children"]
+    result["class"] = data["class"]
     print(json.dumps(result))
 
 
