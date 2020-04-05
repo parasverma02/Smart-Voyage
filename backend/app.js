@@ -26,6 +26,16 @@ setupcontroller(app);
 testcontroller(app);
 travellercontroller(app);
 
+// MongoClient.connect("mongodb://localhost:27017/", function(err,database){
+//     if(err) throw err;
+//     const db = database.db('customerdb')
+//     const collection = db.collection('bookinginfo')
+//     collection.find({travelStatus: "upcoming"}, function(err, result){
+//         if(err) throw err;
+//         for()
+//     })
+// })
+
 app.get('/api/cityinfo', function(req,res){
     console.log("sending city info")
     city = []

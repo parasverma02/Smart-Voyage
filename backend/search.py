@@ -79,9 +79,11 @@ def search(source, date, cities):
         num_days = cities[key][1]
         d1 = d1 + timedelta(days=num_days)
         d2 = d2 + timedelta(days=num_days)
-    y = list(db.documents.find({"departureAirportFsCode": start, "arrivalAirportFsCode": source, "departureTime" : {"$gte":d1}}).sort("flightcost",1).limit(1))
-    if(y!=""):
-        flights.append(y[0])
+    y = list(db.documents.find({"departureAirportFsCode": start, "arrivalAirportFsCode": source, "departureTime" : {"$gte":d1}, "arrivalTime" : {"$lt":d2}}).sort("flightcost",1).limit(1))
+    if(y==[]):
+        print(start, source, d1, d2)
+        return None
+    flights.append(y[0])
     # print(flights)
     return flights
 

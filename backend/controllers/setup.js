@@ -7,14 +7,14 @@ module.exports = function(app){
         const url = "mongodb://localhost:27017/";
         //Airport Code Table
         const airportTable = [
-            {city:"edmonton",code:"YEG"},
-            {city:"ottawa",code:"YOW"},
-            {city:"regina",code:"YQR"},
-            {city:"montreal",code:"YUL"},
-            {city:"vancouver",code:"YVR"}, 
-            {city:"winnipeg",code:"YWG"},
-            {city:"calgary",code:"YYC"},
-            {city:"toronto",code:"YYZ"}
+            {city:"Edmonton",code:"YEG"},
+            {city:"Ottawa",code:"YOW"},
+            {city:"Regina",code:"YQR"},
+            {city:"Montreal",code:"YUL"},
+            {city:"Vancouver",code:"YVR"}, 
+            {city:"Winnipeg",code:"YWG"},
+            {city:"Calgary",code:"YYC"},
+            {city:"Toronto",code:"YYZ"}
         ]
         // List of airports: Edmonton, Ottawa, Regina, Montreal, Vancouver, Winnipeg, Calgary, Toronto
         const airportCodes = ["YEG", "YOW", "YQR","YUL","YVR", "YWG", "YYC", "YYZ"] 
