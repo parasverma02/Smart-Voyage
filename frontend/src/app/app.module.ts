@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router'
 import { AppComponent } from './app.component';
-import { UserComponent } from './user/user.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
  import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { FormsModule } from '@angular/forms'
@@ -13,7 +12,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './auth.guard';
 import { FlightSearchComponent } from './home/flight-search/flight-search.component';
 import { NgxSelectModule } from 'ngx-select-ex';
-import { BsDatepickerModule } from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchResultComponent } from './home/search-result/search-result.component';
 import { AccordionModule } from 'ngx-bootstrap/accordion'
@@ -21,11 +19,11 @@ import { Data } from './home/data.service';
 import { HeaderComponent } from './home/header/header.component';
 import { ProfilepageComponent } from './home/profilepage/profilepage.component';
 import { ResultGuard } from './result.guard';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent,
     SignInComponent,
     SignUpComponent,
     HomeComponent,
@@ -41,8 +39,8 @@ import { ResultGuard } from './result.guard';
     FormsModule,
     HttpClientModule,
     NgxSelectModule,
-    BsDatepickerModule.forRoot(),
     RouterModule.forRoot(appRoutes),
+    ModalModule.forRoot(),
     AccordionModule.forRoot()
   ],
   providers: [AuthGuard,Data,ResultGuard],

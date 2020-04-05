@@ -4,36 +4,37 @@ import { Observable } from 'rxjs';
 import { UserAccount } from '../response-objects/user-account';
 import { UserLogin } from '../response-objects/user-login';
 import { url } from "../../../config";
-interface DataResponse{
-  success: boolean,
-  message: string
-}
+import { Router } from '@angular/router';
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
-  
   private loggedInStatus = JSON.parse(localStorage.getItem('loggedIn') || 'false');
-  private _account_url: string = "/assets/data/account.json";
-  private _travellers_url: string = "/assets/data/travellers.json";
   private _sendNewUser_Post: string = url + "signup";
   private _sendLogin_post: string = url + "signin";
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private router: Router) { }
   
   setLoggedIn(value: boolean){
     localStorage.setItem('loggedIn',String(value));
     this.loggedInStatus = value;
   }
-  get isLoggedIn(){
+  isLoggedIn(): boolean{
     return JSON.parse(localStorage.getItem('loggedIn') || this.loggedInStatus.toString());
   }
-  send_signupRequest(user: UserAccount): Observable<UserAccount>{
-    return this.http.post<UserAccount>(this._sendNewUser_Post, user);
+  Logout(){
+    console.log('in logout');
+    localStorage.removeItem('loggedIn');
+    this.setLoggedIn(false);
+    console.log(localStorage.getItem('loggedIn'));
+    this.router.navigate(['login']);
+  }
+  send_signupRequest(user: UserAccount): Observable<any>{
+    return this.http.post<any>(this._sendNewUser_Post, user);
   }
   
-  send_loginRequest(user: UserLogin ): Observable<DataResponse>{
-    return this.http.post<DataResponse>(this._sendLogin_post, user);
+  send_loginRequest(user: UserLogin ): Observable<any>{
+    return this.http.post<any>(this._sendLogin_post, user);
   }
 
 }

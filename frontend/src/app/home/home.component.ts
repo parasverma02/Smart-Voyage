@@ -14,12 +14,4 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  onLogout(){
-    console.log('in logout');
-    localStorage.removeItem('loggedIn');
-    this._userService.setLoggedIn(false);
-    console.log(localStorage.getItem('loggedIn'));
-    this.router.navigate(['login']);
-  }
-
 }

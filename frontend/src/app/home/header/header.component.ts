@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchResultService } from '../search-result/search-result.service';
+import { UserService } from 'src/app/user/shared/user.service';
 
 @Component({
   selector: 'main-header',
@@ -8,10 +9,13 @@ import { SearchResultService } from '../search-result/search-result.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private resultService: SearchResultService) { }
+  constructor(private resultService: SearchResultService,private _userService: UserService) { }
 
   ngOnInit() {
     
+  }
+  onLogout(){
+    this._userService.Logout();
   }
 
 }

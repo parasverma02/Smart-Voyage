@@ -1,126 +1,127 @@
 <body>
   <main-header></main-header>
   <div class="container">
-      <div class="col-md-12 flight-detail-body" style="padding-left: 0 !important; padding-right: 0 !important;">
-        <div class="col-md-12 flightroutediv" style="padding-left: 0 !important; padding-right: 0 !important;">
-          <div class="row">
-            <div class="col-md-2 cheapestroute">
-              <div class="cheapestroute-txt">
-                <span>Cheapest Route</span>
-              </div>
-              
+    <div class="col-md-12 flight-detail-body" style="padding-left: 0 !important; padding-right: 0 !important;">
+      <div class="col-md-12 flightroutediv" style="padding-left: 0 !important; padding-right: 0 !important;">
+        <div class="row">
+          <div class="col-md-2 cheapestroute">
+            <div class="cheapestroute-txt">
+              <span>Cheapest Route</span>
             </div>
-            <div class="col-md-8 flightroute">
-              <div class="route-path">
-                <span class="single-city" *ngFor="let city of finalBooking.route;let i=index;">
-                  {{city}}
-                  <span class="fa fa-arrow-right white arrow" *ngIf="i!=finalBooking.route.length-1"
-                    style="color: aliceblue;"></span>
-                </span>
-              </div>
+
+          </div>
+          <div class="col-md-8 flightroute">
+            <div class="route-path">
+              <span class="single-city" *ngFor="let city of finalBooking.route;let i=index;">
+                {{city}}
+                <span class="fa fa-arrow-right white arrow" *ngIf="i!=finalBooking.route.length-1"
+                  style="color: aliceblue;"></span>
+              </span>
             </div>
-            <div class="col-md-2 total-cost">
-              
-                <span>Total Cost</span>
-              
-              <div class="row cost">
-                <span>C${{finalBooking.totalcost}}</span>
+          </div>
+          <div class="col-md-2 total-cost">
+            <span>Total Cost</span>
+
+            <div class="row cost">
+              <span>C${{finalBooking.totalcost}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9 searchdetailbody">
+          <div class="accordion" *ngFor="let flight of finalBooking.flights;let i=index" id="accordionExample">
+            <div class="card">
+              <div class="card-header acc-header" [attr.id]="'headingOne'+i">
+                <div type="button" data-toggle="collapse" [attr.data-target]="'#collapseOne'+i" aria-expanded="true"
+                  [attr.aria-controls]="'collapseOne'+i">
+                  <div class="row">
+                    <div class="col-md-2 source">
+                      <span>{{flight.source}} ({{flight.arrivalAirportFsCode}})</span>
+                    </div>
+                    <div class="col-md-2 flighttraveltime">
+                      <span>{{flight.totalFlightTime}}</span>
+                    </div>
+                    <div class="col-md-2 destination">
+                      <span>{{flight.destination}} ({{flight.departureAirportFsCode}})</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2 arrdepptime">
+                      <span>{{flightTimeDate[i].departureDate}}</span>
+                    </div>
+                    <div class="col-md-2">
+                      <hr class="line1">
+                    </div>
+                    <div class="col-md-2 arrdepptime">
+                      <span>{{flightTimeDate[i].arrivalDate}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div [attr.id]="'collapseOne'+ i" class="collapse" [attr.aria-labelledby]="'headingOne'+i"
+                data-parent="#accordionExample">
+                <div class="card-body" style="overflow: hidden;">
+                  <div class="row flight-detail-header">
+                    <div class="col-md-3 flight-number">
+                      <span>Flight Number : {{flight.carrierFsCode}}{{flight.flightNumber}}</span>
+                    </div>
+                    <div class="col-md-6 carrier-name">
+                      <div class="airline-logo"></div>
+                      <span>Air Canada</span>
+                    </div>
+                    <div class="col-md-3 flight-cost">
+                      <span>C${{flight.flightcost}}</span>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-md-6 dep-arr-heading">
+                      <span>DEPARTURE</span>
+                    </div>
+                    <div class="col-md-6  dep-arr-heading">
+                      <span>ARRIVAL</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 dep-arr-div">
+                      <span class="dep-arr">Departs from:</span><span>{{flight.source}}</span>
+                    </div>
+                    <div class="col-md-6 dep-arr-div">
+                      <span class="dep-arr">Arrives at:</span><span>{{flight.destination}}</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 dep-arr-div">
+                      <span class="dep-arr">Date:</span><span>{{flightTimeDate[i].departureDate}}</span>
+                    </div>
+                    <div class="col-md-6 dep-arr-div">
+                      <span class="dep-arr">Date:</span><span>{{flightTimeDate[i].arrivalDate}}</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 dep-arr-div">
+                      <span class="dep-arr">Time:</span><span>{{flightTimeDate[i].departureTime}}</span>
+                    </div>
+                    <div class="col-md-6 dep-arr-div">
+                      <span class="dep-arr">Time:</span><span>{{flightTimeDate[i].arrivalTime}}</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-9 searchdetailbody">
-            <div class="accordion" *ngFor="let flight of finalBooking.flights;let i=index" id="accordionExample">
-              <div class="card">
-                <div class="card-header acc-header" [attr.id]="'headingOne'+i">
-                  <div type="button" data-toggle="collapse" [attr.data-target]="'#collapseOne'+i" aria-expanded="true"
-                    [attr.aria-controls]="'collapseOne'+i">
-                    <div class="row">
-                      <div class="col-md-2 source">
-                        <span>{{flight.source}} ({{flight.arrivalAirportFsCode}})</span>
-                      </div>
-                      <div class="col-md-2 flighttraveltime">
-                        <span>{{flight.totalFlightTime}}</span>
-                      </div>
-                      <div class="col-md-2 destination">
-                        <span>{{flight.destination}} ({{flight.departureAirportFsCode}})</span>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-2 arrdepptime">
-                        <span>{{flightTimeDate[i].departureDate}}</span>
-                      </div>
-                      <div class="col-md-2">
-                        <hr class="line1">
-                      </div>
-                      <div class="col-md-2 arrdepptime">
-                        <span>{{flightTimeDate[i].arrivalDate}}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div [attr.id]="'collapseOne'+ i" class="collapse" [attr.aria-labelledby]="'headingOne'+i"
-                  data-parent="#accordionExample">
-                  <div class="card-body" style="overflow: hidden;">
-                    <div class="row flight-detail-header">
-                      <div class="col-md-3 flight-number">
-                        <span>Flight Number : {{flight.carrierFsCode}}{{flight.flightNumber}}</span>
-                      </div>
-                      <div class="col-md-6 carrier-name">
-                        <div class="airline-logo"></div>
-                        <span>Air Canada</span>
-                      </div>
-                      <div class="col-md-3 flight-cost">
-                        <span>C${{flight.flightcost}}</span>
-                      </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                      <div class="col-md-6 dep-arr-heading">
-                        <span>DEPARTURE</span>
-                      </div>
-                      <div class="col-md-6  dep-arr-heading">
-                        <span>ARRIVAL</span>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6 dep-arr-div">
-                        <span class="dep-arr">Departs from:</span><span>{{flight.source}}</span>
-                      </div>
-                      <div class="col-md-6 dep-arr-div">
-                        <span class="dep-arr">Arrives at:</span><span>{{flight.destination}}</span>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6 dep-arr-div">
-                        <span class="dep-arr">Date:</span><span>{{flightTimeDate[i].departureDate}}</span>
-                      </div>
-                      <div class="col-md-6 dep-arr-div">
-                        <span class="dep-arr">Date:</span><span>{{flightTimeDate[i].arrivalDate}}</span>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6 dep-arr-div">
-                        <span class="dep-arr">Time:</span><span>{{flightTimeDate[i].departureTime}}</span>
-                      </div>
-                      <div class="col-md-6 dep-arr-div">
-                        <span class="dep-arr">Time:</span><span>{{flightTimeDate[i].arrivalTime}}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div class="col-md-3 no-gutters travellerdetail-body">
+          <div class="col-md-12 travellerdetail">
+            <span>Traveller Details</span>
           </div>
-          <div class="col-md-3 no-gutters travellerdetail-body">
-            <div class="col-md-12 travellerdetail">
-              <span>Traveller Details</span>
-            </div>
+          <form [formGroup]="travellersForms" (ngSubmit)="onSubmit()">
             <div class="col-md-12 travwithscrollbar">
-              <form #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()" novalidate>
-                <div class="accordion" *ngFor="let adult of arrayOne(finalBooking.adults.length);let i=index" id="adult">
+              <div formArrayName="adulttravellers">
+                <div class="accordion" *ngFor="let adult of travellersForms.get('adulttravellers').controls; let i=index" id="adult"
+                  [formGroupName]="i">
                   <div class="card">
                     <div class="card-header trav-accordion no-gutters" [attr.id]="'Adult'+i">
                       <div type="button" class="col-md-12 trav-accordion-btn " data-toggle="collapse"
@@ -129,25 +130,50 @@
                           <span>Adult {{i+1}} </span>
                         </div>
                       </div>
-    
+
                     </div>
-                    <div [attr.id]="'collapse'+ i" class="collapse" [attr.aria-labelledby]="'Adult'+i" data-parent="#adult">
+                    <div [attr.id]="'collapse'+ i" class="collapse" [attr.aria-labelledby]="'Adult'+i"
+                      data-parent="#adult">
                       <div class="card-body trav-detail-body" style="overflow: hidden;">
-                        <input class="form-control trav-input" type="text" placeholder="Firtname"
-                          [(ngModel)]="finalBooking.adults[i].firstname" name="firstname" value="">
-                        <input class="form-control trav-input" type="text" placeholder="Lastname"
-                          [(ngModel)]="finalBooking.adults[i].lastname" name="lastname" value="">
-                        <input class="form-control trav-input" type="email" placeholder="Email"
-                          [(ngModel)]="finalBooking.adults[i].email" name="email" value="">
-                        <input class="form-control trav-input" type="number" placeholder="Age"
-                          [(ngModel)]="finalBooking.adults[i].age" name="age" value="">
-                        <input class="form-control trav-input" type="number" placeholder="Phone"
-                          [(ngModel)]="finalBooking.adults[i].phone" name="phone" value="">
+                        <input class="form-control trav-input" formControlName="firstname" type="text"
+                          placeholder="Firtname" [(ngModel)]="finalBooking.adults[i].firstname" name="firstname"
+                          [ngClass]="{ 'is-invalid': submitted && adult.get('firstname').errors}" required value="">
+                        <div *ngIf="isValidField(i , 'firstname','adulttravellers')" class="invalid-feedback">
+                          Firstname is required!
+                        </div>
+                        <input class="form-control trav-input" formControlName="lastname" type="text"
+                          placeholder="Lastname" [(ngModel)]="finalBooking.adults[i].lastname" name="lastname" 
+                          [ngClass]="{ 'is-invalid': submitted && adult.get('lastname').errors}" required value="">
+                        <div *ngIf="isValidField(i , 'lastname','adulttravellers')" class="invalid-feedback">
+                          Lastname is required!
+                        </div>
+                        <input class="form-control trav-input" formControlName="email" type="email" placeholder="Email"
+                          [(ngModel)]="finalBooking.adults[i].email" name="email" 
+                          [ngClass]="{ 'is-invalid': submitted && adult.get('email').errors}" required value="">
+                        <div *ngIf="isValidField(i , 'email','adulttravellers')" class="invalid-feedback">
+                          Email is required!
+                        </div>
+                        <input class="form-control trav-input" formControlName="age" type="number" placeholder="Age"
+                          [(ngModel)]="finalBooking.adults[i].age" name="age" 
+                          [ngClass]="{ 'is-invalid': submitted && adult.get('age').errors}" required value="">
+                        <div *ngIf="isValidField(i , 'age','adulttravellers')" class="invalid-feedback">
+                          Age is required!
+                        </div>
+                        <input class="form-control trav-input" formControlName="phone" type="number" placeholder="Phone"
+                          [(ngModel)]="finalBooking.adults[i].phone" name="phone" 
+                          [ngClass]="{ 'is-invalid': submitted && adult.get('phone').errors}" required value="">
+                        <div *ngIf="isValidField(i , 'phone','adulttravellers')" class="invalid-feedback">
+                          Phone no. is required!
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="accordion" *ngFor="let child of arrayOne(finalBooking.children.length);let i=index" id="children">
+              </div>
+              <div formArrayName="childtravellers">
+                <div class="accordion"
+                  *ngFor="let child of travellersForms.get('childtravellers').controls; let i=index" id="children"
+                  [formGroupName]="i">
                   <div class="card">
                     <div class="card-header trav-accordion no-gutters" [attr.id]="'Child'+i">
                       <div type="button" class="col-md-12 trav-accordion-btn " data-toggle="collapse"
@@ -157,30 +183,81 @@
                           <span>Child {{i+1}} </span>
                         </div>
                       </div>
-    
+
                     </div>
                     <div [attr.id]="'collapseChild'+ i" class="collapse" [attr.aria-labelledby]="'Child'+i"
                       data-parent="#children">
                       <div class="card-body trav-detail-body" style="overflow: hidden;">
-                        <input class="form-control trav-input" type="text" placeholder="Firtname"
-                          [(ngModel)]="finalBooking.children[i].firstname" name="firstname" value="">
-                        <input class="form-control trav-input" type="text" placeholder="Lastname"
-                          [(ngModel)]="finalBooking.children[i].lastname" name="lastname" value="">
-                        <input class="form-control trav-input" type="number" placeholder="Age"
-                          [(ngModel)]="finalBooking.children[i].age" name="age" value="">
+                        <input class="form-control trav-input" formControlName="firstname" type="text" placeholder="Firtname"
+                          [(ngModel)]="finalBooking.children[i].firstname" name="firstname" 
+                          [ngClass]="{ 'is-invalid': submitted && child.get('firstname').errors}" required value="">
+                          <div *ngIf="isValidField(i , 'firstname','childtravellers')" class="invalid-feedback">
+                            Firstname is required!
+                          </div>
+                        <input class="form-control trav-input" formControlName="lastname" type="text" placeholder="Lastname"
+                          [(ngModel)]="finalBooking.children[i].lastname" name="lastname" 
+                          [ngClass]="{ 'is-invalid': submitted && child.get('lastname').errors}" required value="">
+                          <div *ngIf="isValidField(i , 'lastname','childtravellers')" class="invalid-feedback">
+                            Lastname is required!
+                          </div>
+                        <input class="form-control trav-input" formControlName="age" type="number" placeholder="Age"
+                          [(ngModel)]="finalBooking.children[i].age" name="age" 
+                          [ngClass]="{ 'is-invalid': submitted && child.get('age').errors}" required value="">
+                          <div *ngIf="isValidField(i , 'age','childtravellers')" class="invalid-feedback">
+                            Age is required!
+                          </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </form>
+              </div>
+
+
             </div>
             <hr class="trav-base-line">
-          </div>
+            <div class="col-md-12 submitdiv">
+              <button type="submit" class="btn btn-search" (click)="onSubmit(template)" [attr.data-toggle]="openModal()"
+                data-target="#exampleModal">Book</button>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Booking Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div>
+                      <div *ngFor="let flight of finalBooking.flights; let i=index;">
+                        <span>Flight {{i+1}}: {{flight.source}} to {{flight.destination}}
+                          (C${{flight.flightcost}})</span>
+                      </div>
+                      <div>
+                        <span>No. of Travellers: {{finalBooking.adults.length + finalBooking.children.length}}</span>
+                      </div>
+                      <div>
+                        <span>Class: {{finalBooking.class}}</span>
+                      </div>
+                      <div>
+                        <span>Total Cost: C${{finalBooking.totalcost}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                      (click)="confirmBooking()">confirm Booking</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
-        
       </div>
-      
-
+    </div>
   </div>
-
 </body>

@@ -16,7 +16,7 @@ body {
     height: 88vh;
     display: flex;
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */
     top: 70px;
     flex-direction: column;
     min-height: 300px;
@@ -131,28 +131,36 @@ body {
     display: block;
     
   }
+
+  .submitdiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .btn-search {
+    /* margin-right: 30px; */
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px; 
+    margin-top: 5px;
+    width: 160px;
+    height: 45px;
+    float: right;
+    font-weight: bolder;
+    color: rgb(41, 41, 41);
+}
   .dep-arr-div {
     font-size: 15px;
     
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
-
   }
   .dep-arr {
     font-weight: bold;
     margin-right: 10px;
-    /* margin-left: 150px; */
   }
-  /* .airline-logo {
-     background-image: url('src\assets\Airlines_logo\ACA.png') repeat 0 0; 
-    width: 100%;
-    height: 100%;
-  } */
+  
 
   .travellerdetail-body {
-   margin-top: 1%;
-   border-radius: 5px;
+    margin-top: 1.5%;
+    border-radius: 5px;
   }
 .travellerdetail{
     position: relative;
@@ -264,7 +272,7 @@ hr.trav-base-line {
     border: 1px solid rgb(163, 163, 163);
 }
 .searchdetailbody {
-  margin-top: 10px;
+  margin-top: 1.5%;
     height: 500px;
     overflow: auto;
 }
