@@ -1,6 +1,19 @@
 const MongoClient = require('mongodb').MongoClient;
 
 module.exports = function(app){
+
+    app.get('/api/userdetails/:username', function(req, res){
+        MongoClient.connect("mongodb://localhost:27017/", function(err,database){
+            if (err) throw err;
+            const db = database.db('customerdb')
+            const collection = db.collection('userdetails')
+            collection.findOne({username: req.params.username}, function(err, result){
+                if(err) throw err;
+                console.log(result);
+                res.send(result)
+            })
+        })
+    })
     app.post('/api/addtraveller', function(req, res){
         MongoClient.connect("mongodb://localhost:27017/", function(err,database){
             if (err) throw err;
@@ -45,10 +58,25 @@ module.exports = function(app){
             if (err) throw err;
             const db = database.db('customerdb')
             const collection = db.collection('travellerdetails')
-            collection.update({username: req.body.username}, function(err, result){
-                if(err) throw err;
-            })
+            collection.update({username: req.body.username}, { $pull: { "travellers": { firstname: req.body.firstname } } })
         })
         res.send({ message: "Success"})
     })
+
+    app.post('/api/edittraveller', function(req, res){
+        MongoClient.connect("mongodb://localhost:27017/", function(err,database){
+            if (err) throw err;
+            const db = database.db('customerdb')
+            const collection = db.collection('travellerdetails')
+            collection.update({username: req.body.username}, { $pull: { "travellers": { firstname: req.body.travellers[0].firstname } } })
+            collection.update(
+                {username: req.body.username}, 
+                {
+                 $push: { travellers: { $each: [ req.body.travellers[0] ] } } 
+                }
+            )
+        })
+        res.send({ message: "Success"})
+    })
+
 }

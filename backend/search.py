@@ -113,7 +113,7 @@ def formatjson(final_route, cost):
         info["totalFlightTime"] = travel_duration
         info["departureTime"] = obj["departureTime"].isoformat()
         info["arrivalTime"] = obj["arrivalTime"].isoformat()
-        info["flightcost"] = obj["flightcost"]
+        info["flightcost"] = obj["flightcost"]*(data["adults"]+data["children"])
         info["carrierFsCode"] = obj["carrierFsCode"]
         info["flightNumber"] = obj["flightNumber"]
         info["stops"] = obj["stops"]
@@ -121,7 +121,7 @@ def formatjson(final_route, cost):
     # route.append(source)
     result["route"] = list(route)
     result["flights"] = list(flights)
-    result["totalcost"] = cost
+    result["totalcost"] = cost*(data["adults"]+data["children"])
     result["adults"] = data["adults"]
     result["children"] = data["children"]
     result["class"] = data["class"]
