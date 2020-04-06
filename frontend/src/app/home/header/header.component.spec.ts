@@ -3,6 +3,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HeaderComponent } from './header.component';
 import { UserService } from 'src/app/user/shared/user.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { FormsModule } from '@angular/forms'
+import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Injectable } from '@angular/core';
 import { FlightSearchService } from '../flight-search/flight-search.service';
@@ -11,6 +13,7 @@ describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
   let service: UserService;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ HeaderComponent ],
@@ -19,11 +22,11 @@ describe('HeaderComponent', () => {
         RouterTestingModule
       ],
       providers:[{provide:UserService, useClass: MockUserService}]
+      imports: [FormsModule,HttpClientModule,RouterTestingModule]
+
     })
     .compileComponents();
   }));
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
