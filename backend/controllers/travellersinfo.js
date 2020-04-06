@@ -48,7 +48,13 @@ module.exports = function(app){
             const collection = db.collection('travellerdetails')
             collection.findOne({username: req.params.username}, function(err, result){
                 if(err) throw err;
-                res.send(result.travellers);
+                if(result==[]){
+                    res.send(result.travellers);
+                }
+                else{
+                    res.send({})
+                }
+
             })
         })
     })

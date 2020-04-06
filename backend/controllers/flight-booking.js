@@ -14,11 +14,29 @@ module.exports=function(app){
             }
             console.log(booking_id);
             var data = req.body;
-            data["booking_id"] = booking_id;
-            data["travelStatus"] = "upcoming";
-            collection.insertOne(data);
+            data["booking"][0]["booking_id"] = booking_id;
+            data["booking"][0]["travelStatus"] = "upcoming";
+            // collection.insertOne(data);
+            collection.findOne({username: req.body.username}, function(err, result){
+                if(err) throw err;
+                if(result==null){
+                    console.log("inserting:", data);
+                    collection.insert(data, function(err, body){
+                        if(err) throw err;
+                    });
+                }
+                else{
+                    collection.update(
+                        {username: req.body.username}, 
+                        {
+                         $push: { booking: { $each: [ data.booking[0] ] } } 
+                        }
+                    )
+                }
+            })
             res.json({ booking_id: booking_id, message: "Success"});
         })
+    })
     
         app.get('/api/pastbookings/:username', function(req, res){
         
@@ -26,9 +44,15 @@ module.exports=function(app){
                 if(err) throw err;
                 const db = database.db('customerdb')
                 const collection = db.collection('bookinginfo')
-                collection.findOne({username:req.params.username, travelStatus: "completed"}, function(err, result){
+                collection.findOne({username:req.params.username}, function(err, result){
                     if(err) throw err;
-                    res.send(result);
+                    var ans=[];
+                    for(i=0; i<result.booking.length; i++){
+                        if(result.booking[i]["travelStatus"]=="completed"){
+                            ans.push(result.booking[i]);
+                        }
+                    }
+                    console.log(ans);
                 })
             })
         })
@@ -39,12 +63,28 @@ module.exports=function(app){
                 if(err) throw err;
                 const db = database.db('customerdb')
                 const collection = db.collection('bookinginfo')
-                collection.findOne({username:req.params.username, travelStatus: "upcoming"}, function(err, result){
+                console.log(req.params.username);
+                collection.findOne({username:req.params.username}, function(err, result){
                     if(err) throw err;
-                    res.send(result);
+                    console.log(result);
+                    var ans=[];
+                    for(i=0; i<result.booking.length; i++){
+                        if(result.booking[i]["travelStatus"]=="upcoming"){
+                            ans.push(result.booking[i]);
+                        }
+                    }
+                    console.log(ans);
+                    res.send(ans);
                 })
+                // var bookings = collection.find({username:req.params.username}).toArray();
+                // console.log(bookings);
+                // if (bookings.length > 0){
+                //     res.send(bookings);
+                // }
+                // else{
+                //     res.send({});
+                // }
             })
         })
         
-    })
 }
