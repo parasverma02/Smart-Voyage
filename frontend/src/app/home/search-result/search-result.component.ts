@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { SearchResult } from './search-result';
-import { FinalBooking } from './final-booking'
+import { FinalBooking, Flight } from './final-booking'
 import { Router, ActivatedRoute } from '@angular/router';
 import { Data } from '../data.service';
 import { Adult } from './adult';
@@ -9,6 +9,7 @@ import { FlightDateTime } from './flight-datetime';
 import { SearchResultService } from './search-result.service';
 // import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { FlightSearchComponent } from '../flight-search/flight-search.component';
 
 @Component({
   selector: 'app-search-result',
@@ -28,7 +29,7 @@ export class SearchResultComponent implements OnInit {
   ngOnInit() {
 
     this.finalBooking = new FinalBooking();
-    this.finalBooking.username = "pam02";
+    this.finalBooking.username = "pm02";
     this.flightTimeDate = [];
     if (this.data.storage != null) {
       this.flights = this.data.storage;
@@ -58,19 +59,21 @@ export class SearchResultComponent implements OnInit {
         this.flightTimeDate.push(dateTime);
       }
       localStorage.setItem('flighttimedate', JSON.stringify(this.flightTimeDate));
-
-      this.finalBooking.route = this.flights.route;
-      this.finalBooking.flights = this.flights.flights;
-      this.finalBooking.totalcost = this.flights.totalcost;
-      this.finalBooking.class = this.flights.class;
-      this.finalBooking.adults = [];
+      this.finalBooking.booking = [];
+      var flightdet = new Flight();
+      flightdet.route = this.flights.route;
+      flightdet.flights = this.flights.flights;
+      flightdet.totalcost = this.flights.totalcost;
+      flightdet.class = this.flights.class;
+      flightdet.adults = [];
       for (var i = 0; i < this.flights.adults; i++) {
-        this.finalBooking.adults.push(new Adult("", "", "", null, null));
+        flightdet.adults.push(new Adult("", "", "", null, null));
       }
-      this.finalBooking.children = [];
+      flightdet.children = [];
       for (var i = 0; i < this.flights.children; i++) {
-        this.finalBooking.children.push(new Child(null, null, null));
+        flightdet.children.push(new Child(null, null, null));
       }
+      this.finalBooking.booking.push(flightdet);
       localStorage.setItem('flightresult', JSON.stringify(this.finalBooking));
     }
     else {
@@ -98,7 +101,7 @@ export class SearchResultComponent implements OnInit {
     });
   }
   buildChildrenTravellerForm() {
-    if (this.finalBooking.children.length != 0) {
+    if (this.finalBooking.booking[0].children.length != 0) {
       return this.formBuilder.group({
         firstname: ['', Validators.required],
         lastname: ['', Validators.required],
@@ -111,13 +114,13 @@ export class SearchResultComponent implements OnInit {
 
   createForm() {
     const control1 = <FormArray>this.travellersForms.controls['adulttravellers'];
-    for (var i = 0; i < this.finalBooking.adults.length - 1; i++) {
+    for (var i = 0; i < this.finalBooking.booking[0].adults.length - 1; i++) {
       const temptravinfo = this.buildAdultTravellerForm();
       console.log('in');
       control1.push(temptravinfo);
     }
     const control2 = <FormArray>this.travellersForms.controls['childtravellers'];
-    for (var i = 0; i < this.finalBooking.children.length - 1; i++) {
+    for (var i = 0; i < this.finalBooking.booking[0].children.length - 1; i++) {
       console.log('in');
       const temptravinfo = this.buildChildrenTravellerForm();
       control2.push(temptravinfo);
@@ -147,12 +150,6 @@ export class SearchResultComponent implements OnInit {
     })
 
   }
-
-  // ngOnChanges(){
-  //   console.log("onchange");
-  //   console.log(JSON.parse(localStorage.getItem('flightresult')));
-  //   this.finalBooking = JSON.parse(localStorage.getItem('flightresult'));
-  // }
   arrayOne(n: number): any[] {
     return Array(n);
   }

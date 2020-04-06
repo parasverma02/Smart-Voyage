@@ -39,6 +39,7 @@ export class SignUpComponent implements OnInit {
       .subscribe(response => {
         if(response.message == 'Success'){
           this.router.navigate(['home']);
+          localStorage.setItem("loggedInUsername",this.user.username);
           this._userService.setLoggedIn(true);
         } else {
           window.alert(response.message);

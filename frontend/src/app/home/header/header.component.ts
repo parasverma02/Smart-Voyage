@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'main-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
 

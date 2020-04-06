@@ -12,9 +12,9 @@
           </div>
           <div class="col-md-8 flightroute">
             <div class="route-path">
-              <span class="single-city" *ngFor="let city of finalBooking.route;let i=index;">
+              <span class="single-city" *ngFor="let city of finalBooking.booking[0].route;let i=index;">
                 {{city}}
-                <span class="fa fa-arrow-right white arrow" *ngIf="i!=finalBooking.route.length-1"
+                <span class="fa fa-arrow-right white arrow" *ngIf="i!=finalBooking.booking[0].route.length-1"
                   style="color: aliceblue;"></span>
               </span>
             </div>
@@ -23,14 +23,14 @@
             <span>Total Cost</span>
 
             <div class="row cost">
-              <span>C${{finalBooking.totalcost}}</span>
+              <span>C${{finalBooking.booking[0].totalcost}}</span>
             </div>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-9 searchdetailbody">
-          <div class="accordion" *ngFor="let flight of finalBooking.flights;let i=index" id="accordionExample">
+          <div class="accordion" *ngFor="let flight of finalBooking.booking[0].flights;let i=index" id="accordionExample">
             <div class="card">
               <div class="card-header acc-header" [attr.id]="'headingOne'+i">
                 <div type="button" data-toggle="collapse" [attr.data-target]="'#collapseOne'+i" aria-expanded="true"
@@ -136,31 +136,31 @@
                       data-parent="#adult">
                       <div class="card-body trav-detail-body" style="overflow: hidden;">
                         <input class="form-control trav-input" formControlName="firstname" type="text"
-                          placeholder="Firtname" [(ngModel)]="finalBooking.adults[i].firstname" name="firstname"
+                          placeholder="Firtname" [(ngModel)]="finalBooking.booking[0].adults[i].firstname" name="firstname"
                           [ngClass]="{ 'is-invalid': submitted && adult.get('firstname').errors}" required value="">
                         <div *ngIf="isValidField(i , 'firstname','adulttravellers')" class="invalid-feedback">
                           Firstname is required!
                         </div>
                         <input class="form-control trav-input" formControlName="lastname" type="text"
-                          placeholder="Lastname" [(ngModel)]="finalBooking.adults[i].lastname" name="lastname" 
+                          placeholder="Lastname" [(ngModel)]="finalBooking.booking[0].adults[i].lastname" name="lastname" 
                           [ngClass]="{ 'is-invalid': submitted && adult.get('lastname').errors}" required value="">
                         <div *ngIf="isValidField(i , 'lastname','adulttravellers')" class="invalid-feedback">
                           Lastname is required!
                         </div>
                         <input class="form-control trav-input" formControlName="email" type="email" placeholder="Email"
-                          [(ngModel)]="finalBooking.adults[i].email" name="email" 
+                          [(ngModel)]="finalBooking.booking[0].adults[i].email" name="email" 
                           [ngClass]="{ 'is-invalid': submitted && adult.get('email').errors}" required value="">
                         <div *ngIf="isValidField(i , 'email','adulttravellers')" class="invalid-feedback">
                           Email is required!
                         </div>
                         <input class="form-control trav-input" formControlName="age" type="number" placeholder="Age"
-                          [(ngModel)]="finalBooking.adults[i].age" name="age" 
+                          [(ngModel)]="finalBooking.booking[0].adults[i].age" name="age" 
                           [ngClass]="{ 'is-invalid': submitted && adult.get('age').errors}" required value="">
                         <div *ngIf="isValidField(i , 'age','adulttravellers')" class="invalid-feedback">
                           Age is required!
                         </div>
                         <input class="form-control trav-input" formControlName="phone" type="number" placeholder="Phone"
-                          [(ngModel)]="finalBooking.adults[i].phone" name="phone" 
+                          [(ngModel)]="finalBooking.booking[0].adults[i].phone" name="phone" 
                           [ngClass]="{ 'is-invalid': submitted && adult.get('phone').errors}" required value="">
                         <div *ngIf="isValidField(i , 'phone','adulttravellers')" class="invalid-feedback">
                           Phone no. is required!
@@ -170,7 +170,7 @@
                   </div>
                 </div>
               </div>
-              <div formArrayName="childtravellers" *ngIf = "finalBooking.children.length != 0">
+              <div formArrayName="childtravellers" *ngIf = "finalBooking.booking[0].children.length != 0">
                 <div class="accordion"
                   *ngFor="let child of travellersForms.get('childtravellers').controls; let i=index" id="children"
                   [formGroupName]="i">
@@ -189,19 +189,19 @@
                       data-parent="#children">
                       <div class="card-body trav-detail-body" style="overflow: hidden;">
                         <input class="form-control trav-input" formControlName="firstname" type="text" placeholder="Firtname"
-                          [(ngModel)]="finalBooking.children[i].firstname" name="firstname" 
+                          [(ngModel)]="finalBooking.booking[0].children[i].firstname" name="firstname" 
                           [ngClass]="{ 'is-invalid': submitted && child.get('firstname').errors}" required value="">
                           <div *ngIf="isValidField(i , 'firstname','childtravellers')" class="invalid-feedback">
                             Firstname is required!
                           </div>
                         <input class="form-control trav-input" formControlName="lastname" type="text" placeholder="Lastname"
-                          [(ngModel)]="finalBooking.children[i].lastname" name="lastname" 
+                          [(ngModel)]="finalBooking.booking[0].children[i].lastname" name="lastname" 
                           [ngClass]="{ 'is-invalid': submitted && child.get('lastname').errors}" required value="">
                           <div *ngIf="isValidField(i , 'lastname','childtravellers')" class="invalid-feedback">
                             Lastname is required!
                           </div>
                         <input class="form-control trav-input" formControlName="age" type="number" placeholder="Age"
-                          [(ngModel)]="finalBooking.children[i].age" name="age" 
+                          [(ngModel)]="finalBooking.booking[0].children[i].age" name="age" 
                           [ngClass]="{ 'is-invalid': submitted && child.get('age').errors}" required value="">
                           <div *ngIf="isValidField(i , 'age','childtravellers')" class="invalid-feedback">
                             Age is required!
@@ -232,18 +232,18 @@
                   </div>
                   <div class="modal-body">
                     <div>
-                      <div *ngFor="let flight of finalBooking.flights; let i=index;">
+                      <div *ngFor="let flight of finalBooking.booking[0].flights; let i=index;">
                         <span>Flight {{i+1}}: {{flight.source}} to {{flight.destination}}
                           (C${{flight.flightcost}})</span>
                       </div>
                       <div>
-                        <span>No. of Travellers: {{finalBooking.adults.length + finalBooking.children.length}}</span>
+                        <span>No. of Travellers: {{finalBooking.booking[0].adults.length + finalBooking.booking[0].children.length}}</span>
                       </div>
                       <div>
-                        <span>Class: {{finalBooking.class}}</span>
+                        <span>Class: {{finalBooking.booking[0].class}}</span>
                       </div>
                       <div>
-                        <span>Total Cost: C${{finalBooking.totalcost}}</span>
+                        <span>Total Cost: C${{finalBooking.booking[0].totalcost}}</span>
                       </div>
                     </div>
                   </div>
@@ -254,7 +254,7 @@
                 </div>
               </div>
             </div>
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
               aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -266,18 +266,18 @@
                   </div>
                   <div class="modal-body">
                     <div>
-                      <div *ngFor="let flight of finalBooking.flights; let i=index;">
+                      <div *ngFor="let flight of finalBooking.booking[0].flights; let i=index;">
                         <span>Flight {{i+1}}: {{flight.source}} to {{flight.destination}}
                           (C${{flight.flightcost}})</span>
                       </div>
                       <div>
-                        <span>No. of Travellers: {{finalBooking.adults.length + finalBooking.children.length}}</span>
+                        <span>No. of Travellers: {{finalBooking.booking[0].adults.length + finalBooking.booking[0].children.length}}</span>
                       </div>
                       <div>
-                        <span>Class: {{finalBooking.class}}</span>
+                        <span>Class: {{finalBooking.booking[0].class}}</span>
                       </div>
                       <div>
-                        <span>Total Cost: C${{finalBooking.totalcost}}</span>
+                        <span>Total Cost: C${{finalBooking.booking[0].totalcost}}</span>
                       </div>
                     </div>
                   </div>
@@ -287,7 +287,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </form>
         </div>
       </div>
