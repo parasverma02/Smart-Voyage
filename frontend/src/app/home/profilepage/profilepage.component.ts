@@ -238,9 +238,9 @@ export class ProfilepageComponent implements OnInit {
     
     this.username=localStorage.getItem("loggedInUsername")
 
-    this.gettraveldetails.getuserdetails().subscribe(resp=>{
+    // this.gettraveldetails.getuserdetails().subscribe(resp=>{
 
-    });
+    // });
     this.gettraveldetails.getcurrflights().subscribe(resp=>{
       this.currentbookings=resp;
       console.log(this.currentbookings)
