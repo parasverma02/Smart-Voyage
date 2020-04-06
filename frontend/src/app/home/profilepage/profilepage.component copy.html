@@ -24,14 +24,17 @@
 
           <span><i class="fa fa-birthday-cake"></i></span>&nbsp;Jan 18, 1991<br>
         </p> <br><br>
-        <button class="btn btn-block" (click)="toggleaddtraveller()"> <i class="fa fa-plus"></i>&nbsp; Add a traveller</button><br>
-        <button class="btn btn-block" (click)="toggletralist()"> <i class="fa fa-info"></i>&nbsp; Traveller List</button><br>
-        <button class="btn btn-block" (click)="togglebookings()"> <i class="fa fa-plane"></i>&nbsp; Bookings</button><br>
-  
+        <button class="btn btn-block"> <i class="fa fa-power-off"></i>&nbsp; Add a traveller</button><br><br>
+        <button class="btn btn-block"> <i class="fa fa-power-off"></i>&nbsp; Logout</button><br><br>
+
+        <button class="btn btn-block"> <i class="fa fa-power-off"></i>&nbsp; Logout</button><br><br>
+
+        <button class="btn btn-block"> <i class="fa fa-power-off"></i>&nbsp; Logout</button><br><br>
+        <button class="btn btn-block"> <i class="fa fa-trash"></i>&nbsp;Delete my account</button><br>
 
 
       </div>
-      <div class="col-9" *ngIf="showbooking">
+      <div class="col-9">
       
         <!-- <p> -->
           <div class="card expandable-card " data-toggle="collapse" href="#currentbookings" role="button" aria-expanded="false" aria-controls="currentbookings">
@@ -152,17 +155,6 @@
         
         
       </div>
-      <div class="col-9" *ngIf="showaddtraveller">
-        <app-addtravellerdetails></app-addtravellerdetails>
-
-      </div>
-      <div class="col-9" *ngIf="showtravlist">
-        <app-travellerdetails></app-travellerdetails>
-
-      </div>
-
-      
-
 
 
     </div>

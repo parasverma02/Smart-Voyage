@@ -3,14 +3,17 @@
     background-color: #000000;
 }
 
-
+.navbar-account {
+    float: right;
+    display: inline;
+}
 
 .dropdown-content {
     display: none;
     position: absolute;
     background-color: #012929;
-    
-    min-width: 100px;
+    margin-left: -105%;
+    min-width: 200px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
   }
@@ -26,8 +29,12 @@
   
   .dropdown-content a:hover {
     background-color: rgb(0, 90, 97);
+
   }
   
   .dropdown:hover .dropdown-content {
     display: block;
+  }
+  header{
+    margin-bottom: 10px;
   }

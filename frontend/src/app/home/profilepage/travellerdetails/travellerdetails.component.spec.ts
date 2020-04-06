@@ -1,24 +1,25 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeaderComponent } from './header.component';
+import { TravellerdetailsComponent } from './travellerdetails.component';
 import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
-describe('HeaderComponent', () => {
-  let component: HeaderComponent;
-  let fixture: ComponentFixture<HeaderComponent>;
+
+describe('TravellerdetailsComponent', () => {
+  let component: TravellerdetailsComponent;
+  let fixture: ComponentFixture<TravellerdetailsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ],
-      imports: [FormsModule,HttpClientModule,RouterTestingModule]
+      declarations: [ TravellerdetailsComponent ],
+      imports: [FormsModule,HttpClientModule,RouterTestingModule],
 
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeaderComponent);
+    fixture = TestBed.createComponent(TravellerdetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -26,4 +27,9 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
+
+
+  
 });
