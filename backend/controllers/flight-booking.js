@@ -20,7 +20,6 @@ module.exports=function(app){
             collection.findOne({username: req.body.username}, function(err, result){
                 if(err) throw err;
                 if(result==null){
-                    console.log("inserting:", data);
                     collection.insert(data, function(err, body){
                         if(err) throw err;
                     });
@@ -52,7 +51,7 @@ module.exports=function(app){
                             ans.push(result.booking[i]);
                         }
                     }
-                    console.log(ans);
+                    res.send(ans);
                 })
             })
         })

@@ -52,7 +52,7 @@ module.exports = function(app){
                     res.send(result.travellers);
                 }
                 else{
-                    res.send({})
+                    res.send([])
                 }
 
             })
