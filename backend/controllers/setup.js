@@ -21,7 +21,7 @@ module.exports = function(app){
         const airlines = {"ACA":[], "WJA":[]};
         const airportNum = airportCodes.length;
         const termLimit= 3;
-        const dayNum = 56;  //from April 6th to May 31st
+        const dayNum = 61;  //from April 1th to May 31st
         const maxTime = 6;
         const minTime = 2;
         // Database Name
@@ -79,7 +79,7 @@ module.exports = function(app){
                 arrivalTime: "2020-04-18T06:20:00.000",
                 flightcost: 200,
                 capacity: 2
-            }
+             }
         let documents = [];
         let termNum = [];
         //Generate flight number array for a specific airline
@@ -101,11 +101,11 @@ module.exports = function(app){
                 termNum.push(randomPlus(termLimit))
             }
         }
-        airlines["ACA"] = flightGen(56,101); //generate flight number for ACA
-        airlines["WJA"] = flightGen(56,501); // enerate flight number for WJA
+        airlines["ACA"] = flightGen(airportNum*(airportNum-1),101); //generate flight number for ACA
+        airlines["WJA"] = flightGen(airportNum*(airportNum-1),501); // enerate flight number for WJA
         console.log(airlines);
         terminalGen(termNum); //generate terminal info for all flights
-
+        
         function randomNum(limit) {
             return Math.floor(Math.random() * limit);
         }
@@ -126,11 +126,11 @@ module.exports = function(app){
             }
             else base = "2020-04-";
             return(base + numberToDay(date.toString()) 
-                + "T" +numberToDay(time.toString()) +":00:00Z"); 
+                   + "T" +numberToDay(time.toString()) +":00:00Z"); 
         }
         for (let date=0; date<dayNum; date++) {
         // for (let date=0; date<1; date++) {
-            let dateDep = date+6;
+            let dateDep = date+1;
             let dateArr = 0;
             let index = 0;
             for(let i=0; i<airportNum; i++) {
