@@ -6,7 +6,6 @@ module.exports = function(app){
         MongoClient.connect("mongodb://localhost:27017/", function(err,database){
             if (err) throw err;
             console.log("Connected to db");
-            console.log("body is ", req.body);
             var user = {
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
