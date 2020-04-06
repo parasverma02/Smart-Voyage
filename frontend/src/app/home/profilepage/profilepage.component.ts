@@ -20,6 +20,7 @@ export class ProfilepageComponent implements OnInit {
 
   currentbookings:any;
   pastbookings:any;
+  toggleaddtravellerColour:any;
   // currentbookings=[
   //   {
   //     "bookingid":"78945",
@@ -215,7 +216,13 @@ export class ProfilepageComponent implements OnInit {
 
   ngOnInit() {
     // alert(JSON.stringify(this.activepage));
-
+    let toggleaddtravellerColour: HTMLElement = document.getElementById('toggleaddtravellerColour');
+    let toggletralist: HTMLElement = document.getElementById('toggletralist');
+    let togglebookings: HTMLElement = document.getElementById('togglebookings');
+    toggleaddtravellerColour.setAttribute("style", "background-color:whitesmoke");
+  toggletralist.setAttribute("style", "background-color:whitesmoke");
+  togglebookings.setAttribute("style", "background-color:whitesmoke");
+  
     if(this.activepage=="addtravellerdetails"){
       this.toggleaddtraveller();
     }
@@ -240,6 +247,7 @@ export class ProfilepageComponent implements OnInit {
     this.gettraveldetails.getpastflights().subscribe(resp=>{
       this.pastbookings=resp;
     });
+
   }
 //   onDataChanged(event: any[]): void {
 //     alert(event);
@@ -270,22 +278,44 @@ export class ProfilepageComponent implements OnInit {
 //   }
 toggleedittrav(){
   this.showaddtraveller = ! this.showaddtraveller;
+
   this.showtravlist=false;
   this.showbooking = false;
 }
 toggleaddtraveller(){
   this.showaddtraveller = ! this.showaddtraveller;
+let toggleaddtravellerColour: HTMLElement = document.getElementById('toggleaddtravellerColour');
+let toggletralist: HTMLElement = document.getElementById('toggletralist');
+let togglebookings: HTMLElement = document.getElementById('togglebookings');
+
+toggleaddtravellerColour.setAttribute("style", "background-color:darkgray");
+toggletralist.setAttribute("style", "background-color:whitesmoke");
+togglebookings.setAttribute("style", "background-color:whitesmoke");
+
   this.showtravlist=false;
   this.showbooking = false;
 }
 toggletralist(){
   this.showtravlist = ! this.showtravlist;
+  let toggleaddtravellerColour: HTMLElement = document.getElementById('toggleaddtravellerColour');
+  let toggletralist: HTMLElement = document.getElementById('toggletralist');
+  let togglebookings: HTMLElement = document.getElementById('togglebookings');
+  toggleaddtravellerColour.setAttribute("style", "background-color:whitesmoke");
+toggletralist.setAttribute("style", "background-color:darkgray");
+togglebookings.setAttribute("style", "background-color:whitesmoke");
   this.showaddtraveller = false;
+
   this.showbooking = false;
 
 }
 togglebookings(){
   this.showbooking = ! this.showbooking;
+  let toggleaddtravellerColour: HTMLElement = document.getElementById('toggleaddtravellerColour');
+  let toggletralist: HTMLElement = document.getElementById('toggletralist');
+  let togglebookings: HTMLElement = document.getElementById('togglebookings');
+  toggleaddtravellerColour.setAttribute("style", "background-color:whitesmoke");
+toggletralist.setAttribute("style", "background-color:whitesmoke");
+togglebookings.setAttribute("style", "background-color:darkgray");
   this.showaddtraveller = false;
   this.showtravlist=false;
 

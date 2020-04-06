@@ -26,6 +26,7 @@ export class EdittravellerdetailsComponent implements OnInit {
     this.edittravllerdet.edittravller(this.edittrav).subscribe(response => {
 console.log(response["message"]);
 if(response["message"]=="Success"){
+  alert("Traveller details edited successfully !")
   this.router.navigate(['profilepage',{state:"travellerdetails"}]);
 
 }

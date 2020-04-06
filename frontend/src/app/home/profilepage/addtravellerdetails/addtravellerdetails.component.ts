@@ -21,6 +21,13 @@ export class AddtravellerdetailsComponent implements OnInit {
     this.addtravllerdet.addnewtravller(this.newtraveller)
     .subscribe(response => {
         console.log(response);
+        if(response["message"]=="Success"){
+          alert("New traveller added ! Go to 'Traveller List' to view the added traveller");
+          this.newtraveller={
+            firstname:null,
+            lastname:null,username:null, emailid:null,password:null,phonenumber:null, dob:null, gender:null, phone:null
+          };
+        }
     });
   }
 
