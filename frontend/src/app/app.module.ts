@@ -23,7 +23,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { AddtravellerdetailsComponent } from './home/profilepage/addtravellerdetails/addtravellerdetails.component';
 import { TravellerdetailsComponent } from './home/profilepage/travellerdetails/travellerdetails.component';
 import { EdittravellerdetailsComponent } from './home/profilepage/travellerdetails/edittravellerdetails/edittravellerdetails.component';
-
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,11 +45,15 @@ import { EdittravellerdetailsComponent } from './home/profilepage/travellerdetai
     FormsModule,
     HttpClientModule,
     NgxSelectModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes,{useHash: true }),
     ModalModule.forRoot(),
     AccordionModule.forRoot()
   ],
-  providers: [AuthGuard,Data,ResultGuard],
+  providers: [
+    AuthGuard,
+    Data,
+    ResultGuard,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

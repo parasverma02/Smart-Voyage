@@ -1,8 +1,13 @@
 import { Adult } from './adult';
 import { Child } from './child';
 
+
 export class FinalBooking {
     username: string;
+    booking: Flight[];
+}
+
+export class Flight {
     route: string[];
     totalcost: Number;
     adults: Adult[];
@@ -21,5 +26,4 @@ export class FinalBooking {
         flightNumber: Number;
         stops: Number;
     }[];
-    
 }

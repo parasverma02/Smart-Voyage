@@ -24,8 +24,7 @@ export class SignUpComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       phone: ['', Validators.required]
     })
-
-    if (this._userService.isLoggedIn) {
+    if (this._userService.isLoggedIn()) {
       this.router.navigate(['home']);
     }
   }
@@ -36,11 +35,11 @@ export class SignUpComponent implements OnInit {
     if (this.signupForm.invalid) {
       return;
     }
-    console.log(this.user);
     this._userService.send_signupRequest(this.user)
       .subscribe(response => {
-        if(response.success){
+        if(response.message == 'Success'){
           this.router.navigate(['home']);
+          localStorage.setItem("loggedInUsername",this.user.username);
           this._userService.setLoggedIn(true);
         } else {
           window.alert(response.message);
