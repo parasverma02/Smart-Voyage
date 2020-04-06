@@ -34,8 +34,6 @@ export class SignInComponent implements OnInit {
         if (this.signinForm.invalid) {
             return;
         }
-
-    console.log(this.user);
     this._userService.send_loginRequest(this.user)
     .subscribe(response => {
       if(response.success){

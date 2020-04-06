@@ -20,18 +20,17 @@ export class SearchResultComponent implements OnInit {
   flights: SearchResult = new SearchResult();
   finalBooking: FinalBooking;
   flightTimeDate: FlightDateTime[];
-  // modalRef: BsModalRef;
   travellersForms: FormGroup;
   submitted = false;
-  constructor(private formBuilder: FormBuilder, private router: ActivatedRoute, private data: Data, private route: Router,private searchService: SearchResultService) {
+  constructor(private formBuilder: FormBuilder, private router: ActivatedRoute, private data: Data, private route: Router, private searchService: SearchResultService) {
   }
 
-  ngOnInit() {     
+  ngOnInit() {
 
     this.finalBooking = new FinalBooking();
     this.finalBooking.username = "pam02";
     this.flightTimeDate = [];
-    if(this.data.storage != null) {
+    if (this.data.storage != null) {
       this.flights = this.data.storage;
       var d: Date = new Date(this.flights.flights[0].departureTime);
 
@@ -40,12 +39,25 @@ export class SearchResultComponent implements OnInit {
         var tempDepDate = new Date(this.flights.flights[i].departureTime);
         var tempArrDate = new Date(this.flights.flights[i].arrivalTime);
         dateTime.departureDate = dateTime.getDayName(tempDepDate.getDay()) + ',' + dateTime.getMonthName(tempDepDate.getMonth()) + " " + tempDepDate.getDate() + "," + tempDepDate.getFullYear();
-        dateTime.departureTime = tempDepDate.getHours() + ":" + tempDepDate.toTimeString();
+        let min = tempDepDate.getMinutes().toString();
+        let hour = tempDepDate.getHours().toString();
+        if (min.length == 1)
+          min = min + '0';
+        if (hour.length == 1)
+          hour = '0' + hour;
+        dateTime.departureTime = hour + ":" + min;
         dateTime.arrivalDate = dateTime.getDayName(tempArrDate.getDay()) + ',' + dateTime.getMonthName(tempArrDate.getMonth()) + " " + tempArrDate.getDate() + "," + tempArrDate.getFullYear();
-        dateTime.arrivalTime = tempArrDate.getHours() + ":" + tempArrDate.getMinutes();
+      
+        min = tempArrDate.getMinutes().toString();
+        if (min.length == 1)
+          min = min + '0';
+        hour = tempArrDate.getHours().toString();
+        if (hour.length == 1)
+          hour = '0' + hour;
+        dateTime.arrivalTime = hour + ":" + min;
         this.flightTimeDate.push(dateTime);
       }
-      localStorage.setItem('flighttimedate',JSON.stringify(this.flightTimeDate));
+      localStorage.setItem('flighttimedate', JSON.stringify(this.flightTimeDate));
 
       this.finalBooking.route = this.flights.route;
       this.finalBooking.flights = this.flights.flights;
@@ -60,85 +72,87 @@ export class SearchResultComponent implements OnInit {
         this.finalBooking.children.push(new Child(null, null, null));
       }
       localStorage.setItem('flightresult', JSON.stringify(this.finalBooking));
-      console.log(JSON.parse(localStorage.getItem('flightresult')));
     }
     else {
-      console.log("in else  ");
       this.flightTimeDate = JSON.parse(localStorage.getItem('flighttimedate'));
       this.finalBooking = JSON.parse(localStorage.getItem('flightresult'));
-      console.log(this.finalBooking);
     }
 
     this.travellersForms = this.formBuilder.group({
-      adulttravellers : this.formBuilder.array([
+      adulttravellers: this.formBuilder.array([
         this.buildAdultTravellerForm()
       ]),
-      childtravellers : this.formBuilder.array([
+      childtravellers: this.formBuilder.array([
         this.buildChildrenTravellerForm()
       ])
     });
     this.createForm();
   }
-  buildAdultTravellerForm(){
+  buildAdultTravellerForm() {
     return this.formBuilder.group({
-      firstname : ['', Validators.required],
-      lastname : ['', Validators.required],
-      email : ['', Validators.required],
-      age : [null, Validators.required],
-      phone : [null, Validators.required]
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      email: ['', Validators.required],
+      age: [null, Validators.required],
+      phone: [null, Validators.required]
     });
   }
-  buildChildrenTravellerForm(){
-    return this.formBuilder.group({
-      firstname : ['', Validators.required],
-      lastname : ['', Validators.required],
-      age : [null, Validators.required]
-    });
+  buildChildrenTravellerForm() {
+    if (this.finalBooking.children.length != 0) {
+      return this.formBuilder.group({
+        firstname: ['', Validators.required],
+        lastname: ['', Validators.required],
+        age: [null, Validators.required]
+      });
+    }
+    return null;
+
   }
 
-  createForm(){
+  createForm() {
     const control1 = <FormArray>this.travellersForms.controls['adulttravellers'];
-    for(var i = 0;i < this.finalBooking.adults.length - 1; i++){
+    for (var i = 0; i < this.finalBooking.adults.length - 1; i++) {
       const temptravinfo = this.buildAdultTravellerForm();
+      console.log('in');
       control1.push(temptravinfo);
     }
     const control2 = <FormArray>this.travellersForms.controls['childtravellers'];
-    for(var i = 0;i < this.finalBooking.children.length - 1; i++){
+    for (var i = 0; i < this.finalBooking.children.length - 1; i++) {
+      console.log('in');
       const temptravinfo = this.buildChildrenTravellerForm();
       control2.push(temptravinfo);
     }
   }
-  public isValidField(i: number, field: any,arr: string) {
+  public isValidField(i: number, field: any, arr: string) {
     var f = this.travellersForms
-            .get(arr) //retrieve items FormArray
-            .get(i.toString()) //retrieve items FormGroup
-            .get(field); //retrieve items form field
-          // console.log(f.touched+".."+this.submitted+".."+this.citiesForms);
+      .get(arr)
+      .get(i.toString())
+      .get(field);
     return (f.touched && f.invalid) || (f.invalid && this.submitted);
-}
-  onSubmit(template: TemplateRef<any>){
+  }
+  onSubmit(template: TemplateRef<any>) {
     this.submitted = true;
   }
-  openModal(){
-    if(!this.travellersForms.invalid)
+  openModal() {
+    if (!this.travellersForms.invalid)
       return "modal";
   }
-  
 
-  confirmBooking(){
-    console.log(this.finalBooking);
-     this.searchService.postBookingDetails(this.finalBooking).subscribe(response => {
+
+  confirmBooking() {
+    this.searchService.postBookingDetails(this.finalBooking).subscribe(response => {
       console.log(response);
+      window.alert('Your booking has been confirmed! Your booking ID is ' + response.booking_id)
       this.route.navigate(['home']);
     })
-    
+
   }
 
-// ngOnChanges(){
-//   console.log("onchange");
-//   console.log(JSON.parse(localStorage.getItem('flightresult')));
-//   this.finalBooking = JSON.parse(localStorage.getItem('flightresult'));
-// }
+  // ngOnChanges(){
+  //   console.log("onchange");
+  //   console.log(JSON.parse(localStorage.getItem('flightresult')));
+  //   this.finalBooking = JSON.parse(localStorage.getItem('flightresult'));
+  // }
   arrayOne(n: number): any[] {
     return Array(n);
   }
