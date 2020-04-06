@@ -20,6 +20,9 @@ import { HeaderComponent } from './home/header/header.component';
 import { ProfilepageComponent } from './home/profilepage/profilepage.component';
 import { ResultGuard } from './result.guard';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { AddtravellerdetailsComponent } from './home/profilepage/addtravellerdetails/addtravellerdetails.component';
+import { TravellerdetailsComponent } from './home/profilepage/travellerdetails/travellerdetails.component';
+import { EdittravellerdetailsComponent } from './home/profilepage/travellerdetails/edittravellerdetails/edittravellerdetails.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     FlightSearchComponent,
     SearchResultComponent,
     HeaderComponent,
-    ProfilepageComponent
+    ProfilepageComponent,
+    AddtravellerdetailsComponent,
+    TravellerdetailsComponent,
+    EdittravellerdetailsComponent,
   ],
   imports: [
     BrowserModule,
