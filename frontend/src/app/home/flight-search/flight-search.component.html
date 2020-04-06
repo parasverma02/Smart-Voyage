@@ -1,53 +1,53 @@
 
 <div class="container parent-container">
-    <form #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()" novalidate>
+    <form [formGroup]="citiesForms" (ngSubmit)="onSubmit()">
         <div class="row">
             <div class="col-md-8 divwithscrollbar">
                     <div class="row">
                         <div class="col-md-8 select2">
                             <span>Source</span>
-                            <ngx-select  [items]="airports.city" [(ngModel)]="searchDetails.source" required [ngModelOptions]="{standalone: true}" [ngClass]="{ 'is-invalid': f.submitted && source.invalid }" #source="ngModel" ></ngx-select>
-                            <div *ngIf="f.submitted && source.invalid" class="invalid-feedback">
-                                <div *ngIf="source.errors?.required">Source is required </div>
+                            <ngx-select formControlName='source' [items]="airports.city" [(ngModel)]="searchDetails.source" required [ngClass]="{ 'is-invalid': submitted && citiesForms.get('source').errors }" ></ngx-select>
+                            <div *ngIf="submitted && citiesForms.get('source').errors?.required" class="invalid-feedback">
+                                Source is required
                             </div>
                             
                         </div>
                         <div class="col-xs-12 col-12 col-md-4 form-group select2">
                             <span>Date</span>
-                            <input type="date" placeholder="Date" [(ngModel)]="searchDetails.date" name="date" required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && date.invalid }" #date="ngModel" >
-                            <div *ngIf="f.submitted && date.invalid" class="invalid-feedback">
-                                <div *ngIf="date.errors?.required">Date is required </div>
+                            <input type="date" formControlName='date' placeholder="Date" [(ngModel)]="searchDetails.date" name="date" required class="form-control" [ngClass]="{ 'is-invalid': submitted &&citiesForms.get('date').errors }">
+                            <div *ngIf="submitted && citiesForms.get('date').errors?.required" class="invalid-feedback">
+                                Date is required
                             </div>
                         </div>
                     </div>
-                    <!-- <ng-container *ngFor="let city of citiesNumber; let i = index">
-                        <label >
-                              {{ gender }}: 
-                              <input type="radio" name="gender" [value]="gender" 
-                                ngModel required #myGender="ngModel" />
-                        </label>
-                            
-                        <div *ngIf="last" [hidden]="!myGender.hasError('required')">
-                           The gender is required
-                         </div>
-                      </ng-container> -->
-                    <ng-container *ngFor="let city of citiesNumber; let i = index;">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <span>City {{city}}</span>
-                                <ngx-select [items]="airports.city" [(ngModel)]="searchDetails.cities[i].city" [ngModelOptions]="{standalone: true}"  [name]="city" ></ngx-select>
+                      <div formArrayName="cityinfo">
+                        <ng-container *ngFor="let cityinfo of citiesForms.get('cityinfo').controls; let i=index" [formGroupName]="i" >
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <span>City {{city}}</span>
+                                    <ngx-select formControlName="city" [(ngModel)]="searchDetails.cities[i].city" [ngClass]="{ 'is-invalid': submitted && cityinfo.get('city').errors}" [items]="airports.city" required ></ngx-select>
+                                    <!--  [(ngModel)]="searchDetails.cities[i].city" -->
+                                    <div *ngIf="isValidField(i , 'city')" class="invalid-feedback">
+                                        City name is required!
+                                     </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <span>Days</span>
+                                    <input type="number" formControlName="days" class="form-control"  [(ngModel)]="searchDetails.cities[i].days" [ngClass]="{ 'is-invalid': submitted && cityinfo.get('days').errors }" name="{{'days'+i}}" min="1" placeholder="Number of Days" required>
+                                    <!-- [(ngModel)]="searchDetails.cities[i].days" -->
+                                    <div *ngIf="isValidField(i , 'days')" class="invalid-feedback">
+                                        Days are required!
+                                     </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="close text-centre" id="i" (click)="removeCity(i)" *ngIf="citiesNumber.length > 1" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                </div>
                             </div>
-                            <div class="col-md-3">
-                                <span>Days</span>
-                                <input type="number" class="form-control" [(ngModel)]="searchDetails.cities[i].days"  name="{{'days'+i}}" min="1" placeholder="Number of Days" >
-                            </div>
-                            <div class="col-md-1">
-                                <button type="button" class="close text-centre" id="i" (click)="removeCity(i)" *ngIf="citiesNumber.length > 1" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                            </div>
-                        </div>
-                    </ng-container>
+                        </ng-container>
+                      </div>
+                    
                     <div class="row">
                         <div class="col-md-8" >
                             <button type="button" class="btn  btn-city" (click)="onAdd()">
@@ -63,7 +63,8 @@
                     <div class="dropdown row ts">
                         <div class="col-md-3"><span style="max-width: 100%;">Class</span></div>
                         <div class="col-md-8">
-                            <select  class="btn-dropdown form-control" name="singleSelect" [value]='Economy' [(ngModel)]="searchDetails.class">
+                            <select  class="btn-dropdown form-control" name="singleSelect" [value]='Economy' >
+                                <!-- [(ngModel)]="searchDetails.class" -->
                             <option value="Economy" [selected]='true'>Economy</option>
                             <option value="Premium Economy">Premium Economy</option>
                             <option value="Business">Business</option>

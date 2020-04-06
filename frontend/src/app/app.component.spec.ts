@@ -1,12 +1,18 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-
+import { Router, RouterOutlet } from "@angular/router";
+import { RouterTestingModule } from '@angular/router/testing';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
       ],
+      providers: [
+        RouterOutlet
+      ],
+      imports:[RouterTestingModule]
+
     }).compileComponents();
   }));
 
@@ -22,10 +28,5 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('flight-search');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('flight-search app is running!');
-  });
+
 });

@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { FinalBooking } from './final-booking';
+import { Observable } from 'rxjs';
+import { url } from '../../../config';
 @Injectable({
   providedIn: 'root'
 })
 export class SearchResultService {
 
-  private _airportsGet_url: string = "http://10.34.126.31:3000/api/cityinfo";
-  private _flightSearchPost_url: string = "http://10.34.126.31:3000/api/search";
+  private _finalbookingPost_url: string = url + "confirmbooking";
   constructor(private http: HttpClient) { }
 
   giveAccessToResul(){
@@ -20,5 +21,8 @@ export class SearchResultService {
     localStorage.removeItem("access")
   }
   
+  postBookingDetails(finalBooking: FinalBooking): Observable<any> {
+    return this.http.post<any>(this._finalbookingPost_url,finalBooking);
+  }
 
 }

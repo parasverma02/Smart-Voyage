@@ -3,6 +3,7 @@ export class SearchResult {
     totalcost: Number;
     adults: Number;
     children: Number;
+    class: string;
     flights: {
         source: string;
         destination: string;
