@@ -29,7 +29,7 @@ export class SearchResultComponent implements OnInit {
   ngOnInit() {
 
     this.finalBooking = new FinalBooking();
-    this.finalBooking.username = "pm02";
+    this.finalBooking.username = localStorage.getItem('loggedInUsername');
     this.flightTimeDate = [];
     if (this.data.storage != null) {
       this.flights = this.data.storage;
