@@ -10,6 +10,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./profilepage.component.css']
 })
 export class ProfilepageComponent implements OnInit {
+  
+  constructor(private gettraveldetails:ProfilepageService,private router: Router) { 
+    this.activepage=this.router.getCurrentNavigation();
+    console.log(this.activepage);
+   
+ 
+  }
   username:any;
   showaddtraveller:boolean=false;
   showtravlist:boolean=false;
@@ -193,12 +200,6 @@ export class ProfilepageComponent implements OnInit {
   //   },
   // ]
 
-  constructor(private gettraveldetails:ProfilepageService,private router: Router) { 
-    this.activepage=this.router.getCurrentNavigation().extras.state;
-    console.log(this.activepage);
-   
- 
-  }
   // currentbookings:any;
   // pastbooking:any;
   user = new Userdetails();
@@ -223,13 +224,13 @@ export class ProfilepageComponent implements OnInit {
   toggletralist.setAttribute("style", "background-color:darkgrey");
   togglebookings.setAttribute("style", "background-color:darkgrey");
   
-    if(this.activepage=="addtravellerdetails"){
+    if(this.activepage.extras.state=="addtravellerdetails"){
       this.toggleaddtraveller();
     }
-    else if(this.activepage=="travellerdetails"){
+    else if(this.activepage.extras.state=="travellerdetails"){
       this.toggletralist();
     }
-    else if(this.activepage=="currentbookings"){
+    else if(this.activepage.extras.state=="currentbookings"){
       this.togglebookings();
     }
     else{
@@ -279,12 +280,7 @@ export class ProfilepageComponent implements OnInit {
 //   }
 //     console.log(formValues)
 //   }
-toggleedittrav(){
-  this.showaddtraveller = ! this.showaddtraveller;
 
-  this.showtravlist=false;
-  this.showbooking = false;
-}
 toggleaddtraveller(){
   this.showaddtraveller = ! this.showaddtraveller;
 let toggleaddtravellerColour: HTMLElement = document.getElementById('toggleaddtravellerColour');
