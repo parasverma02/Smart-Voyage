@@ -2,16 +2,23 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProfilepageComponent } from './profilepage.component';
 import { FormsModule } from '@angular/forms'
+import { RouterTestingModule } from '@angular/router/testing';
+
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from '../../home/header/header.component';
+import { AddtravellerdetailsComponent } from '../../home/profilepage/addtravellerdetails/addtravellerdetails.component';
+import { TravellerdetailsComponent } from '../../home/profilepage/travellerdetails/travellerdetails.component';
+import { EdittravellerdetailsComponent } from '../../home/profilepage/travellerdetails/edittravellerdetails/edittravellerdetails.component';
 describe('ProfilepageComponent', () => {
   let component: ProfilepageComponent;
   let fixture: ComponentFixture<ProfilepageComponent>;
 
+
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProfilepageComponent ],
-      imports: [FormsModule,HttpClientModule],
-
+      declarations: [ ProfilepageComponent ,HeaderComponent,AddtravellerdetailsComponent,EdittravellerdetailsComponent,TravellerdetailsComponent],
+      imports: [FormsModule,HttpClientModule,RouterTestingModule ]
     })
     .compileComponents();
   }));
@@ -25,4 +32,23 @@ describe('ProfilepageComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should execute functions',() =>{
+    // spyOn(component, 'onSignup');
+    // const mockUser={firstname:"Aditi",lastname:"P",username:"aditi3049",password:"123456",emailid:"aditi3049@email.com",phonenumber:"9967650280"}
+    component.toggleedittrav();
+    component.toggleaddtraveller();
+    component.toggletralist();
+    component.togglebookings();
+    component.ngOnInit();
+    component['activepage']="addtravellerdetails";
+  
+    fixture.detectChanges();
+
+    //expect(component.onSignup).toHaveBeenCalled();
+
+
+  });
+
+
+
 });
