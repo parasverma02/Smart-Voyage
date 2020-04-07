@@ -18,8 +18,8 @@ export class ProfilepageComponent implements OnInit {
   activepage:any;
   edittravstat:any;
 
-  currentbookings:any;
-  pastbookings:any;
+  currentbookings:any=[];
+  pastbookings:any=[];
   toggleaddtravellerColour:any;
   // currentbookings=[
   //   {
