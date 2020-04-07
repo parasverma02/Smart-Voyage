@@ -29,7 +29,7 @@ export class SearchResultComponent implements OnInit {
   ngOnInit() {
 
     this.finalBooking = new FinalBooking();
-    this.finalBooking.username = "pm02";
+    this.finalBooking.username = localStorage.getItem('loggedInUsername');
     this.flightTimeDate = [];
     if (this.data.storage != null) {
       this.flights = this.data.storage;
@@ -116,12 +116,10 @@ export class SearchResultComponent implements OnInit {
     const control1 = <FormArray>this.travellersForms.controls['adulttravellers'];
     for (var i = 0; i < this.finalBooking.booking[0].adults.length - 1; i++) {
       const temptravinfo = this.buildAdultTravellerForm();
-      console.log('in');
       control1.push(temptravinfo);
     }
     const control2 = <FormArray>this.travellersForms.controls['childtravellers'];
     for (var i = 0; i < this.finalBooking.booking[0].children.length - 1; i++) {
-      console.log('in');
       const temptravinfo = this.buildChildrenTravellerForm();
       control2.push(temptravinfo);
     }
@@ -144,7 +142,6 @@ export class SearchResultComponent implements OnInit {
 
   confirmBooking() {
     this.searchService.postBookingDetails(this.finalBooking).subscribe(response => {
-      console.log(response);
       window.alert('Your booking has been confirmed! Your booking ID is ' + response.booking_id)
       this.route.navigate(['home']);
     })

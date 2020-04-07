@@ -1,57 +1,125 @@
-<br><br><br>
-
-
-
-
-
-<div class="row">
-  <div class="col-1">
-
-  </div>
-  <div class="col-10">
-
-    <div class="row maindiv" style="min-height:600px;">
-      <div class="col-3" style=" text-align: center">
-        <!-- required for floating -->
-        <!-- Nav tabs -->
-        <i class="fa fa-user" style="font-size:100px; text-align: center"></i><br><br>
-        <h3 style="font-size: 2rem;font-weight: bold;">{{username}}</h3><br><hr>
-        <p>
-          <span><i class="fa fa-user"></i></span>&nbsp;{{username}} <br>
-          <span style="font-weight: 600;">@</span>&nbsp;janedoe@email.com <br>
-         <span><i class="fa fa-phone"></i></span>&nbsp;+1 519-775-8969<br>
-
-
-          <span><i class="fa fa-birthday-cake"></i></span>&nbsp;Jan 18, 1991<br>
-        </p> <br><br>
-        <button class="btn btn-block " id="toggleaddtravellerColour" (click)="toggleaddtraveller()"> <i class="fa fa-plus"></i>&nbsp; Add a traveller</button><br>
-        <button class="btn btn-block " id="toggletralist" (click)="toggletralist()"> <i class="fa fa-info"></i>&nbsp; Traveller List</button><br>
-        <button class="btn btn-block " id="togglebookings" (click)="togglebookings()"> <i class="fa fa-plane"></i>&nbsp; Bookings</button><br>
+<main-header style="margin-bottom: 10px;"></main-header>
+<!--  -->
+<body >
+  <div class="row" >
+    <div class="col-1">
   
+    </div>
+    <div class="col-10">
+      <br><br><br>
 
-
-      </div>
-      <div class="col-9" *ngIf="showbooking">
-      
-        <!-- <p> -->
-          <div class="card expandable-card " data-toggle="collapse" href="#currentbookings" role="button" aria-expanded="false" aria-controls="currentbookings">
-            <label>Current flight bookings <i style="margin-left: 78%;" class="fa fa-sort-down"></i></label>
-            
-            <div class="collapse" id="currentbookings">
-                <div *ngFor="let det of currentbookings" class="container right">
-                  <div class="content current">
+      <div class="row maindiv" >
+        <div class="col-3" style=" text-align: center">
+          <!-- required for floating -->
+          <!-- Nav tabs -->
+          <i class="fa fa-user" style="font-size:100px; text-align: center"></i><br><br>
+          <h3 style="font-size: 2rem;font-weight: bold;">Welcome, {{username}}</h3><br><hr>
+          <!-- <p>
+            <span><i class="fa fa-user"></i></span>&nbsp;{{username}} <br>
+           <span style="font-weight: 600;">@</span>&nbsp;janedoe@email.com <br>
+           <span><i class="fa fa-phone"></i></span>&nbsp;+1 519-775-8969<br>
+  
+  
+            <span><i class="fa fa-birthday-cake"></i></span>&nbsp;Jan 18, 1991<br>
+          </p>  -->
+          <br><br>
+          <button class="btn btn-block " id="toggleaddtravellerColour" (click)="toggleaddtraveller()"> <i class="fa fa-plus"></i>&nbsp; Add a traveller</button><br>
+          <button class="btn btn-block " id="toggletralist" (click)="toggletralist()"> <i class="fa fa-info"></i>&nbsp; Traveller List</button><br>
+          <button class="btn btn-block " id="togglebookings" (click)="togglebookings()"> <i class="fa fa-plane"></i>&nbsp; Bookings</button><br>
+    
+  
+  
+        </div>
+        <div class="col-9" *ngIf="showbooking">
+        
+          <!-- <p> -->
+            <div class="card expandable-card currentbookingcard" data-toggle="collapse" href="#currentbookings" role="button" aria-expanded="false" aria-controls="currentbookings">
+              <label>Current flight bookings - {{currentbookings.length}} records found <i style="margin-left: 62%;" class="fa fa-sort-down"></i>
+              </label>
+              <div class="collapse" *ngIf="currentbookings.length==0" id="currentbookings">
+                <label>No records found for current/ upcoming bookings.</label>
+               
+            </div>
+  
+              <div class="collapse" *ngIf="currentbookings.length!=0" id="currentbookings">
+                  <div *ngFor="let det of currentbookings" class="container right">
+                    <div class="content current">
+                      <div class="row">
+                        <div class="col">
+                          {{det.route[0]}} 
+                          <span class="fa fa-arrow-right white arrow" ></span> {{det.route[det.route.length-1]}} 
+                        </div>
+                        <div class="col">
+                          {{det.adults.length}} Adults | {{det.children.length}} children
+                        </div>
+                        <div class="col" style="text-align: right;">
+                        <span class="badge badge-pill badge-success">{{det.travelStatus}}</span>
+                        </div>
+                      </div>
+                      <table class="table table-borderless">
+                        <thead>
+                          <tr>
+                            <th scope="col">Flight</th>
+                            <th scope="col">Departure</th>
+                            <th scope="col">Arrival</th>
+                            <th scope="col">Cost (CAD)</th>
+        
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let flightdet of det.flights">
+                            <th>Air Canada <br>
+                              {{flightdet.carrierFsCode}} {{flightdet.flightNumber}}
+                            </th>
+                            <td>
+                              {{flightdet.source}}({{flightdet.departureAirportFsCode}})<BR>
+                                {{flightdet.departureTime}}
+                            </td>
+                            <td>
+                              {{flightdet.destination}}({{flightdet.arrivalAirportFsCode}})<BR>
+                                {{flightdet.arrivalTime}}
+                            </td>
+                            <td>$ {{flightdet.flightcost}}
+        
+                            </td>
+                          </tr>
+        
+                        </tbody>
+                      </table>
+                       
+        
+                    </div>
+                  </div>
+                 
+              </div>
+            </div>
+  
+  
+            <div class="card expandable-card pastbookingcard" data-toggle="collapse" href="#previousbookings" role="button" aria-expanded="false" aria-controls="previousbookings">
+              <label> Previous flight bookings - {{pastbookings.length}} records found <i style="margin-left: 62%;" class="fa fa-sort-down"></i></label>
+              
+  
+              <div class="collapse" *ngIf="pastbookings.length==0" id="previousbookings">
+                <label>No records found for previous bookings.</label>
+               
+            </div>
+  
+              <div class="collapse" *ngIf="pastbookings.length!=0" id="previousbookings">
+                <div *ngFor="let det of pastbookings" class="container right">
+                  <div class="content past">
                     <div class="row">
                       <div class="col">
-                        {{det.routes[0]}} 
-                        <span class="fa fa-arrow-right white arrow" ></span> {{det.routes[det.routes.length-1]}} 
+                        {{det.route[0]}} 
+                        <span class="fa fa-arrow-right white arrow" ></span> {{det.route[det.route.length-1]}} 
                       </div>
                       <div class="col">
-                        {{det.adults}} Adults | {{det.children}} children
+                        {{det.adults.length}} Adults | {{det.children.length}} children
                       </div>
                       <div class="col" style="text-align: right;">
-                      <span class="badge badge-pill badge-success">{{det.flightstatus}}</span>
+                      <span class="badge badge-pill badge-secondary">{{det.travelStatus}}</span>
                       </div>
                     </div>
+                  
                     <table class="table table-borderless">
                       <thead>
                         <tr>
@@ -63,9 +131,9 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr *ngFor="let flightdet of det.path">
-                          <th>{{flightdet.flightname}}<br>
-                            {{flightdet.carrierFsCode}}{{flightdet.flightNumber}}
+                        <tr *ngFor="let flightdet of det.flights">
+                          <th>Air Canada <br>
+                            {{flightdet.carrierFsCode}} {{flightdet.flightNumber}}
                           </th>
                           <td>
                             {{flightdet.source}}({{flightdet.departureAirportFsCode}})<BR>
@@ -75,7 +143,7 @@
                             {{flightdet.destination}}({{flightdet.arrivalAirportFsCode}})<BR>
                               {{flightdet.arrivalTime}}
                           </td>
-                          <td>{{flightdet.flightcost}}
+                          <td>$ {{flightdet.flightcost}}
       
                           </td>
                         </tr>
@@ -87,87 +155,31 @@
                   </div>
                 </div>
                
-            </div>
-          </div>
-
-
-          <div class="card expandable-card " data-toggle="collapse" href="#previousbookings" role="button" aria-expanded="false" aria-controls="previousbookings">
-            <label> Previous flight bookings <i style="margin-left: 78%;" class="fa fa-sort-down"></i></label>
-
-           
-            <div class="collapse" id="previousbookings">
-              <div *ngFor="let det of pastbookings" class="container right">
-                <div class="content past">
-                  <div class="row">
-                    <div class="col">
-                      {{det.routes[0]}} 
-                      <span class="fa fa-arrow-right white arrow" ></span> {{det.routes[det.routes.length-1]}} 
-                    </div>
-                    <div class="col">
-                      {{det.adults}} Adults | {{det.children}} children
-                    </div>
-                    <div class="col" style="text-align: right;">
-                    <span class="badge badge-pill badge-secondary">{{det.flightstatus}}</span>
-                    </div>
-                  </div>
-                
-                  <table class="table table-borderless">
-                    <thead>
-                      <tr>
-                        <th scope="col">Flight</th>
-                        <th scope="col">Departure</th>
-                        <th scope="col">Arrival</th>
-                        <th scope="col">Cost (CAD)</th>
-    
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let flightdet of det.path">
-                        <th>{{flightdet.flightname}}<br>
-                          {{flightdet.carrierFsCode}}{{flightdet.flightNumber}}
-                        </th>
-                        <td>
-                          {{flightdet.source}}({{flightdet.departureAirportFsCode}})<BR>
-                            {{flightdet.departureTime}}
-                        </td>
-                        <td>
-                          {{flightdet.destination}}({{flightdet.arrivalAirportFsCode}})<BR>
-                            {{flightdet.arrivalTime}}
-                        </td>
-                        <td>{{flightdet.flightcost}}
-    
-                        </td>
-                      </tr>
-    
-                    </tbody>
-                  </table>
-                   
-    
-                </div>
               </div>
-             
             </div>
-          </div>
-        <!-- </p> -->
+          <!-- </p> -->
+          
+          
+        </div>
+        <div class="col-9" *ngIf="showaddtraveller">
+          <app-addtravellerdetails></app-addtravellerdetails>
+  
+        </div>
+        <div class="col-9" *ngIf="showtravlist">
+          <app-travellerdetails></app-travellerdetails>
+  
+        </div>
+  
         
-        
+  
+  
+  
       </div>
-      <div class="col-9" *ngIf="showaddtraveller">
-        <app-addtravellerdetails></app-addtravellerdetails>
-
-      </div>
-      <div class="col-9" *ngIf="showtravlist">
-        <app-travellerdetails></app-travellerdetails>
-
-      </div>
-
-      
-
-
-
+    </div>
+    <div class="col-1">
+  
     </div>
   </div>
-  <div class="col-1">
+</body>
 
-  </div>
-</div>
+

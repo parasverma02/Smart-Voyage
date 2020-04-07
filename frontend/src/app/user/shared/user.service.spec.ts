@@ -42,7 +42,6 @@ describe('UserService', () => {
 
   it('#setLoggedIn() should be called once', () => {
     spyOn(service, 'setLoggedIn').and.callThrough();
-    console.log(service);
     service.setLoggedIn(true);
     expect(localStorage.setItem).toHaveBeenCalledTimes(1);
     expect(service.setLoggedIn).toHaveBeenCalledTimes(1);

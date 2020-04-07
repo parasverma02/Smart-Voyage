@@ -16,7 +16,6 @@ export class ResultGuard implements CanActivate{
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree{
       if(!this.resultService.isResultAccessible()){
         this.router.navigate(['home']);
-        console.log('not accessisble');
         return false;
       }
         return this.resultService.isResultAccessible();

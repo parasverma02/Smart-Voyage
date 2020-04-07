@@ -2,20 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Userdetails } from './userdetails';
-import { url } from 'src/config';
+import { url } from "../../../config"
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfilepageService {
 
-  private edittravellerdet_url: string = url +"edittraveller";
-  private gettravellerlisturl: string = url +"travellerlist";
-  private _addtravellerPost_url: string = url +"addtraveller";
-  private _removetraveller_url: string = url +"removetraveller";
-  private _getuserdet_url: string = url +"search";
-  private _getcurrentflights_url: string = url +"upcomingbookings";
-  private _getpastflights_url: string = url +"pastbookings";
+  private edittravellerdet_url: string = url + "edittraveller";
+  private gettravellerlisturl: string = url + "travellerlist";
+  private _addtravellerPost_url: string = url + "addtraveller";
+  private _removetraveller_url: string = url + "removetraveller";
+  private _getuserdet_url: string = url + "search";
+  private _getcurrentflights_url: string = url + "upcomingbookings";
+  private _getpastflights_url: string = url + "pastbookings";
   username:any;
 
   constructor(private http: HttpClient) { }

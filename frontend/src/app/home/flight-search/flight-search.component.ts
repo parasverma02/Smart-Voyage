@@ -60,9 +60,7 @@ export class FlightSearchComponent implements OnInit {
         this.data.storage = response;
         this.resultService.giveAccessToResul();
         this.router.navigate(['searchresult']);
-        console.log('here');
       });
-      console.log(this.searchDetails);
     }
   }
 
@@ -71,7 +69,6 @@ export class FlightSearchComponent implements OnInit {
             .get('cityinfo') //retrieve items FormArray
             .get(i.toString()) //retrieve items FormGroup
             .get(field); //retrieve items form field
-          // console.log(f.touched+".."+this.submitted+".."+this.citiesForms);
     return (f.touched && f.invalid) || (f.invalid && this.submitted);
 }
   get cityInfoForms() {
