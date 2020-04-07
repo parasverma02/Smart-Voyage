@@ -27,7 +27,7 @@ export class ProfilepageService {
    return this.http.get(this.gettravellerlisturl+"/"+this.username);
   }
 
-  addnewtravller(newtravllerdet: Userdetails): Observable<Userdetails> {
+  addnewtravller(newtravllerdet: Userdetails): Observable<any> {
     let newtravellerjson:any;
     this.username=localStorage.getItem("loggedInUsername")
     let header= new HttpHeaders();
@@ -37,7 +37,7 @@ export class ProfilepageService {
     return this.http.post<Userdetails>(this._addtravellerPost_url,newtravellerjson,{headers:header});
   }
 
-  edittravller(editdet: Userdetails): Observable<Userdetails> {
+  edittravller(editdet: Userdetails): Observable<any> {
     let edittravellerjson:any;
     this.username=localStorage.getItem("loggedInUsername")
     let header= new HttpHeaders();
