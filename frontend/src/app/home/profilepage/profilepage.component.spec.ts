@@ -26,6 +26,7 @@ describe('ProfilepageComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ProfilepageComponent);
     component = fixture.componentInstance;
+
     fixture.detectChanges();
   });
 
@@ -36,7 +37,9 @@ describe('ProfilepageComponent', () => {
 
     // spyOn(component, 'onSignup');
     // const mockUser={firstname:"Aditi",lastname:"P",username:"aditi3049",password:"123456",emailid:"aditi3049@email.com",phonenumber:"9967650280"}
-    component.activepage="addtravellerdetails"
+    const activepagespec={"extras":{"state":"addtravellerdetails"}}
+    component.activepage=activepagespec;
+    
     component.toggleaddtraveller();
     component.toggletralist();
     component.togglebookings();
@@ -48,6 +51,7 @@ describe('ProfilepageComponent', () => {
 
 
   });
+ 
  
 
 
