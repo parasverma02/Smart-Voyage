@@ -21,12 +21,12 @@ describe('HeaderComponent', () => {
         HttpClientTestingModule,
         RouterTestingModule
       ],
-      providers:[{provide:UserService, useClass: MockUserService}]
-      imports: [FormsModule,HttpClientModule,RouterTestingModule]
+      providers:[{provide:UserService, useClass: MockUserService}],
 
     })
     .compileComponents();
   }));
+  beforeEach(() => {
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

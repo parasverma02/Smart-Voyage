@@ -41,34 +41,37 @@ describe('SearchResultService', () => {
   it('#postBookingDetails should be called once',()=>{
     spyOn(service,'postBookingDetails').and.callThrough();
     var bookingdetails: FinalBooking = {
-      adults:[{
-        firstname:'ab',
-        lastname:'be',
-        age:12,
-        email:'abc@email.com',
-        phone: 123
+      booking: [{
+        adults:[{
+          firstname:'ab',
+          lastname:'be',
+          age:12,
+          email:'abc@email.com',
+          phone: 123
+        }],
+        children:[{
+          firstname:'ab',
+          lastname:'be',
+          age:12
+        }],
+        class:'eco',
+        flights: [{
+          source:'abc',
+          destination:'def',
+          arrivalAirportFsCode:'ghi',
+          arrivalTime: new Date(),
+          departureAirportFsCode: 'jkl',
+          departureTime: new Date(),
+          carrierFsCode:'mno',
+          flightNumber:123,
+          flightcost:12,
+          stops:0,
+          totalFlightTime: '123'
+        }],
+        route:[],
+        totalcost:1,
       }],
-      children:[{
-        firstname:'ab',
-        lastname:'be',
-        age:12
-      }],
-      class:'eco',
-      flights: [{
-        source:'abc',
-        destination:'def',
-        arrivalAirportFsCode:'ghi',
-        arrivalTime: new Date(),
-        departureAirportFsCode: 'jkl',
-        departureTime: new Date(),
-        carrierFsCode:'mno',
-        flightNumber:123,
-        flightcost:12,
-        stops:0,
-        totalFlightTime: '123'
-      }],
-      route:[],
-      totalcost:1,
+     
       username:'ab'
     }
     service.postBookingDetails(bookingdetails);
