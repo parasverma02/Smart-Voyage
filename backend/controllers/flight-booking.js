@@ -46,9 +46,11 @@ module.exports=function(app){
                 collection.findOne({username:req.params.username}, function(err, result){
                     if(err) throw err;
                     var ans=[];
-                    for(i=0; i<result.booking.length; i++){
-                        if(result.booking[i]["travelStatus"]=="completed"){
-                            ans.push(result.booking[i]);
+                    if(result!=null){
+                        for(i=0; i<result.booking.length; i++){
+                            if(result.booking[i]["travelStatus"]=="completed"){
+                                ans.push(result.booking[i]);
+                            }
                         }
                     }
                     res.send(ans);
@@ -67,9 +69,11 @@ module.exports=function(app){
                     if(err) throw err;
                     console.log(result);
                     var ans=[];
-                    for(i=0; i<result.booking.length; i++){
-                        if(result.booking[i]["travelStatus"]=="upcoming"){
-                            ans.push(result.booking[i]);
+                    if(result!=null){
+                        for(i=0; i<result.booking.length; i++){
+                            if(result.booking[i]["travelStatus"]=="upcoming"){
+                                ans.push(result.booking[i]);
+                            }
                         }
                     }
                     console.log(ans);
