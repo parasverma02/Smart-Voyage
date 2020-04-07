@@ -13,15 +13,16 @@
           <!-- required for floating -->
           <!-- Nav tabs -->
           <i class="fa fa-user" style="font-size:100px; text-align: center"></i><br><br>
-          <h3 style="font-size: 2rem;font-weight: bold;">{{username}}</h3><br><hr>
-          <p>
+          <h3 style="font-size: 2rem;font-weight: bold;">Welcome, {{username}}</h3><br><hr>
+          <!-- <p>
             <span><i class="fa fa-user"></i></span>&nbsp;{{username}} <br>
-            <span style="font-weight: 600;">@</span>&nbsp;janedoe@email.com <br>
+           <span style="font-weight: 600;">@</span>&nbsp;janedoe@email.com <br>
            <span><i class="fa fa-phone"></i></span>&nbsp;+1 519-775-8969<br>
   
   
             <span><i class="fa fa-birthday-cake"></i></span>&nbsp;Jan 18, 1991<br>
-          </p> <br><br>
+          </p>  -->
+          <br><br>
           <button class="btn btn-block " id="toggleaddtravellerColour" (click)="toggleaddtraveller()"> <i class="fa fa-plus"></i>&nbsp; Add a traveller</button><br>
           <button class="btn btn-block " id="toggletralist" (click)="toggletralist()"> <i class="fa fa-info"></i>&nbsp; Traveller List</button><br>
           <button class="btn btn-block " id="togglebookings" (click)="togglebookings()"> <i class="fa fa-plane"></i>&nbsp; Bookings</button><br>
@@ -67,8 +68,8 @@
                         </thead>
                         <tbody>
                           <tr *ngFor="let flightdet of det.flights">
-                            <th>{{flightdet.flightname}}<br>
-                              {{flightdet.carrierFsCode}}{{flightdet.flightNumber}}
+                            <th>Air Canada <br>
+                              {{flightdet.carrierFsCode}} {{flightdet.flightNumber}}
                             </th>
                             <td>
                               {{flightdet.source}}({{flightdet.departureAirportFsCode}})<BR>
@@ -98,8 +99,8 @@
               <label> Previous flight bookings - {{pastbookings.length}} records found <i style="margin-left: 62%;" class="fa fa-sort-down"></i></label>
               
   
-              <div class="collapse" *ngIf="pastbookings.length==0" id="currentbookings">
-                <label>No records found for current/ upcoming bookings.</label>
+              <div class="collapse" *ngIf="pastbookings.length==0" id="previousbookings">
+                <label>No records found for previous bookings.</label>
                
             </div>
   
@@ -131,8 +132,8 @@
                       </thead>
                       <tbody>
                         <tr *ngFor="let flightdet of det.flights">
-                          <th>{{flightdet.flightname}}<br>
-                            {{flightdet.carrierFsCode}}{{flightdet.flightNumber}}
+                          <th>Air Canada <br>
+                            {{flightdet.carrierFsCode}} {{flightdet.flightNumber}}
                           </th>
                           <td>
                             {{flightdet.source}}({{flightdet.departureAirportFsCode}})<BR>
