@@ -6,7 +6,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Injectable } from '@angular/core';
+import { Injectable, Component } from '@angular/core';
 import { FlightSearchService } from '../flight-search/flight-search.service';
 
 describe('HeaderComponent', () => {
@@ -16,10 +16,12 @@ describe('HeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ],
+      declarations: [ HeaderComponent, DummyComponent ],
       imports:[
         HttpClientTestingModule,
-        RouterTestingModule
+        RouterTestingModule .withRoutes([
+          {path: 'login', component: DummyComponent}
+       ])
       ],
       providers:[{provide:UserService, useClass: MockUserService}],
 
@@ -47,4 +49,7 @@ describe('HeaderComponent', () => {
 @Injectable()
 export class MockUserService {
   Logout(){};
+  setLoggedIn(value: boolean){};
 }
+@Component({template: ''})
+class DummyComponent {}

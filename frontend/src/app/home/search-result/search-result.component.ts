@@ -42,6 +42,7 @@ export class SearchResultComponent implements OnInit {
         dateTime.departureDate = dateTime.getDayName(tempDepDate.getDay()) + ',' + dateTime.getMonthName(tempDepDate.getMonth()) + " " + tempDepDate.getDate() + "," + tempDepDate.getFullYear();
         let min = tempDepDate.getMinutes().toString();
         let hour = tempDepDate.getHours().toString();
+        console.log('min:'+min,' hour:'+hour);
         if (min.length == 1)
           min = min + '0';
         if (hour.length == 1)

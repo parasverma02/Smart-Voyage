@@ -71,11 +71,41 @@ describe('SearchResultComponent', () => {
     expect(component.openModal).toHaveBeenCalledTimes(1);
 
   })
-  // it('#ngOnInit when storage.data is null',()=>{
+  it('#ngOnInit when storage.data is null',()=>{
+    dataService.storage = null;
+   spyOn(component,'ngOnInit').and.callThrough();
+    component.ngOnInit();
+    expect(component.ngOnInit).toHaveBeenCalledTimes(1);
+  })
+  it('#ngOnInit() whens time and date is in one digit',()=>{
+    spyOn(component,'ngOnInit').and.callThrough();
+    (dataService as any).storage = {
+      adults:1,
+      children:1,
+      class:'eco',
+      flights: [{
+        source:'abc',
+        destination:'def',
+        arrivalAirportFsCode:'ghi',
+        arrivalTime: new Date('Mon Apr 06 2020 03:03:13 GMT-0400'),
+        departureAirportFsCode: 'jkl',
+        departureTime: new Date('Mon Apr 06 2020 03:03:13 GMT-0400'),  
+        carrierFsCode:'mno',
+        flightNumber:123,
+        flightcost:12,
+        stops:0,
+        totalFlightTime: '123'
+      }],
+      route:[],
+      totalcost:1,
+      username:'ab'
     
-  //   component.ngOnInit();
-  //   expect(component.finalBooking).toHaveBeenCalledTimes(1);
-  // })
+  };
+    dataService.storage.departureTime = new Date('Mon Apr 06 2020 03:03:13 GMT-0400');
+    dataService.storage.arrivalTime = new Date('Mon Apr 06 2020 03:03:13 GMT-0400');
+    component.ngOnInit();
+    expect(component.ngOnInit).toHaveBeenCalledTimes(1);
+  })
   it('Traveller form invalid when empty', () => {
     expect(component.travellersForms.valid).toBeFalsy();
   });
@@ -96,9 +126,9 @@ class mockData {
         source:'abc',
         destination:'def',
         arrivalAirportFsCode:'ghi',
-        arrivalTime: new Date(),
+        arrivalTime: new Date('Mon Apr 06 2020 13:13:13 GMT-0400'),
         departureAirportFsCode: 'jkl',
-        departureTime: new Date(),  
+        departureTime: new Date('Mon Apr 06 2020 13:13:13 GMT-0400'),  
         carrierFsCode:'mno',
         flightNumber:123,
         flightcost:12,
@@ -108,8 +138,10 @@ class mockData {
       route:[],
       totalcost:1,
       username:'ab'
-    
   }
 
   public constructor() { }
+  get storageData(){
+    return this.storage;
+  }
 }

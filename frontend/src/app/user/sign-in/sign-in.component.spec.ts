@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { SignInComponent } from './sign-in.component';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserService } from '../shared/user.service';
 import { of, Observable } from 'rxjs';
 import { Component, Injectable } from '@angular/core';
+import { Location } from '@angular/common';
 describe('SignInComponent', () => {
   let component: SignInComponent;
   let fixture: ComponentFixture<SignInComponent>;
@@ -22,7 +23,7 @@ describe('SignInComponent', () => {
        ])
       ],
       providers:[
-        UserService
+        UserService,
     ]
     })
     .compileComponents();
@@ -76,6 +77,22 @@ describe('SignInComponent', () => {
       component.f;
       expect(spy).toHaveBeenCalled();
     });
+
+    it('#ngOnInit() if user is already loggedin',fakeAsync(()=>{
+      spyOn(component,'ngOnInit').and.callThrough();
+      spyOn(_userService,'isLoggedIn').and.returnValue(true);
+      component.ngOnInit();
+      var location = TestBed.get(Location);
+      expect(component.ngOnInit).toHaveBeenCalledTimes(1);
+      tick()
+      expect(location.path()).toEqual('/home');
+    }))
+    it('#ngOnInit() if new user',fakeAsync(()=>{
+      spyOn(component,'ngOnInit').and.callThrough();
+      spyOn(_userService,'isLoggedIn').and.returnValue(false);
+      component.ngOnInit();
+      expect(component.ngOnInit).toHaveBeenCalledTimes(1);
+    }))
   })
   it('should create', () => {
     expect(component).toBeTruthy();

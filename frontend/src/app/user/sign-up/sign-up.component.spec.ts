@@ -18,7 +18,6 @@ describe('SignUpComponent', () => {
   let _userService: UserService;
   let router: Router;
   beforeEach(async(() => {
-    // routerspy = { navigate : jasmine.createSpy("navigate") }
     TestBed.configureTestingModule({
       declarations: [SignUpComponent, DummyComponent],
       imports: [
@@ -42,7 +41,7 @@ describe('SignUpComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-  describe('send login request', () => {
+  describe('send signup request', () => {
 
     beforeEach(() => {
       _userService = TestBed.get(UserService);
@@ -65,8 +64,7 @@ describe('SignUpComponent', () => {
 
     it('#onSignUp with true success respone', fakeAsync(() => {
       const response = {
-        success: true,
-        response: 'User Signup successful!'
+        message:"Success"
       };
       spyOn(component, 'onSignup').and.callThrough();
       spyOn(_userService, 'send_signupRequest').and.returnValue(of(response));
@@ -78,10 +76,9 @@ describe('SignUpComponent', () => {
       expect(location.path()).toEqual('/home');
     }))
 
-    it('#onSignIn with false success response', () => {
+    it('#onSignUp with false success response', () => {
       const response = {
-        success: false,
-        response: 'Another User with that username already exist!'
+        message:"failure"
       };
       spyOn(component, 'onSignup').and.callThrough();
       spyOn(_userService, 'send_signupRequest').and.returnValue(of(response));
