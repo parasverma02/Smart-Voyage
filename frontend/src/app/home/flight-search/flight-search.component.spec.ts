@@ -38,9 +38,25 @@ describe('FlightSearchComponent', () => {
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+    it('should execute functions',() =>{
+    // spyOn(component, 'onSignup');
+    // const mockUser={firstname:"Aditi",lastname:"P",username:"aditi3049",password:"123456",emailid:"aditi3049@email.com",phonenumber:"9967650280"}
+    component.onSubmit();
+    component.onAdd();
+    component.removeCity(1);
+    component.onIncrementAdult();
+    component.onDecrementAdult();
+    component.onIncrementChildren();
+    component.onDecrementChildren();
+    fixture.detectChanges();
+
+    //expect(component.onSignup).toHaveBeenCalled();
+
+
+  });
 });
 
 @Component({template: ''})
