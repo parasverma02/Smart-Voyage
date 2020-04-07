@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { of, Observable } from 'rxjs';
+import { Component, Injectable } from '@angular/core';
 import { EdittravellerdetailsComponent } from './edittravellerdetails.component';
 import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
@@ -11,8 +12,11 @@ describe('EdittravellerdetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EdittravellerdetailsComponent ],
-      imports: [FormsModule,HttpClientModule,RouterTestingModule]
+      declarations: [ EdittravellerdetailsComponent ,DummyComponent],
+      imports: [FormsModule,HttpClientModule,RouterTestingModule.withRoutes([
+        { path: 'profilepage/travellerdetails/edittravellerdetails', component: DummyComponent},
+        { path: 'profilepage;state=travellerdetails', component: DummyComponent}
+    ]) ]
 
     })
     .compileComponents();
@@ -38,3 +42,5 @@ describe('EdittravellerdetailsComponent', () => {
 
   });
 });
+@Component({template: ''})
+class DummyComponent {}
