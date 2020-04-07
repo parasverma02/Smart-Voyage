@@ -16,30 +16,36 @@ describe('ProfilepageService', () => {
   let fixture: ComponentFixture<ProfilepageService>;
   let service: ProfilepageService;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ProfilepageService ,HeaderComponent,AddtravellerdetailsComponent,EdittravellerdetailsComponent,TravellerdetailsComponent],
-      imports: [FormsModule,HttpClientModule,RouterTestingModule ,RouterModule]
-    })
-    .compileComponents();
-  }));
+  // beforeEach(async(() => {
+  //   TestBed.configureTestingModule({
+  //     declarations: [ ProfilepageService ,HeaderComponent,AddtravellerdetailsComponent,EdittravellerdetailsComponent,TravellerdetailsComponent],
+  //     imports: [FormsModule,HttpClientModule,RouterTestingModule ,RouterModule]
+  //   })
+  //   .compileComponents();
+  // }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProfilepageService);
-    component = fixture.componentInstance;
+    TestBed.configureTestingModule({
+      imports: [
+        FormsModule,
+        HttpClientModule,
+        RouterTestingModule
+       ],
+  
+    
+  
+    })
     service = TestBed.get(ProfilepageService);
 
-    fixture.detectChanges();
   });
 
   it('should be created', () => {
-    alert();
     const service: ProfilepageService = TestBed.get(ProfilepageService);
     expect(service).toBeTruthy();
   });
  
   it('#addnewtravller() should be called once', () => {
-    component.username="aditi3049"
+    // component.username="aditi3049"
     spyOn(service, 'addnewtravller').and.callThrough();
     var searchDetails = new Userdetails();
     searchDetails={"firstname": "Paras", "lastname": "Verma","username":" ","password":"","phonenumber":"  ","dob":" ", "emailid": "v.paras2@gmail.com", "gender": "male", "phone": "2265074804"};
@@ -48,12 +54,21 @@ describe('ProfilepageService', () => {
   
   })
   it('#edittravller() should be called once', () => {
-    component.username="aditi3049"
+    // component.username="aditi3049"
     spyOn(service, 'edittravller').and.callThrough();
     var searchDetails = new Userdetails();
     searchDetails={"firstname": "Paras", "lastname": "Verma","username":" ","password":"","phonenumber":"  ","dob":" ", "emailid": "v.paras2@gmail.com", "gender": "male", "phone": "2265074804"};
     service.edittravller(searchDetails);
     expect(service.edittravller).toHaveBeenCalledTimes(1);
+  
+  })
+  it('#removetraveller() should be called once', () => {
+    // component.username="aditi3049"
+    spyOn(service, 'removetravller').and.callThrough();
+    //  searchDetails = new Userdetails();
+    //  var searchDetails={"firstname": "Paras"};
+    service.removetravller("Paras");
+    expect(service.removetravller).toHaveBeenCalledTimes(1);
   
   })
   // it('#gettravellerlist() should be called once', fakeAsync (() => {
