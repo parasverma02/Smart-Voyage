@@ -23,10 +23,8 @@ export class UserService {
     return JSON.parse(localStorage.getItem('loggedIn') || this.loggedInStatus.toString());
   }
   Logout(){
-    console.log('in logout');
     localStorage.removeItem('loggedIn');
     this.setLoggedIn(false);
-    console.log(localStorage.getItem('loggedIn'));
     this.router.navigate(['login']);
   }
   send_signupRequest(user: UserAccount): Observable<any>{
