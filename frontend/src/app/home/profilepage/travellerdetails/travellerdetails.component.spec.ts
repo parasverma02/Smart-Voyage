@@ -117,10 +117,12 @@ describe('TravellerdetailsComponent', () => {
     // component.travellerdetails.dob="dob"
     // component.travellerdetails.gender="gender"
     // component.travellerdetails.emailid="emailid"
-
-    component.onDataChanged([{"firstname":"User"}]);
+    const travellerdetailsspec=[{"firstname":"Aditi","lastname":"P","username":"aditi3049","password":"123456","emailid":"aditi3049@email.com","phonenumber":"9967650280"}]
+    //     "id":1,
+    component.travellerdetails=travellerdetailsspec;
+    component.onDataChanged([{"firstname":"aditi3049"}]);
     // component.travellerdetails.length=5;
-    component.deleteRow("jane");
+    component.deleteRow("aditi3049");
 
 
     fixture.detectChanges();
