@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ProfilepageService } from '../../profilepage.service';
 import { CommonModule } from '@angular/common';
+import { Userdetails } from '../../userdetails';
 
 describe('EdittravellerdetailsComponent', () => {
   let component: EdittravellerdetailsComponent;
@@ -36,16 +37,16 @@ describe('EdittravellerdetailsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should execute onSave',() =>{
-    component.edittrav=null;
-    // spyOn(component, 'onSignup');
-    // const mockUser={firstname:"Aditi",lastname:"P",username:"aditi3049",password:"123456",emailid:"aditi3049@email.com",phonenumber:"9967650280"}
-    // component.onSave();
-    fixture.detectChanges();
+  // it('should execute onSave',() =>{
+  //   component.edittrav=null;
+  //   // spyOn(component, 'onSignup');
+  //   // const mockUser={firstname:"Aditi",lastname:"P",username:"aditi3049",password:"123456",emailid:"aditi3049@email.com",phonenumber:"9967650280"}
+  //   // component.onSave();
+  //   fixture.detectChanges();
 
 
 
-  });
+  // });
   it('#onSave() called once',() => {
     const response = {
       message:"Success"
