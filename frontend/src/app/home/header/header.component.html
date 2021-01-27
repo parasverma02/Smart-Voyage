@@ -1,0 +1,34 @@
+<header>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+      <a class="navbar-brand" [routerLink]="['/home']">Smart Voyage</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="nav navbar-nav ">
+          <a class="nav-item nav-link navbar-home " href="#">Home <span class="sr-only">(current)</span></a>
+           
+        </div>
+        <div class="nav navbar-nav ml-auto">
+          <div class="dropdown">
+            <a class="nav-item nav-link" [routerLink]="['/profilepage']">Account 
+              <i class="fa fa-caret-down"></i>
+            </a>
+            <div class="dropdown-content">
+              <!-- <a [routerLink]="['/profilepage/addtravellerdetails']" title="Add new travellers">Add Traveller</a>
+              <a [routerLink]="['/profilepage/travellerdetails']" title="Edit or remove travellers">Travellers List</a>
+              <a [routerLink]="['/profilepage']" title="View your profille and flight">My profile</a> -->
+              <a (click)="navigate('addtravellerdetails')" title="Add new travellers">Add Traveller</a>
+              <a (click)="navigate('travellerdetails')" title="Edit or remove travellers">Travellers List</a>
+              <a (click)="navigate('currentbookings')" title="View your profille and flight">Bookings</a>
+              <!-- <a (click)="onLogout()" title="Logout">Logout</a> -->
+
+
+            </div>
+          </div>
+          <a class="nav-item nav-link" (click)="onLogout()" href="#">Logout <span class="sr-only">(current)</span></a>
+
+        </div>
+      </div>
+    </nav>
+  </header>

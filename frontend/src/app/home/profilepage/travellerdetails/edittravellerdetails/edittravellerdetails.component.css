@@ -1,0 +1,14 @@
+.maindiv{
+    background: white;
+    padding: 2%;
+    /* margin: 5%; */
+    box-shadow: rgba(0, 0, 0, 0.4);
+    box-shadow: 6px 7px 10px 1px #ccc;
+}
+.form-control{
+    margin-bottom: 1%;
+}
+
+.center-btn{
+    margin-left: 43%;
+}

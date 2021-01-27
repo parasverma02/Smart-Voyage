@@ -1,0 +1,29 @@
+body {
+    background-image: url('src\assets\images\home_background_image.png');
+    position: relative;
+    background-size: cover;
+    min-height: 100%;
+  min-height: 100vh;
+}
+
+/* .home-header{
+    background-color: black;
+    color: blanchedalmond;
+    height: 80px;
+}
+.smart-voyage{
+    margin-left: 20px;
+    font-size: 50px;
+    font-weight: bold;
+    text-shadow: 2px 2px 3px rgb(68, 68, 68);
+} */
+
+.home-footer{
+    position: absolute;
+    background-color: rgb(31, 31, 31);
+    color: blanchedalmond;
+    height: 60px;
+    width: 100%;
+    bottom: 0;
+}
+

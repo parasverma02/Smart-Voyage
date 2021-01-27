@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Sign-in</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+  <div class="container-body">
+    <div class="container" id="container">
+      <div class="form-container sign-in-container">
+        <form [formGroup]="signupForm" class="example-form" (ngSubmit)="onSignup(f.value)">
+          <h1>Sign Up</h1>
+          <input matInput type="text" formControlName="firstname" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" placeholder="Firstname" [(ngModel)]="user.firstname" required>
+          <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+           Firstname is required
+          </div>
+          <input matInput type="text" formControlName="lastname" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" placeholder="Lastname" [(ngModel)]="user.lastname" required>
+          <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+            Lastname is required
+          </div>
+          <input matInput type="text" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" placeholder="Username"
+            [(ngModel)]="user.username" required>
+            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+              Username is required
+            </div>
+          <input matInput type="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Password" [(ngModel)]="user.password" required>
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+        </div>
+          <input matInput type="email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Email" [(ngModel)]="user.email" required>
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Email is required</div>
+            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+        </div>
+          <input matInput type="number" formControlName="phone" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" placeholder="Phone Number"
+            [(ngModel)]="user.phonenumber" required>
+          <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+            Phone number is required
+          </div>
+          <div class="col-md-12 lnks">
+            <button mat-button>Sign up</button>
+          </div>
+          <div class="col-md-12 lnks">
+            <span>or </span>
+          </div>
+          <div class="col-md-12 lnks">
+            <a href="#/login" ng-click="">Sign In</a>
+          </div>
+
+
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

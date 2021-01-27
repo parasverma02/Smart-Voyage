@@ -1,0 +1,36 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Sign-in</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <div class="container-body">
+    <div class="container" id="container">
+      <div class="form-container sign-in-container">
+        <form [formGroup]="signinForm" class="example-form" (ngSubmit)="onSignin(f.value)">
+          <h1>Sign in</h1>
+              <input  type="text" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" placeholder="Username" [(ngModel)]="user.username">
+              <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                <div *ngIf="f.username.errors.required">Username is required</div>
+            </div>
+              <input matInput type="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Password" [(ngModel)]="user.password" name="password">
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+            </div>
+              <a href="#">Forgot your password?</a>
+              <button mat-button>Sign In</button>
+              <span>or </span>
+              <a href="#/signup" ng-click="">Sign Up</a>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+</body>
+</html>
